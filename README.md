@@ -3,6 +3,7 @@
 Este es un equipo polifacético, conformado por jóvenes de diferentes lugares de Colombia, unidos por un mismo fin, aprender a programar.
 
 ### El equipo está conformado por:
+
 1. **Fabian Stevens Varon Valencia**: Nacido en Neiva Huila, Ingeniero de software de profesión, músico (percusionista) de vocación. Me gustan los idiomas, aprender de todo un poco y siempre buscar la forma de ayudar a los demás.
 
  
@@ -12,9 +13,16 @@ Curso ingenieria de Telecomunicaciones en el ITM de Medellin.
 Avanzo en este curso mintic para tener una segunda salida de opcion de trabajo
 Gracias por su atención
 
+
 3. **Karent Liliana Manchabajoy**: Soy del departamento de Nariño, tengo 19 años. Mis expectativas en cuanto al curso MinTic, es aprender mucho y poder tener una opcion de trabajo y de esa manera salir adelante y entrar a la U.
 
-4. **Jose L. Medina C.**:
+
+4. **Andrés Farid Díaz**
+Soy Licenciado en Informática y Medios Audiovisuales, tengo 21 años, y vivo en Cereté - Córdoba.
+Busco con el curso de MinTIC profundizar en mis conocimientos de programación. 
+
+
+5. **Jose L. Medina C.**:
 Solo puedo decir, como en el relato de Sergio que hace el grande Greiff:
 <p>"Juego mi vida, cambio mi vida.
 De todos modos
@@ -55,7 +63,3 @@ almaceno en mis odres...!
 Juego mi vida, cambio mi vida.
 De todos modos
 la llevo perdida..." </p>
-
-5. **Andrés Farid Díaz**
-Soy Licenciado en Informática y Medios Audiovisuales, tengo 21 años, y vivo en Cereté - Córdoba.
-Busco con el curso de MinTIC profundizar en mis conocimientos de programación. 
