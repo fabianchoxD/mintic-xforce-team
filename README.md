@@ -16,7 +16,7 @@ Gracias por su atención
 
 4. **Jose L. Medina C.**:
 Solo puedo decir, como en el relato de Sergio que hace el grande Greiff:
-"Juego mi vida, cambio mi vida.
+<p>"Juego mi vida, cambio mi vida.
 De todos modos
 la llevo perdida...
 
@@ -54,4 +54,4 @@ almaceno en mis odres...!
 
 Juego mi vida, cambio mi vida.
 De todos modos
-la llevo perdida..."
+la llevo perdida..." </p>
