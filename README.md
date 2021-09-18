@@ -14,11 +14,8 @@ Gracias por su atención
 
 3. **Karent Liliana Manchabajoy**: Soy del departamento de Nariño, tengo 19 años. Mis expectativas en cuanto al curso MinTic, es aprender mucho y poder tener una opcion de trabajo y de esa manera salir adelante y entrar a la U.
 
-4. **Andrés Farid Díaz**
-Soy Licenciado en Informática y Medios Audiovisuales, tengo 21 años, y vivo en Cereté - Córdoba.
-Busco con el curso de MinTIC profundizar en mis conocimientos de programación. 
-
-5. **Jose L. Medina C.**:
+4. **Jose L. Medina C.**:
+>>>>>>> dc811aa4e5ee9219da3b4ca11231e68376cb26be
 Solo puedo decir, como en el relato de Sergio que hace el grande Greiff:
 <p>"Juego mi vida, cambio mi vida.
 De todos modos
@@ -58,5 +55,8 @@ almaceno en mis odres...!
 
 Juego mi vida, cambio mi vida.
 De todos modos
-la llevo perdida..."
-</p>
+la llevo perdida..." </p>
+
+5. **Andrés Farid Díaz**
+Soy Licenciado en Informática y Medios Audiovisuales, tengo 21 años, y vivo en Cereté - Córdoba.
+Busco con el curso de MinTIC profundizar en mis conocimientos de programación. 
