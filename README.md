@@ -15,7 +15,6 @@ Gracias por su atención
 3. **Karent Liliana Manchabajoy**: Soy del departamento de Nariño, tengo 19 años. Mis expectativas en cuanto al curso MinTic, es aprender mucho y poder tener una opcion de trabajo y de esa manera salir adelante y entrar a la U.
 
 4. **Jose L. Medina C.**:
->>>>>>> dc811aa4e5ee9219da3b4ca11231e68376cb26be
 Solo puedo decir, como en el relato de Sergio que hace el grande Greiff:
 <p>"Juego mi vida, cambio mi vida.
 De todos modos
