@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Logueo extends React.Component {
+class Login extends React.Component {
 
     render() {
         return (
@@ -9,3 +9,5 @@ class Logueo extends React.Component {
     }
 
 }
+
+export default Login;
