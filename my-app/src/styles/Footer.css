@@ -1,7 +1,16 @@
 .footer {
-    background-color: rgb(51, 100, 236);
+    background: transparent;
     position: absolute;
     width: 100%;
     bottom: 0;
     display: block;
+    box-shadow: rgba(0, 0, 0, 0.349) -1px -1px 10px;
+}
+
+.footer img {
+    padding: 30px;
+}
+
+.footer img ~ img {
+    padding: 20px 0px;
 }

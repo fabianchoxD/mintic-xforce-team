@@ -12,13 +12,21 @@ import '../styles/Header.css';
 const Header = () => {
     return (
         <React.Fragment> 
-            <AppBar className="appBar" position="static">
+            <AppBar 
+                className="appBar" 
+                position="static" 
+                style={{
+                    background: 'transparent', 
+                    boxShadow: 'rgba(0, 0, 0, 0.349) -1px -1px 10px',
+
+                }}
+            >
                 <Toolbar>
                     <Avatar alt="Bag" src="https://i.pinimg.com/736x/23/f7/c4/23f7c4409cb3b22e3e77f71ee7fefc9a.jpg"/>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}> </Typography>
                     
                     <Link to="/login" style={{textDecoration: 'none'}}>
-                        <Button id="btn" onClick=""> Sign In / Sign Up </Button>
+                        <Button id="btn" variant="outlined"> Sign In / Sign Up </Button>
                     </Link>
                 </Toolbar>
             </AppBar>
