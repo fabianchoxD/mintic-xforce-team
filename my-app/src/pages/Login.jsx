@@ -11,6 +11,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 import '../styles/Login.css';
 
@@ -29,6 +31,7 @@ const Login = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <Header/>
       <Container component="main" maxWidth="xs" className="login">
         <CssBaseline />
         <Box
@@ -108,6 +111,7 @@ const Login = () => {
           </Box>
         </Box>
       </Container>
+      <Footer/>
     </ThemeProvider>
   );
 }
