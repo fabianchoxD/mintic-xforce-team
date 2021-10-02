@@ -15,8 +15,15 @@ const Header = () => {
         <React.Fragment>
             <AppBar className="appBar" position="static">
                 <Toolbar>
-                    <Link to="/home" style={{textDecoration: 'none'}}>
-                        <Avatar onClick="" alt="Bag" src="https://i.pinimg.com/736x/23/f7/c4/23f7c4409cb3b22e3e77f71ee7fefc9a.jpg"/>
+                    <Link to="/home" style={{textDecoration: 'none', display:'flex'}}>
+                        <Avatar alt="Bag" src="https://i.pinimg.com/736x/23/f7/c4/23f7c4409cb3b22e3e77f71ee7fefc9a.jpg"/>
+                        <Typography 
+                            style={{fontFamily: 'Montserrat, sans-serif', color: 'white', marginTop: '3px'}} 
+                            variant="h6" 
+                            sx={{ flexGrow: 1 }}
+                        > 
+                            &nbsp; Megasales 
+                        </Typography>
                     </Link>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}> </Typography>
                     {(window.location.pathname ===  '/Login' || window.location.pathname ===  '/login')  ? (

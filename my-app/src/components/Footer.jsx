@@ -4,7 +4,7 @@ import '../styles/Footer.css';
 
 const Footer = () => {
     return (
-        <div className="footer">
+        <footer className="footer">
             <center>
                 <img 
                     id="img1"
@@ -19,7 +19,7 @@ const Footer = () => {
                     width="350px"
                 />
             </center>
-        </div>
+        </footer>
     )
 }
 
