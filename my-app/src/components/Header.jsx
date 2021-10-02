@@ -19,7 +19,7 @@ const Header = () => {
                         <Avatar onClick="" alt="Bag" src="https://i.pinimg.com/736x/23/f7/c4/23f7c4409cb3b22e3e77f71ee7fefc9a.jpg"/>
                     </Link>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}> </Typography>
-                    {window.location.pathname !== '/home'  ? (
+                    {(window.location.pathname ===  '/Login' || window.location.pathname ===  '/login')  ? (
                         null
                     ) : (
                         <Link to="/login" style={{textDecoration: 'none'}}>
