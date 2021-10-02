@@ -18,6 +18,7 @@
 
 @media (min-height: 713px) {
     .footer {
+        /* margin-top: 173px; */
         position: absolute;
         bottom: 0;
     }
@@ -25,8 +26,10 @@
 
 @media (min-width:1015px) {
     .footer {
-        position: absolute;
-        bottom: 0;
+        margin-top: 173px;
+        /* position: absolute;
+        bottom: 0; */
+        
     }
 }
 
