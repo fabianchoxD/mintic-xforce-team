@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
@@ -23,10 +23,9 @@ const Header = () => {
                         null
                     ) : (
                         <Link to="/login" style={{textDecoration: 'none'}}>
-                            <Button id="btn" onClick="" endIcon={<LoginIcon />}> Sign In / Sign Up </Button>
+                            <Button id="btn" onClick="" endIcon={<LoginIcon/>}> Sign In / Sign Up </Button>
                         </Link>
-                    )}
-
+                    )} 
                 </Toolbar>
             </AppBar>
         </React.Fragment>

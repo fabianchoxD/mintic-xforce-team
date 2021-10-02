@@ -13,11 +13,23 @@
 }
 
 .body p {
-    width: 700px;
+    width: 52%;
     color: rgba(0, 0, 0, 0.801);
     font-size: 20px;
     padding: 0;
     margin-left: auto;
     margin-right: auto;
     margin-top: -40px;
+}
+
+@media (max-width:768px) {
+    .body p {
+        width: 90%;
+    }
+}
+
+@media (max-width:375px) {
+    .body p {
+        width: 90%;
+    }
 }
