@@ -26,7 +26,7 @@ const Header = () => {
                         </Typography>
                     </Link>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}> </Typography>
-                    {(window.location.pathname ===  '/Login' || window.location.pathname ===  '/login')  ? (
+                    {(window.location.pathname ===  '/Login' || window.location.pathname ===  '/login' || window.location.pathname ===  '/ventas' || window.location.pathname ===  '/Ventas')  ? (
                         null
                     ) : (
                         <Link to="/login" style={{textDecoration: 'none'}}>
