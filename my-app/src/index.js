@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Home from './components/Home';
 import Users from './pages/Users';
 import Ventas from './components/Ventas';
+import Products from './pages/Products';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.render(
         <Route exact path="/home" component={Home}/>
         <Route exact path="/users" component={Users}/>
         <Route exact path="/ventas" component={Ventas}/>
+        <Route exact path="/products" component={Products}/>
       </Switch>
     </BrowserRouter>
   </React.StrictMode>,

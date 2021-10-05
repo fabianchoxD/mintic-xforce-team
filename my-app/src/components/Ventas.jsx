@@ -2,6 +2,7 @@ import React from "react";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
+    Alert,
     Table,
     Button,
     Container,
@@ -28,7 +29,8 @@ class ventas extends React.Component {
             cantidad: ''
         },
         modalInsertar: false,
-        modalEditar: false
+        modalEditar: false,
+        alerta: false
     };
 
     handleChange = e => {
@@ -111,7 +113,7 @@ class ventas extends React.Component {
         return (
             <>
                 <Header />
-                <Container>
+                <Container className="ventas">
                     <br />
 
                     <Button color="success" onClick={() => this.mostrarModalInsertar()}>Añadir un nuevo producto</Button>
@@ -203,8 +205,7 @@ class ventas extends React.Component {
                         <Button color="danger" onClick={() => this.ocultarModalEditar()}>Cancelar</Button>
                     </ModalFooter>
                 </Modal>
-                <Footer />
-
+                <Footer/>   
             </>
         );
     }
