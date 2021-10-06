@@ -8,7 +8,12 @@
     margin-right: 0% !important;
 }
 
-.body h1 {
+.row{
+    --bs-gutter-x: 0% !important;
+    --bs-gutter-y: 0% !important;
+}
+
+.mainTittleH1{
     font-family: 'Montserrat', sans-serif;
     font-size: 70px;
     font-weight: 500;
