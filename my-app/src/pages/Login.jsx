@@ -28,12 +28,12 @@ const Login = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Header/>
+      <Header />
       <Container component="main" maxWidth="xs" className="login">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 5,
+            marginTop: 4,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
