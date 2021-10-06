@@ -1,18 +1,15 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
-// import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'; 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import GoogleButton from 'react-google-button'
+import { Link } from 'react-router-dom'
 
 import '../styles/Login.css';
 
