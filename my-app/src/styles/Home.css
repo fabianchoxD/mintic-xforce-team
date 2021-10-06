@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
 
-.body {
-    display: block;
-    text-align: center;
+
+.fluid{
+    padding-left:0% !important;
+    padding-right:0% !important;
+    margin-left: 0% !important;
+    margin-right: 0% !important;
 }
 
 .body h1 {
