@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
-    Alert,
     Table,
     Button,
     Container,
@@ -17,22 +16,17 @@ import swal from 'sweetalert';
 import Header from '../components/Header';
 import Footer from "../components/Footer";
 
-const data = [];
-
 class Users extends Component {
     state = {
-        data: data,
 
         registeredUsers: [
-            {name: 'Andrés', lastname: 'Díaz', role: 'Administrator'},
-            {name: 'Fabián', lastname: 'Varón', role: 'Administrator'},
-            {name: 'Karent', lastname: 'Manchabajoy', role: 'Administrator'},
-            {name: 'Sebastián', lastname: 'Ortíz', role: 'Administrator'},
-            {name: 'José', lastname: 'Cardona', role: 'Administrator'}
-        ],
-        notificationUsers: [
-            {name: 'Juan', lastname: 'Gómez', state: ''},
-            {name: 'Steven', lastname: 'Hurtado', state: ''}
+            {id: '1', name: 'Andrés', lastname: 'Díaz', role: 'Administrator', state: 'Authorized'},
+            {id: '2', name: 'Fabián', lastname: 'Varón', role: 'Administrator', state: 'Authorized'},
+            {id: '3', name: 'Karent', lastname: 'Manchabajoy', role: 'Administrator', state: 'Authorized'},
+            {id: '4', name: 'Sebastián', lastname: 'Ortíz', role: 'Administrator', state: 'Authorized'},
+            {id: '5', name: 'José', lastname: 'Cardona', role: 'Administrator', state: 'Authorized'},
+            {id: '6', name: 'Juan', lastname: 'Gómez', role: '', state: 'Pending'},
+            {id: '7', name: 'Steven', lastname: 'Hurtado', role: '', state: 'Pending'}
         ],
 
         form: {
@@ -67,17 +61,18 @@ class Users extends Component {
 
     modify = (dato) => {
         var cont = 0;
-        var list = this.state.data;
+        var list = this.state.registeredUsers;
         console.log(list);
         list.map((register) => {
             if (dato.id === register.id) {
-                list[cont].description = dato.description;
-                list[cont].price = dato.price;
+                list[cont].name = dato.name;
+                list[cont].lastname = dato.lastname;
+                list[cont].role = dato.role;
                 list[cont].state = dato.state;
             }
             cont++;
         });
-        this.setState({ data: list, modalEdit: false });
+        this.setState({ registeredUsers: list, modalEdit: false });
         swal("Successful Operation.", "The register with id: " + dato.id + ", was successfully modified.", "success");
     }
 
@@ -85,20 +80,19 @@ class Users extends Component {
         return (
             <>
                 <Header />
-                
                 <div 
                     style={{
-                        marginTop: '40px', 
+                        marginTop: '7em', 
                         width: '90%', 
                         marginLeft: 'auto', 
-                        marginRight: 'auto'
+                        marginRight: 'auto',
                     }}>
 
                     <h3> User Management </h3>
                     <hr />
                 </div>
 
-                <Container className="sales">
+                <Container className="sales" style={{marginBottom: '120px'}}>
                     <br />
                     <Table>
                         <thead>
@@ -107,6 +101,7 @@ class Users extends Component {
                                 <th>Name</th>
                                 <th>Lastname</th>
                                 <th>Role</th>
+                                <th>State</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -117,9 +112,9 @@ class Users extends Component {
                                     <td>{element.name}</td>
                                     <td>{element.lastname}</td>
                                     <td>{element.role}</td> 
+                                    <td>{element.state}</td> 
                                     <td>
                                         <Button color="primary" onClick={() => this.showModalEdit(element)} > Edit </Button> {"  "}
-                                        <Button color="danger" onClick={() => this.delete(element)} > Delete </Button>
                                     </td>
                                 </tr>
                             ))}
@@ -149,9 +144,17 @@ class Users extends Component {
                         <FormGroup>
                             <label> Role: </label>
                             <select className="form-control" name="role" onChange={this.handleChange}>
-                                <option value="" selected disabled hide style={{display:'none'}}> Change Role </option>
-                                <option value="Available"> Administrator </option>
-                                <option value="Unavailable"> Seller </option>
+                                <option value="" selected disabled hide style={{display:'none'}}> Change role </option>
+                                <option value="Administrator"> Administrator </option>
+                                <option value="Seller"> Seller </option> 
+                            </select>
+                        </FormGroup>
+                        <FormGroup>
+                            <label> State: </label>
+                            <select className="form-control" name="state" onChange={this.handleChange}>
+                                <option value="" selected disabled hide style={{display:'none'}}> Change state </option>
+                                <option value="Authorized"> Authorized </option>
+                                <option value="Unauthorized"> Unauthorized </option> 
                             </select>
                         </FormGroup>
                     </ModalBody>

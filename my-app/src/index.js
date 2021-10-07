@@ -6,7 +6,7 @@ import App from './App';
 import Login from './pages/Login';
 import Home from './components/Home';
 import Users from './pages/Users';
-import Ventas from './components/Ventas';
+import Sales from './pages/Sales';
 import Products from './pages/Products';
 
 ReactDOM.render(
@@ -17,7 +17,7 @@ ReactDOM.render(
         <Route exact path="/login" component={Login}/>
         <Route exact path="/home" component={Home}/>
         <Route exact path="/users" component={Users}/>
-        <Route exact path="/ventas" component={Ventas}/>
+        <Route exact path="/sales" component={Sales}/>
         <Route exact path="/products" component={Products}/>
       </Switch>
     </BrowserRouter>

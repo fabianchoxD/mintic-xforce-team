@@ -3,14 +3,14 @@
     /* position:absolute; */
     /* bottom: 0; */
     margin-top: 150px;
-    box-shadow: rgba(0, 0, 0, 0.349) -1px -1px 10px;
+    box-shadow: rgba(0, 0, 0, 0.349) 1px 1px 6px;
     padding-left: 0% !important;
     padding-right: 0% !important;
 }
 
 .footer #img1 {
-    text-align: center;
     padding: 1% 1% 1% 1%;
-    margin-right: 20%;
-    margin-left: 6%;
+    margin-right: 2%;
+    margin-left: 14%;
 }
+

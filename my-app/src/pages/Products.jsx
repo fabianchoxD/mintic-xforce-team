@@ -67,9 +67,12 @@ class Products extends Component {
             newValue.id = this.state.data.length + 1;
             var list = this.state.data;
             list.push(newValue);
+            console.log(list);
             this.setState({ data: list, alert: false, modalinsert: false });
             swal("Successful Operation.", newValue.description + ", added successfully.", "success");
-            this.state.form.description = ''; this.state.form.price = ''; this.state.form.state = '';
+            let form = {...this.state.form};
+            form.description = ''; form.price = ''; form.state = '';
+            this.setState({form});
         }
     }
 
@@ -92,7 +95,7 @@ class Products extends Component {
     delete = (dato) => {
         swal({
             title: "Delete Product?",
-            text: "Are you sure to remove this product " + "<" + dato.description + ">" + " con id: " + dato.id + "?",
+            text: "Are you sure to remove this product " + "<" + dato.description + ">" + " with id: " + dato.id + "?",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -123,7 +126,7 @@ class Products extends Component {
                 
                 <div 
                     style={{
-                        marginTop: '40px', 
+                        marginTop: '7em', 
                         width: '90%', 
                         marginLeft: 'auto', 
                         marginRight: 'auto'
@@ -133,7 +136,7 @@ class Products extends Component {
                     <hr />
                 </div>
 
-                <Container className="sales">
+                <Container className="box" style={{marginBottom: '120px'}}>
 
                     <Alert isOpen={this.state.alert} color="warning">
                         Please complete all field. 
