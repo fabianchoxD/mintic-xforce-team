@@ -106,6 +106,10 @@ class Sales extends React.Component {
         });
         this.setState({ data: list, modalEdit: false });
         swal("Successful Operation.", "The register with id: " + dato.id + ", was successfully modified.", "success");
+        let form = {...this.state.form};
+        form.total = ''; form.description = ''; form.quantity = ''; form.unitPrice = ''; form.saleDate = '';
+        form.identification = ''; form.nameClient = ''; form.state = ''; 
+        this.setState({form});        
     }
 
     delete = (dato) => {
@@ -295,7 +299,7 @@ class Sales extends React.Component {
                         </FormGroup>
                         <FormGroup>
                             <label> State: </label>
-                            <select className="form-control" name="state" onChange={this.handleChange}>
+                            <select className="form-control" name="state" onChange={this.handleChange} value={this.state.form.state}>
                                 <option value="" selected disabled hide style={{display:'none'}}></option>
                                 <option value="In Process"> In Process </option>
                                 <option value="Cancelled"> Cancelled </option>

@@ -21,43 +21,43 @@ import Footer from "../components/Footer";
 const data = [];
 
 class Products extends Component {
-  state = {
-    data: data,
-    form: {
-      id: "",
-      description: "",
-      price: "",
-      state: "",
-    },
-    modalinsert: false,
-    modalEdit: false,
-    alert: false,
-  };
+    state = {
+        data: data,
+        form: {
+        id: "",
+        description: "",
+        price: "",
+        state: "",
+        },
+        modalinsert: false,
+        modalEdit: false,
+        alert: false,
+    };
 
-  handleChange = (e) => {
-    this.setState({
-      form: {
-        ...this.state.form,
-        [e.target.name]: e.target.value,
-      },
-    });
-  };
+    handleChange = (e) => {
+        this.setState({
+        form: {
+            ...this.state.form,
+            [e.target.name]: e.target.value,
+        },
+        });
+    };
 
-  showModalInsert = () => {
-    this.setState({ modalinsert: true });
-  };
+    showModalInsert = () => {
+        this.setState({ modalinsert: true });
+    };
 
-  hideModalInsert = () => {
-    this.setState({ modalinsert: false });
-  };
+    hideModalInsert = () => {
+        this.setState({ modalinsert: false });
+    };
 
-  showModalEdit = (register) => {
-    this.setState({ modalEdit: true, form: register });
-  };
+    showModalEdit = (register) => {
+        this.setState({ modalEdit: true, form: register });
+    };
 
-  hideModalEdit = () => {
-    this.setState({ modalEdit: false });
-  };
+    hideModalEdit = () => {
+        this.setState({ modalEdit: false });
+    };
       
     insert = () => {
         if (this.state.form.description === '' || this.state.form.price === '' || this.state.form.state === '') {
@@ -76,27 +76,29 @@ class Products extends Component {
             this.setState({form});
         }
     }
-  };
 
-  modify = (dato) => {
-    var cont = 0;
-    var list = this.state.data;
-    console.log(list);
-    list.map((register) => {
-      if (dato.id === register.id) {
-        list[cont].description = dato.description;
-        list[cont].price = dato.price;
-        list[cont].state = dato.state;
-      }
-      cont++;
-    });
-    this.setState({ data: list, modalEdit: false });
-    swal(
-      "Successful Operation.",
-      "The register with id: " + dato.id + ", was successfully modified.",
-      "success"
-    );
-  };
+    modify = (dato) => {
+        var cont = 0;
+        var list = this.state.data;
+        console.log(list);
+        list.map((register) => {
+        if (dato.id === register.id) {
+            list[cont].description = dato.description;
+            list[cont].price = dato.price;
+            list[cont].state = dato.state;
+        }
+        cont++;
+        });
+        this.setState({ data: list, modalEdit: false });
+        swal(
+        "Successful Operation.",
+        "The register with id: " + dato.id + ", was successfully modified.",
+        "success"
+        );
+        let form = {...this.state.form};
+        form.description = ''; form.price = ''; form.state = '';
+        this.setState({form});
+    };
 
     delete = (dato) => {
         swal({
@@ -125,6 +127,7 @@ class Products extends Component {
                 }
             });
     }
+
     render() {
         return (
             <>
@@ -148,9 +151,11 @@ class Products extends Component {
                         Please complete all field. 
                     </Alert>
 
-                    <div className="Buscar">
-                      <input type="text" placeholder="ID,Descripcion" />
-                    </div>
+                    <div className="flexbox-container">
+                        <div className="Buscar">
+                        <input type="text" placeholder="ID,Descripcion" />
+                        </div>
+                    </div>    
 
                     <br />
 
@@ -239,7 +244,7 @@ class Products extends Component {
                         </FormGroup>
                         <FormGroup>
                             <label> State: </label>
-                            <select className="form-control" name="state" onChange={this.handleChange}>
+                            <select className="form-control" name="state" onChange={this.handleChange} value={this.state.form.state}>
                                 <option value="" selected disabled hide style={{display:'none'}}></option>
                                 <option value="Available"> Available </option>
                                 <option value="Unavailable"> Unavailable </option>
