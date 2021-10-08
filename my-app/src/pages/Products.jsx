@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../App.css";
 import "../styles/products.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import SearchIcon from '@mui/icons-material/Search';
 import {
   Alert,
   Table,
@@ -153,7 +154,8 @@ class Products extends Component {
 
                     <div className="flexbox-container">
                         <div className="Buscar">
-                        <input type="text" placeholder="ID,Descripcion" />
+                        <input type="text" placeholder="Search Products" />
+                        <SearchIcon/>
                         </div>
                     </div>    
 

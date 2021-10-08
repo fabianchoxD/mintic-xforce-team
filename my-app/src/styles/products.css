@@ -3,9 +3,25 @@
     margin-left: auto; 
     margin-right: auto;}
 
-.Buscar {margin-top: auto;
-    margin-left: 100px; 
-    margin-right: 100px;}
+.Buscar {position:absolute;
+    top:225px;
+    right: 80px;
+
+}
+
+.Buscar input {
+    width: 260px;
+    height: 40px;
+    padding: 5px 8px 0px 20px ;
+    font-size:18px;
+    color: #000;
+    border: 2px rgb(13, 122, 31) solid; 
+    background-color: transparent;
+    outline:none;
+    border-radius:40px;
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 400;
+}
 
 .flexbox-container {
     display: flex;
