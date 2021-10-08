@@ -1,6 +1,8 @@
 import React from "react";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
 import {
     Alert,
     Table,
@@ -16,6 +18,8 @@ import {
 import swal from 'sweetalert';
 import Header from '../components/Header';
 import Footer from "../components/Footer";
+
+import "../styles/products.css";
 
 const data = [];
 
@@ -163,7 +167,23 @@ class Sales extends React.Component {
                     
                     <br />
 
-                    <Button color="success" onClick={() => this.showModalInsert()}> Register a New Sale </Button>
+                    <div className="flexbox-container">
+                        <Button color="success" onClick={() => this.showModalInsert()}> Register a New Sale </Button>
+                        <div className="search">
+                            <input type="text" placeholder="Search sales" />
+                            <IconButton 
+                                aria-label="search"
+                                style={{
+                                    background: 'rgb(45, 124, 214)', 
+                                    marginLeft: '6px',
+                                    marginTop: '-8px'
+                                }}
+                            >
+                                <SearchIcon sx={{color: 'white'}}/>
+                            </IconButton> 
+                        </div>
+                    </div>    
+
                     <br />
                     <br />
                     <Table>
@@ -203,7 +223,7 @@ class Sales extends React.Component {
                     </Table>
                 </Container>
 
-                <Modal isOpen={this.state.modalInsert} >
+                <Modal isOpen={this.state.modalInsert} style={{marginTop: '80px'}}>
                     <ModalHeader>
                         <div>
                             <h3> Add Sales </h3>
@@ -258,10 +278,10 @@ class Sales extends React.Component {
                     </ModalFooter>
                 </Modal>
 
-                <Modal isOpen={this.state.modalEdit} >
+                <Modal isOpen={this.state.modalEdit} style={{marginTop: '80px'}}>
                     <ModalHeader>
                         <div>
-                            <h3>modify Producto</h3>
+                            <h3>Modify Producto</h3>
                         </div>
                     </ModalHeader>
                     <ModalBody>

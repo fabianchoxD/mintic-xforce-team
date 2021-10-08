@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../App.css";
 import "../styles/products.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import {
   Alert,
@@ -152,16 +153,24 @@ class Products extends Component {
                         Please complete all field. 
                     </Alert>
 
-                    <div className="flexbox-container">
-                        <div className="Buscar">
-                        <input type="text" placeholder="Search Products" />
-                        <SearchIcon/>
-                        </div>
-                    </div>    
-
                     <br />
 
-                    <Button color="success" onClick={() => this.showModalInsert()}>Insert a New Product</Button>
+                    <div className="flexbox-container">
+                        <Button color="success" onClick={() => this.showModalInsert()}>Insert a New Product</Button>
+                        <div className="search">
+                            <input type="text" placeholder="Search products" />
+                            <IconButton 
+                                aria-label="search"
+                                style={{
+                                    background: 'rgb(45, 124, 214)', 
+                                    marginLeft: '6px',
+                                    marginTop: '-8px'
+                                }}
+                            >
+                                <SearchIcon sx={{color: 'white'}}/>
+                            </IconButton> 
+                        </div>
+                    </div>    
                     <br />
                     <br />
                     <Table>
@@ -191,7 +200,7 @@ class Products extends Component {
                     </Table>
                 </Container>
 
-                <Modal isOpen={this.state.modalinsert} >
+                <Modal isOpen={this.state.modalinsert} style={{marginTop: '80px'}}>
                     <ModalHeader>
                         <div>
                             <h3>Add Products</h3>
@@ -225,7 +234,7 @@ class Products extends Component {
                     </ModalFooter>
                 </Modal>
 
-                <Modal isOpen={this.state.modalEdit} >
+                <Modal isOpen={this.state.modalEdit} style={{marginTop: '80px'}}>
                     <ModalHeader>
                         <div>
                             <h3>Modify Product</h3>
