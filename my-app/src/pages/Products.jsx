@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "../App.css";
 import "../styles/products.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import SearchIcon from '@mui/icons-material/Search';
 import {
   Alert,
   Table,
@@ -22,44 +21,67 @@ import Footer from "../components/Footer";
 const data = [];
 
 class Products extends Component {
-    state = {
-        data: data,
-        form: {
-        id: "",
-        description: "",
-        price: "",
-        state: "",
-        },
-        modalinsert: false,
-        modalEdit: false,
-        alert: false,
-    };
+  state = {
+    data: data,
+    form: {
+      id: "",
+      description: "",
+      price: "",
+      state: "",
+    },
+    modalinsert: false,
+    modalEdit: false,
+    alert: false,
+  };
 
-    handleChange = (e) => {
-        this.setState({
-        form: {
-            ...this.state.form,
-            [e.target.name]: e.target.value,
-        },
-        });
-    };
+  handleChange = (e) => {
+    this.setState({
+      form: {
+        ...this.state.form,
+        [e.target.name]: e.target.value,
+      },
+    });
+  };
 
-    showModalInsert = () => {
-        this.setState({ modalinsert: true });
-    };
+  showModalInsert = () => {
+    this.setState({ modalinsert: true });
+  };
 
-    hideModalInsert = () => {
-        this.setState({ modalinsert: false });
-    };
+  hideModalInsert = () => {
+    this.setState({ modalinsert: false });
+  };
 
-    showModalEdit = (register) => {
-        this.setState({ modalEdit: true, form: register });
-    };
+  showModalEdit = (register) => {
+    this.setState({ modalEdit: true, form: register });
+  };
 
-    hideModalEdit = () => {
-        this.setState({ modalEdit: false });
-    };
-      
+  hideModalEdit = () => {
+    this.setState({ modalEdit: false });
+  };
+
+  insert = () => {
+    if (
+      this.state.form.description === "" ||
+      this.state.form.price === "" ||
+      this.state.form.state === ""
+    ) {
+      this.setState({ alert: true, modalinsert: false });
+    } else {
+      var newValue = { ...this.state.form };
+      newValue.id = this.state.data.length + 1;
+      var list = this.state.data;
+      list.push(newValue);
+      this.setState({ data: list, alert: false, modalinsert: false });
+      swal(
+        "Successful Operation.",
+        newValue.description + ", added successfully.",
+        "success"
+      );
+      this.state.form.description = "";
+      this.state.form.price = "";
+      this.state.form.state = "";
+    }
+  }
     insert = () => {
         if (this.state.form.description === '' || this.state.form.price === '' || this.state.form.state === '') {
             this.setState({alert: true, modalinsert: false});
@@ -77,191 +99,265 @@ class Products extends Component {
             this.setState({form});
         }
     }
+  
+;
 
-    modify = (dato) => {
+  modify = (dato) => {
+    var cont = 0;
+    var list = this.state.data;
+    console.log(list);
+    list.map((register) => {
+      if (dato.id === register.id) {
+        list[cont].description = dato.description;
+        list[cont].price = dato.price;
+        list[cont].state = dato.state;
+      }
+      cont++;
+    });
+    this.setState({ data: list, modalEdit: false });
+    swal(
+      "Successful Operation.",
+      "The register with id: " + dato.id + ", was successfully modified.",
+      "success"
+    );
+  };
+
+  delete1 = (dato) => {
+    swal({
+      title: "Delete Product?",
+      text:
+        "Are you sure to remove this product " +
+        "<" +
+        dato.description +
+        ">" +
+        " con id: " +
+        dato.id +
+        "?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
         var cont = 0;
         var list = this.state.data;
-        console.log(list);
         list.map((register) => {
-        if (dato.id === register.id) {
-            list[cont].description = dato.description;
-            list[cont].price = dato.price;
-            list[cont].state = dato.state;
-        }
-        cont++;
+          if (register.id === dato.id) {
+            list.splice(cont, 1);
+          }
+          cont++;
         });
-        this.setState({ data: list, modalEdit: false });
-        swal(
-        "Successful Operation.",
-        "The register with id: " + dato.id + ", was successfully modified.",
-        "success"
-        );
-        let form = {...this.state.form};
-        form.description = ''; form.price = ''; form.state = '';
-        this.setState({form});
-    };
+        this.setState({ data: list });
+        swal("Register removed successfully.", {
+          icon: "success",
+        });
+      } else {
+        swal("Operation Unrealized.");
+      }
+    });
+  };
 
-    delete = (dato) => {
-        swal({
-            title: "Delete Product?",
-            text: "Are you sure to remove this product " + "<" + dato.description + ">" + " with id: " + dato.id + "?",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    var cont = 0;
-                    var list = this.state.data;
-                    list.map((register) => {
-                        if (register.id === dato.id) {
-                            list.splice(cont, 1);
-                        }
-                        cont++;
-                    });
-                    this.setState({ data: list });
-                    swal("Register removed successfully.", {
-                        icon: "success",
-                    });
-                } else {
-                    swal("Operation Unrealized.");
-                }
-            });
-    }
+  render() 
+  {
+    return (
+      <>
+        <Header />
 
-    render() {
-        return (
-            <>
-                <Header />
-                
-                <div 
-                    style={{
-                        marginTop: '7em', 
-                        width: '90%', 
-                        marginLeft: 'auto', 
-                        marginRight: 'auto'
-                    }}>
+        <div className="titulo">
+          <h3> Product Management </h3>
+          <hr />
+        </div>
+        
 
-                    <h3> Product Management </h3>
-                    <hr />
-                </div>
+        <Container className="sales">
+          <Alert isOpen={this.state.alert} color="warning">
+            Please complete all field.
+          </Alert>
 
-                <Container className="box" style={{marginBottom: '120px'}}>
+          <br />
+          <div className="flexbox-container">
+            <Button color="success" onClick={() => this.showModalInsert()}>
+              Insert a New Product
+            </Button>
 
-                    <Alert isOpen={this.state.alert} color="warning">
-                        Please complete all field. 
-                    </Alert>
+            <div className="Buscar">
+              <input type="text" placeholder="ID,Description" />
+            </div>
+          </div>
 
-                    <div className="flexbox-container">
-                        <div className="Buscar">
-                        <input type="text" placeholder="Search Products" />
-                        <SearchIcon/>
-                        </div>
-                    </div>    
+          <br />
+          <br />
+          <Table>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>State</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.data.map((element) => (
+                <tr>
+                  <td>{element.id}</td>
+                  <td>{element.description}</td>
+                  <td>{element.price}</td>
+                  <td>{element.state}</td>
+                  <td>
+                    <Button
+                      color="primary"
+                      onClick={() => this.showModalEdit(element)}
+                    >
+                      {" "}
+                      Edit{" "}
+                    </Button>{" "}
+                    {"  "}
+                    <Button color="danger" onClick={() => this.delete(element)}>
+                      {" "}
+                      Delete{" "}
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Container>
 
-                    <br />
+        <Modal isOpen={this.state.modalinsert}>
+          <ModalHeader>
+            <div>
+              <h3>Add Products</h3>
+            </div>
+          </ModalHeader>
+          <ModalBody>
+            <FormGroup>
+              <label>Id:</label>
+              <input
+                className="form-control"
+                readOnly
+                type="text"
+                value={this.state.data.length + 1}
+              />
+            </FormGroup>
+            <FormGroup>
+              <label>Description:</label>
+              <input
+                className="form-control"
+                name="description"
+                type="text"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <label>Price:</label>
+              <input
+                className="form-control"
+                name="price"
+                type="text"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <label> State: </label>
+              <select
+                className="form-control"
+                name="state"
+                onChange={this.handleChange}
+              >
+                <option
+                  value=""
+                  selected
+                  disabled
+                  hide
+                  style={{ display: "none" }}
+                ></option>
+                <option value="Available"> Available </option>
+                <option value="Unavailable"> Unavailable </option>
+              </select>
+            </FormGroup>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="success" onClick={() => this.insert()}>
+              insert
+            </Button>
+            <Button color="danger" onClick={() => this.hideModalInsert()}>
+              Cancel
+            </Button>
+          </ModalFooter>
+        </Modal>
 
-                    <Button color="success" onClick={() => this.showModalInsert()}>Insert a New Product</Button>
-                    <br />
-                    <br />
-                    <Table>
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Description</th>
-                                <th>Price</th>
-                                <th>State</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.data.map((element) => (
-                                <tr>
-                                    <td>{element.id}</td>
-                                    <td>{element.description}</td>
-                                    <td>{element.price}</td>
-                                    <td>{element.state}</td>
-                                    <td>
-                                        <Button color="primary" onClick={() => this.showModalEdit(element)} > Edit </Button> {"  "}
-                                        <Button color="danger" onClick={() => this.delete(element)} > Delete </Button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                </Container>
-
-                <Modal isOpen={this.state.modalinsert} >
-                    <ModalHeader>
-                        <div>
-                            <h3>Add Products</h3>
-                        </div>
-                    </ModalHeader>
-                    <ModalBody>
-                        <FormGroup>
-                            <label>Id:</label>
-                            <input className="form-control" readOnly type="text" value={this.state.data.length+1} />
-                        </FormGroup>
-                        <FormGroup>
-                            <label>Description:</label>
-                            <input className="form-control" name="description" type="text" onChange={this.handleChange} />
-                        </FormGroup>
-                        <FormGroup>
-                            <label>Price:</label>
-                            <input className="form-control" name="price" type="text" onChange={this.handleChange} />
-                        </FormGroup>
-                        <FormGroup>
-                            <label> State: </label>
-                            <select className="form-control" name="state" onChange={this.handleChange}>
-                                <option value="" selected disabled hide style={{display:'none'}}></option>
-                                <option value="Available"> Available </option>
-                                <option value="Unavailable"> Unavailable </option>
-                            </select>
-                        </FormGroup>
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="success" onClick={() => this.insert()}>insert</Button>
-                        <Button color="danger" onClick={() => this.hideModalInsert()}>Cancel</Button>
-                    </ModalFooter>
-                </Modal>
-
-                <Modal isOpen={this.state.modalEdit} >
-                    <ModalHeader>
-                        <div>
-                            <h3>Modify Product</h3>
-                        </div>
-                    </ModalHeader>
-                    <ModalBody>
-                        <FormGroup>
-                            <label>Id:</label>
-                            <input className="form-control" readOnly type="text" value={this.state.form.id} />
-                        </FormGroup>
-                        <FormGroup>
-                            <label>Description:</label>
-                            <input className="form-control" name="description" type="text" onChange={this.handleChange} value={this.state.form.description} />
-                        </FormGroup>
-                        <FormGroup>
-                            <label>Price:</label>
-                            <input className="form-control" name="price" type="text" onChange={this.handleChange} value={this.state.form.price} />
-                        </FormGroup>
-                        <FormGroup>
-                            <label> State: </label>
-                            <select className="form-control" name="state" onChange={this.handleChange} value={this.state.form.state}>
-                                <option value="" selected disabled hide style={{display:'none'}}></option>
-                                <option value="Available"> Available </option>
-                                <option value="Unavailable"> Unavailable </option>
-                            </select>
-                        </FormGroup>
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="success" onClick={() => this.modify(this.state.form)} > Modify </Button>
-                        <Button color="danger" onClick={() => this.hideModalEdit()}> Cancel </Button>
-                    </ModalFooter>
-                </Modal>
-                <Footer/>   
-            </>
-        );
-    }
+        <Modal isOpen={this.state.modalEdit}>
+          <ModalHeader>
+            <div>
+              <h3>Modify Product</h3>
+            </div>
+          </ModalHeader>
+          <ModalBody>
+            <FormGroup>
+              <label>Id:</label>
+              <input
+                className="form-control"
+                readOnly
+                type="text"
+                value={this.state.form.id}
+              />
+            </FormGroup>
+            <FormGroup>
+              <label>Description:</label>
+              <input
+                className="form-control"
+                name="description"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.form.description}
+              />
+            </FormGroup>
+            <FormGroup>
+              <label>Price:</label>
+              <input
+                className="form-control"
+                name="price"
+                type="text"
+                onChange={this.handleChange}
+                value={this.state.form.price}
+              />
+            </FormGroup>
+            <FormGroup>
+              <label> State: </label>
+              <select
+                className="form-control"
+                name="state"
+                onChange={this.handleChange}
+              >
+                <option
+                  value=""
+                  selected
+                  disabled
+                  hide
+                  style={{ display: "none" }}
+                ></option>
+                <option value="Available"> Available </option>
+                <option value="Unavailable"> Unavailable </option>
+              </select>
+            </FormGroup>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              color="success"
+              onClick={() => this.modify(this.state.form)}
+            >
+              {" "}
+              Modify{" "}
+            </Button>
+            <Button color="danger" onClick={() => this.hideModalEdit()}>
+              {" "}
+              Cancel{" "}
+            </Button>
+          </ModalFooter>
+        </Modal>
+        <Footer />
+      </>
+    );
+  }
 }
-
 export default Products;
