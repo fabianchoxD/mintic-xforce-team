@@ -1,21 +1,27 @@
-.titulo {margin-top: 50px; 
+.titulo {
+    margin-top: 50px; 
     width: 90%;
     margin-left: auto; 
-    margin-right: auto;}
+    margin-right: auto;
+}
 
-.Buscar {position:absolute;
-    top:225px;
-    right: 80px;
+.flexbox-container {
+    display: inline-flex;
+    justify-content: space-around;
 
 }
 
-.Buscar input {
+.search {
+    margin-left: 30px;
+}
+
+.search input {
     width: 260px;
     height: 40px;
     padding: 5px 8px 0px 20px ;
     font-size:18px;
-    color: #000;
-    border: 2px rgb(13, 122, 31) solid; 
+    color: rgb(107, 107, 107);
+    border: 2px rgb(45, 124, 214) solid; 
     background-color: transparent;
     outline:none;
     border-radius:40px;
@@ -23,8 +29,3 @@
     font-weight: 400;
 }
 
-.flexbox-container {
-    display: flex;
-    justify-content: space-around;
-
-}
