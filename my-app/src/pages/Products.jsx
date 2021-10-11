@@ -84,25 +84,6 @@ class Products extends Component {
       this.state.form.state = "";
     }
   }
-  insert = () => {
-    if (this.state.form.description === '' || this.state.form.price === '' || this.state.form.state === '') {
-      this.setState({ alert: true, modalinsert: false });
-    }
-    else {
-      var newValue = { ...this.state.form };
-      newValue.id = this.state.data.length + 1;
-      var list = this.state.data;
-      list.push(newValue);
-      console.log(list);
-      this.setState({ data: list, alert: false, modalinsert: false });
-      swal("Successful Operation.", newValue.description + ", added successfully.", "success");
-      let form = { ...this.state.form };
-      form.description = ''; form.price = ''; form.state = '';
-      this.setState({ form });
-    }
-  }
-
-    ;
 
   modify = (dato) => {
     var cont = 0;
