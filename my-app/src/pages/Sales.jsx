@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css";
-import "../styles/Ventas.css";
+import "../styles/Sales.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
@@ -157,8 +157,6 @@ class Sales extends React.Component {
                     <Alert isOpen={this.state.alert} color="warning">
                         Please complete all field.
                     </Alert>
-
-                    <br />
 
                     <div className="flexbox-container">
                         <Button color="success" onClick={() => this.showModalInsert()}> Register a New Sale </Button>
