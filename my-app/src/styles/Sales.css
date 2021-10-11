@@ -11,3 +11,9 @@
     display: flex;
     justify-content: space-around;
 }
+
+input[type="text"] {
+    font-style: italic;
+    font-size: 14px;
+    font-family: monospace;
+}
