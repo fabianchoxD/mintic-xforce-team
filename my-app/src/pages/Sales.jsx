@@ -70,11 +70,11 @@ class Sales extends React.Component {
 
     insert = () => {
         if (this.state.form.total === '' || this.state.form.description === '' || this.state.form.quantity === '' ||
-        this.state.form.unitPrice === '' || this.state.form.saleDate === '' || this.state.form.identification === '' ||
-        this.state.form.nameClient === '' || this.state.form.state === '') {
+            this.state.form.unitPrice === '' || this.state.form.saleDate === '' || this.state.form.identification === '' ||
+            this.state.form.nameClient === '' || this.state.form.state === '') {
 
-            this.setState({alert: true, modalInsert: false});
-        
+            this.setState({ alert: true, modalInsert: false });
+
         }
         else {
             var newValue = { ...this.state.form };
@@ -85,11 +85,11 @@ class Sales extends React.Component {
             // console.log(list);
             this.setState({ data: list, alert: false, modalInsert: false });
             swal("Successful Operation.", newValue.description + ", added successfully.", "success");
-            let form = {...this.state.form};
+            let form = { ...this.state.form };
             form.total = ''; form.description = ''; form.quantity = ''; form.unitPrice = ''; form.saleDate = '';
-            form.identification = ''; form.nameClient = ''; form.state = ''; 
-            this.setState({form});
-        }            
+            form.identification = ''; form.nameClient = ''; form.state = '';
+            this.setState({ form });
+        }
     }
 
     modify = (dato) => {
@@ -143,38 +143,39 @@ class Sales extends React.Component {
     render() {
         return (
             <>
-            <br />
                 <Header />
+                <br />
+                <br />
 
-                <div className= "titulo">                
+                <div className="titulo">
                     <h3> Sales Management </h3>
                     <hr />
                 </div>
 
 
-                <Container className="box" style={{marginBottom: '120px'}}>
+                <Container className="box" style={{ marginBottom: '120px' }}>
                     <Alert isOpen={this.state.alert} color="warning">
-                        Please complete all field. 
+                        Please complete all field.
                     </Alert>
-                    
+
                     <br />
 
                     <div className="flexbox-container">
                         <Button color="success" onClick={() => this.showModalInsert()}> Register a New Sale </Button>
                         <div className="search">
                             <input type="text" placeholder="Search sales" />
-                            <IconButton 
+                            <IconButton
                                 aria-label="search"
                                 style={{
-                                    background: 'rgb(45, 124, 214)', 
+                                    background: 'rgb(45, 124, 214)',
                                     marginLeft: '6px',
                                     marginTop: '-8px'
                                 }}
                             >
-                                <SearchIcon sx={{color: 'white'}}/>
-                            </IconButton> 
+                                <SearchIcon sx={{ color: 'white' }} />
+                            </IconButton>
                         </div>
-                    </div>    
+                    </div>
 
                     <br />
                     <br />
@@ -215,7 +216,7 @@ class Sales extends React.Component {
                     </Table>
                 </Container>
 
-                <Modal isOpen={this.state.modalInsert} style={{marginTop: '80px'}}>
+                <Modal isOpen={this.state.modalInsert} style={{ marginTop: '80px' }}>
                     <ModalHeader>
                         <div>
                             <h3> Add Sales </h3>
@@ -224,7 +225,7 @@ class Sales extends React.Component {
                     <ModalBody>
                         <FormGroup>
                             <label>Id:</label>
-                            <input className="form-control" readOnly type="text" value={this.state.data.length+1} />
+                            <input className="form-control" readOnly type="text" value={this.state.data.length + 1} />
                         </FormGroup>
                         <FormGroup>
                             <label>Total:</label>
@@ -257,7 +258,7 @@ class Sales extends React.Component {
                         <FormGroup>
                             <label> State: </label>
                             <select className="form-control" name="state" onChange={this.handleChange}>
-                                <option value="" selected disabled hide style={{display:'none'}}></option>
+                                <option value="" selected disabled hide style={{ display: 'none' }}></option>
                                 <option value="In Process"> In Process </option>
                                 <option value="Cancelled"> Cancelled </option>
                                 <option value="Delivered"> Delivered </option>
@@ -270,49 +271,49 @@ class Sales extends React.Component {
                     </ModalFooter>
                 </Modal>
 
-                <Modal isOpen={this.state.modalEdit} style={{marginTop: '80px'}}>
+                <Modal isOpen={this.state.modalEdit} style={{ marginTop: '80px' }}>
                     <ModalHeader>
                         <div>
                             <h3>Modify Producto</h3>
                         </div>
                     </ModalHeader>
                     <ModalBody>
-                    <FormGroup>
+                        <FormGroup>
                             <label>Id:</label>
                             <input className="form-control" readOnly type="text" value={this.state.form.id} />
                         </FormGroup>
                         <FormGroup>
                             <label>Total:</label>
-                            <input className="form-control" name="total" type="text" onChange={this.handleChange} value={this.state.form.total}/>
+                            <input className="form-control" name="total" type="text" onChange={this.handleChange} value={this.state.form.total} />
                         </FormGroup>
                         <FormGroup>
                             <label>Description:</label>
-                            <input className="form-control" name="description" type="text" onChange={this.handleChange} value={this.state.form.description}/>
+                            <input className="form-control" name="description" type="text" onChange={this.handleChange} value={this.state.form.description} />
                         </FormGroup>
                         <FormGroup>
                             <label>Quantity:</label>
-                            <input className="form-control" name="quantity" type="text" onChange={this.handleChange} value={this.state.form.quantity}/>
+                            <input className="form-control" name="quantity" type="text" onChange={this.handleChange} value={this.state.form.quantity} />
                         </FormGroup>
                         <FormGroup>
                             <label>Unit Price:</label>
-                            <input className="form-control" name="unitPrice" type="text" onChange={this.handleChange} value={this.state.form.unitPrice}/>
+                            <input className="form-control" name="unitPrice" type="text" onChange={this.handleChange} value={this.state.form.unitPrice} />
                         </FormGroup>
                         <FormGroup>
                             <label>Sale Date:</label>
-                            <input className="form-control" name="saleDate" type="text" onChange={this.handleChange} value={this.state.form.saleDate}/>
+                            <input className="form-control" name="saleDate" type="text" onChange={this.handleChange} value={this.state.form.saleDate} />
                         </FormGroup>
                         <FormGroup>
                             <label>Customer Identification:</label>
-                            <input className="form-control" name="identification" type="text" onChange={this.handleChange} value={this.state.form.identification}/>
+                            <input className="form-control" name="identification" type="text" onChange={this.handleChange} value={this.state.form.identification} />
                         </FormGroup>
                         <FormGroup>
                             <label>Customer Name:</label>
-                            <input className="form-control" name="nameClient" type="text" onChange={this.handleChange} value={this.state.form.nameClient}/>
+                            <input className="form-control" name="nameClient" type="text" onChange={this.handleChange} value={this.state.form.nameClient} />
                         </FormGroup>
                         <FormGroup>
                             <label> State: </label>
                             <select className="form-control" name="state" onChange={this.handleChange}>
-                                <option value="" selected disabled hide style={{display:'none'}}></option>
+                                <option value="" selected disabled hide style={{ display: 'none' }}></option>
                                 <option value="In Process"> In Process </option>
                                 <option value="Cancelled"> Cancelled </option>
                                 <option value="Delivered"> Delivered </option>
@@ -324,7 +325,7 @@ class Sales extends React.Component {
                         <Button color="danger" onClick={() => this.hideModalEdit()}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
-                <Footer/>   
+                <Footer />
             </>
         );
     }
