@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const URL = 'mongodb+srv://dbAdmin:XUyGDe3eYReTncxB@clustexforce.b2hgz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const URL = 'mongodb+srv://dbAdmin:XUyGDe3eYReTncxB@clustexforce.b2hgz.mongodb.net/xforceDatabase?retryWrites=true&w=majority';
 
 mongoose.connect(URL, {useUrlNewParser: true, useUnifiedTopology: true});
 
