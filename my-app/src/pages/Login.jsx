@@ -1,17 +1,12 @@
-import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import Avatar from '@mui/material/Avatar';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'; 
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import React, { Component } from 'react';
+import {CssBaseline,Avatar,Box,Typography,Container,createTheme,ThemeProvider} from '@mui/material/';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import GoogleLogin from 'react-google-login'
 import GoogleButton from 'react-google-button'
-import { Link } from 'react-router-dom'
-
 import '../styles/Login.css';
+import axios from 'axios';
 
 const theme = createTheme();
 
