@@ -25,36 +25,6 @@ class Login extends Component {
       });*/
     }
 
-  return (
-    <ThemeProvider theme={theme}>
-      <Header />
-      <Container component="main" maxWidth="xs" className="login">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 4,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Press button to Sign up with Google          </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <Link to="/users" className="a">
-            <GoogleButton/>
-            </Link>
-          </Box>
-          <Box sx={{
-            marginTop: 5,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}>
-          </Box>
     const responseErrorGoogle = (response) =>{
       console.log("MAL");
     }
