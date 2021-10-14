@@ -1,58 +1,63 @@
-const Products = require('./Products');
+const Products = require('../models/Products');
 
 // CREATE A NEW PRODUCT
 
-createProduct = (product, res) => {
-    Products.create(product, (err, data) => {
-        if (err) throw err;
-        res.status(200).json(data);
+createProduct = (req, res) => {
+    Products.create(req.body).then((data) => {
+        res.status(200).json({message: "Product Created", data});
+    }).catch(err => {
+        res.send(err);
     })
 }
 
 // GET ALL PRODUCTS
 
-exports.getProducts = (res) => {
-    Products.find({}, (err, data) => {
-        if (err) throw err;
+getProducts = (req, res) => {
+    Products.find().then((data) => {
         res.status(200).json(data);
+    }).catch(err => {
+        res.send(err);
     })
 }
 
 // GET PRODUCT BY ID
 
-exports.getProductId = (id, res) => {
-    Products.findById(id, (err, data) => {
-        if (err) throw err;
+getProductId = (req, res) => {
+    let {id} = req.params;
+    Products.findById(id).then((data) => {
         res.status(200).json(data);
+    }).catch(err => {
+        res.send(err);
     })
 }
 
 // UPDATE A PRODUCT 
 
-exports.updateProduct = (productSelected, res) => {
-    let {id, description, price, state} = productSelected;
-
-    Products.updateOne(
-        {_id: id},
-        {$set: {description: description, price: price, state: state}}
-    )
-    .then(response => {
-        res.json({message: "Product Update successfully"}, response)
+updateProduct = (req, res) => {
+    let {id} = req.params;
+    Products.findByIdAndUpdate(id, req.body).then((data) => {
+        res.status(200).json({message: 'Product Updated', data});
+    }).catch(err => {
+        res.send(err);
     })
-    .catch(err => {
-        if (err) throw err;
-    })
-
 } 
 
-// DELETE PRODUCT
+// DELETE A PRODUCT
 
-exports.deleteProduct = (id, res) => {
+deleteProduct = (req, res) => {
+    let {id} = req.params;
     Products.findByIdAndDelete(id).then(data => {
-        res.json(data);
+        res.status(200).json({message: 'Product Deleted', data});
     })
     .catch(err => {
         res.send(err);
     });
 }
 
+module.exports = {
+    createProduct,
+    getProducts,
+    getProductId,
+    updateProduct,
+    deleteProduct
+}
