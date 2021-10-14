@@ -9,17 +9,21 @@ import '../styles/Login.css';
 import axios from 'axios';
 
 const theme = createTheme();
+class Login extends Component {
+  render() {
 
-const Login = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+    const responseSuccessGoogle = (response) =>{
+      console.log(response);
+      this.props.history.push("/users");
+      /*
+      axios({
+        method: "POST",
+        url: "http://localhost:3001/googlelogin",
+        data: {tokenId: response.tokenId}
+      }).then(response =>{
+        console.log(response);
+      });*/
+    }
 
   return (
     <ThemeProvider theme={theme}>
@@ -51,6 +55,9 @@ const Login = () => {
             alignItems: 'center',
           }}>
           </Box>
+    const responseErrorGoogle = (response) =>{
+      console.log("MAL");
+    }
 
         </Box>
       </Container>
