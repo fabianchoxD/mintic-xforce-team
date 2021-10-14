@@ -116,7 +116,7 @@ class Sales extends React.Component {
     delete = (dato) => {
         swal({
             title: "Delete Sale?",
-            text: "Are you sure to remove this register " + "<" + dato.description + ">" + " with id: " + dato.id + "?",
+            text: `Are you sure to remove this register: ${dato.description}, with id:  ${dato.id} ?`,
             icon: "warning",
             buttons: true,
             dangerMode: true,
