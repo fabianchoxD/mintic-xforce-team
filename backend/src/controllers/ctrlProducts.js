@@ -4,7 +4,7 @@ const Products = require('../models/Products');
 
 createProduct = (req, res) => {
     Products.create(req.body).then((data) => {
-        res.status(200).json({message: "Product Created", data});
+        res.status(200).json({ message: "Product Created", data });
     }).catch(err => {
         res.send(err);
     })
@@ -23,7 +23,7 @@ getProducts = (req, res) => {
 // GET PRODUCT BY ID
 
 getProductId = (req, res) => {
-    let {id} = req.params;
+    let { id } = req.params;
     Products.findById(id).then((data) => {
         res.status(200).json(data);
     }).catch(err => {
@@ -31,27 +31,27 @@ getProductId = (req, res) => {
     })
 }
 
-// UPDATE A PRODUCT 
+// UPDATE A PRODUCT
 
 updateProduct = (req, res) => {
-    let {id} = req.params;
+    let { id } = req.params;
     Products.findByIdAndUpdate(id, req.body).then((data) => {
-        res.status(200).json({message: 'Product Updated', data});
+        res.status(200).json({ message: 'Product Updated', data });
     }).catch(err => {
         res.send(err);
     })
-} 
+}
 
 // DELETE A PRODUCT
 
 deleteProduct = (req, res) => {
-    let {id} = req.params;
+    let { id } = req.params;
     Products.findByIdAndDelete(id).then(data => {
-        res.status(200).json({message: 'Product Deleted', data});
+        res.status(200).json({ message: 'Product Deleted', data });
     })
-    .catch(err => {
-        res.send(err);
-    });
+        .catch(err => {
+            res.send(err);
+        });
 }
 
 module.exports = {
