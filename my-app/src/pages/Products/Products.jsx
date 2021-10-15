@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 
-import "../App.css";
-import "../styles/products.css";
+import "./../../App.css";
+import "./../../styles/products.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import swal from "sweetalert";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import ProductsForm from './ProductsForm';
 import ProductsList from "./ProductsList";
-import Footer from "../components/Footer";
+import Footer from "../../components/Footer";
 
 const data = [];
 
@@ -121,7 +121,6 @@ class Products extends Component {
           data = {this.state.data}
           modalInsert = {this.state.modalinsert}
           modalEdit = {this.state.modalEdit}
-          cancel = {this.cancel}
         />
 
         <Footer />

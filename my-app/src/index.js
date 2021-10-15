@@ -5,9 +5,9 @@ import './index.css';
 import App from './App';
 import Login from './pages/Login';
 import Home from './components/Home';
-import Users from './pages/Users';
-import Sales from './pages/Sales';
-import Products from './pages/Products';
+import Users from './pages/Users/Users';
+import Sales from './pages/Sales/Sales';
+import Products from './pages/Products/Products';
 
 ReactDOM.render(
   <React.StrictMode>
