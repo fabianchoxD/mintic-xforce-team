@@ -55,6 +55,44 @@ class Products extends Component {
     });
   };
 
+  modify=(dato) =>{
+
+    //dato.preventDefault();
+    const list = this.state.form;
+    //debugger
+    if (list.price === '') {
+        swal(
+          "Warning!",
+          "Price field cannot be empty.",
+          "warning"
+        );
+        return;
+    }else if (parseInt(list.price) != list.price){
+      swal(
+        "Warning!",
+        "Only Numbers are available, please review.",
+        "warning"
+      );
+    }else
+  {
+        console.log('vamos a hacer un PUT', this.state.form);
+        axios.put(`${this.URL_PRODUCTS}/${dato._id}`, { ...dato }).then((resp) => {
+            console.log('Todo bien con el put', resp);
+            this.setState((state, props) => ({
+              data: state.data.map(element => element._id === dato._id ? dato : element),
+              modalEdit: false
+          }))
+            //this.setState({ data: this.state.data, modalEdit: false });
+            swal(
+              "Successful Operation.",
+              "Product: " + dato.description + ", was successfully modified.",
+              "success"
+            );
+        }).catch(err => {
+            console.log('error al hacer post', err);
+        });
+    }
+}
 
   // REQUEST GET HTTP
 
@@ -96,7 +134,6 @@ class Products extends Component {
           .then(() => {
             window.location.reload(true);
           })
-
         }).catch(err => {
           console.log("An error has ocurred", err);
         })
