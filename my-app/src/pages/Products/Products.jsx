@@ -16,7 +16,7 @@ const data = [];
 class Products extends Component {
   state = {
     data: data,
-    
+
     form: {
       description: "",
       price: "",
@@ -29,7 +29,7 @@ class Products extends Component {
   };
 
   URL_PRODUCTS = 'http://localhost:3001/products';
-  
+
   showModalInsert = () => {
     this.setState({ modalinsert: true });
   };
@@ -44,7 +44,7 @@ class Products extends Component {
 
   hideModalEdit = () => {
     this.setState({ modalEdit: false });
-  };    
+  };
 
   handleChange = (e) => {
     this.setState({
@@ -55,48 +55,47 @@ class Products extends Component {
     });
   };
 
-  modify=(dato) =>{
+  modify = (dato) => {
 
     //dato.preventDefault();
     const list = this.state.form;
     //debugger
     if (list.price === '') {
-        swal(
-          "Warning!",
-          "Price field cannot be empty.",
-          "warning"
-        );
-        return;
-    }else if (parseInt(list.price) != list.price){
+      swal(
+        "Warning!",
+        "Price field cannot be empty.",
+        "warning"
+      );
+      return;
+    } else if (parseInt(list.price) != list.price) {
       swal(
         "Warning!",
         "Only Numbers are available, please review.",
         "warning"
       );
-    }else
-  {
-        console.log('vamos a hacer un PUT', this.state.form);
-        axios.put(`${this.URL_PRODUCTS}/${dato._id}`, { ...dato }).then((resp) => {
-            console.log('Todo bien con el put', resp);
-            this.setState((state, props) => ({
-              data: state.data.map(element => element._id === dato._id ? dato : element),
-              modalEdit: false
-          }))
-            //this.setState({ data: this.state.data, modalEdit: false });
-            swal(
-              "Successful Operation.",
-              "Product: " + dato.description + ", was successfully modified.",
-              "success"
-            );
-        }).catch(err => {
-            console.log('error al hacer post', err);
-        });
+    } else {
+      console.log('vamos a hacer un PUT', this.state.form);
+      axios.put(`${this.URL_PRODUCTS}/${dato._id}`, { ...dato }).then((resp) => {
+        console.log('Todo bien con el put', resp);
+        this.setState((state, props) => ({
+          data: state.data.map(element => element._id === dato._id ? dato : element),
+          modalEdit: false
+        }))
+        //this.setState({ data: this.state.data, modalEdit: false });
+        swal(
+          "Successful Operation.",
+          "Product: " + dato.description + ", was successfully modified.",
+          "success"
+        );
+      }).catch(err => {
+        console.log('error al hacer post', err);
+      });
     }
-}
+  }
 
   // REQUEST GET HTTP
 
-  componentDidMount(){
+  componentDidMount() {
     axios.get(`${this.URL_PRODUCTS}`)
       .then(res => {
         this.setState({ data: res.data })
@@ -115,9 +114,9 @@ class Products extends Component {
       this.state.form.state === ""
     ) {
       this.setState({ alert: true, modalinsert: false });
-    } 
-    else {  
-      var newValue = { ...this.state.form }; 
+    }
+    else {
+      var newValue = { ...this.state.form };
       var list = this.state.data;
       list.push(newValue);
 
@@ -131,15 +130,15 @@ class Products extends Component {
             newValue.description + ", added successfully.",
             "success"
           )
-          .then(() => {
-            window.location.reload(true);
-          })
+            .then(() => {
+              window.location.reload(true);
+            })
         }).catch(err => {
           console.log("An error has ocurred", err);
         })
 
       let form = { ...this.state.form };
-      form.description = ''; form.price = ''; form.state = ''; 
+      form.description = ''; form.price = ''; form.state = '';
       this.setState({ form });
     }
   }
@@ -147,26 +146,26 @@ class Products extends Component {
   render() {
     return (
       <>
-        <Header />  
+        <Header />
 
         <ProductsList
-          data = {this.state.data}
-          showME = {this.showModalEdit}
-          showMI = {this.showModalInsert}
-          form = {this.state.form}
-          alert = {this.state.alert}
+          data={this.state.data}
+          showME={this.showModalEdit}
+          showMI={this.showModalInsert}
+          form={this.state.form}
+          alert={this.state.alert}
         />
 
         <ProductsForm
-          insert = {this.insert}
-          modify = {this.modify}
-          hideMI = {this.hideModalInsert}
-          hideME = {this.hideModalEdit}
-          handleChange = {this.handleChange}
-          form = {this.state.form}
-          data = {this.state.data}
-          modalInsert = {this.state.modalinsert}
-          modalEdit = {this.state.modalEdit}
+          insert={this.insert}
+          modify={this.modify}
+          hideMI={this.hideModalInsert}
+          hideME={this.hideModalEdit}
+          handleChange={this.handleChange}
+          form={this.state.form}
+          data={this.state.data}
+          modalInsert={this.state.modalinsert}
+          modalEdit={this.state.modalEdit}
         />
 
         <Footer />
