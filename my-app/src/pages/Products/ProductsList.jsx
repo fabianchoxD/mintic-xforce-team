@@ -9,38 +9,7 @@ import {
     Container
 } from 'reactstrap';
 
-import swal from "sweetalert";
-
 class ProductsList extends Component {
-
-    delete = (dato) => {
-        swal({
-            title: "Delete Product?",
-            text: "Are you sure to remove this product " + "<" + dato.description + ">" + " con id: " +dato.id + "?",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then((willDelete) => {
-            if (willDelete) {
-                var cont = 0;
-                var list = this.props.data;
-                list.map((register) => {
-                    if (register.id === dato.id) {
-                        list.splice(cont, 1);
-                    }
-                    cont++;
-                });
-                this.setState({ data: list });
-                swal("Register removed successfully.", {
-                    icon: "success",
-                });
-            } 
-            else {
-                swal("Operation Unrealized.");
-            }
-        });
-      };
 
     render() {
         return(
@@ -77,7 +46,6 @@ class ProductsList extends Component {
                     </div>
                     <br />
                     <br />
-               
                     <Table>
                         <thead>
                             <tr>
