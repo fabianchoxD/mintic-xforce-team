@@ -58,14 +58,14 @@ class ProductsList extends Component {
                         </thead>
                         <tbody>
                             {this.props.data.map((element, i) => (
-                                <tr key={i}> 
+                                <tr key={i}>
                                     <td>{element._id}</td>
                                     <td>{element.description}</td>
                                     <td>{element.price}</td>
                                     <td>{element.state}</td>
                                     <td>
                                         <Button color="primary" onClick={() => this.props.showME(element)} > Edit </Button> {"  "}
-                                        <Button color="danger" onClick={() => this.delete(element)} > Delete </Button>
+                                        <Button color="danger" onClick={() => this.props.delete(element)} > Delete </Button>
                                     </td>
                                 </tr>
                             ))}
