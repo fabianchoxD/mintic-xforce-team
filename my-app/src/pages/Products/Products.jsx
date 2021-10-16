@@ -55,25 +55,6 @@ class Products extends Component {
     });
   };
 
-  modify = (dato) => {
-    var cont = 0;
-    var list = this.state.data;
-    console.log(list);
-    list.map((register) => {
-      if (dato.id === register.id) {
-        list[cont].description = dato.description;
-        list[cont].price = dato.price;
-        list[cont].state = dato.state;
-      }
-      cont++;
-    });
-    this.setState({ data: list, modalEdit: false });
-    swal(
-      "Successful Operation.",
-      "The register with id: " + dato.id + ", was successfully modified.",
-      "success"
-    );
-  };
 
   // REQUEST GET HTTP
 
