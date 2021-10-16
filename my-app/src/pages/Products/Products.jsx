@@ -132,13 +132,42 @@ class Products extends Component {
               window.location.reload(true);
             })
         }).catch(err => {
-          console.log("An error has ocurred", err);
+          console.log("An error has ocurred: ", err);
         })
 
       let form = { ...this.state.form };
       form.description = ''; form.price = ''; form.state = '';
       this.setState({ form });
     }
+  }
+
+  delete = (dato) => {
+    swal({
+      title: "Delete Product",
+      text: "Do yo want to remove product: " + dato.description + "?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          axios.delete(`${this.URL_PRODUCTS}/${dato._id}`).then(resp => {
+            this.setState((state, props) => ({
+              data: this.state.data.filter(element => element._id !== dato._id)
+            }))
+          }).catch(err => {
+            console.log('An error has ocurred: ', err);
+          });
+          swal("Product removed successfully.", {
+            icon: "success",
+          });
+        }
+        else {
+          swal("Operation Declined.", {
+            icon: "success",
+          });
+        }
+      });
   }
 
   render() {
@@ -150,6 +179,7 @@ class Products extends Component {
           data={this.state.data}
           showME={this.showModalEdit}
           showMI={this.showModalInsert}
+          delete={this.delete}
           form={this.state.form}
           alert={this.state.alert}
         />
