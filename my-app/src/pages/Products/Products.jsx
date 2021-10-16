@@ -104,19 +104,21 @@ class Products extends Component {
 
       axios.post(`${this.URL_PRODUCTS}`, { ...datas })
         .then(res => {
-          this.setState({ 
+          this.setState({
             modalinsert: false, data: list, alert: false
           })
           swal(
             "Successful Operation.",
             newValue.description + ", added successfully.",
             "success"
-          );
+          )
+          .then(() => {
+            window.location.reload(true);
+          })
+
         }).catch(err => {
           console.log("An error has ocurred", err);
         })
-
-      setTimeout(() => window.location.reload(true), 3000);
 
       let form = { ...this.state.form };
       form.description = ''; form.price = ''; form.state = ''; 
