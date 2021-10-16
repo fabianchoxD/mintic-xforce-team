@@ -59,7 +59,6 @@ class Products extends Component {
 
     //dato.preventDefault();
     const list = this.state.form;
-    //debugger
     if (list.price === '') {
       swal(
         "Warning!",
@@ -81,7 +80,6 @@ class Products extends Component {
           data: state.data.map(element => element._id === dato._id ? dato : element),
           modalEdit: false
         }))
-        //this.setState({ data: this.state.data, modalEdit: false });
         swal(
           "Successful Operation.",
           "Product: " + dato.description + ", was successfully modified.",
