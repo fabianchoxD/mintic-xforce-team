@@ -11,12 +11,11 @@ import {
 
 import swal from "sweetalert";
 
-class ProductsList extends Component {
-
+class SalesList extends Component {
     delete = (dato) => {
         swal({
-            title: "Delete Product?",
-            text: "Are you sure to remove this product " + "<" + dato.description + ">" + " con id: " +dato.id + "?",
+            title: "Delete Sale?",
+            text: "Are you sure to remove this register " + "<" + dato.description + ">" + " with id: " + dato.id + "?",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -35,34 +34,32 @@ class ProductsList extends Component {
                 swal("Register removed successfully.", {
                     icon: "success",
                 });
-            } 
-            else {
+            } else {
                 swal("Operation Unrealized.");
             }
         });
-      };
+    }
 
-    render() {
+    render(){
         return(
             <React.Fragment>
-                <br/><br/>
+                <br />
+                <br />
+
                 <div className="titulo">
-                    <h3> Product Management </h3>
-                    <hr/>
+                    <h3> Sales Management </h3>
+                    <hr />
                 </div>
 
-                <Container className="sales">
-
+                <Container className="sales" style={{ marginBottom: '120px' }}>
                     <Alert isOpen={this.props.alert} color="warning">
                         Please complete all field.
                     </Alert>
 
-                    <br />
-
                     <div className="flexbox-container">
-                        <Button color="success" onClick={() => this.props.showMI()}>Add a New Product</Button>
+                        <Button color="success" onClick={() => this.props.showMI()}> Register a New Sale </Button>
                         <div className="search">
-                            <input type="text" placeholder="Search products" />
+                            <input type="text" placeholder="Search sales" />
                             <IconButton
                                 aria-label="search"
                                 style={{
@@ -75,25 +72,35 @@ class ProductsList extends Component {
                             </IconButton>
                         </div>
                     </div>
+
                     <br />
                     <br />
-               
                     <Table>
                         <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Description</th>
-                                <th>Price</th>
-                                <th>State</th>
-                                <th>Actions</th>
+                                <th> Id </th>
+                                <th> Total </th>
+                                <th> Description </th>
+                                <th> Quantity </th>
+                                <th> Unit Price </th>
+                                <th> Sale Date </th>
+                                <th> Customer Identification </th>
+                                <th> Customer Name </th>
+                                <th> State </th>
+                                <th> Action </th>
                             </tr>
                         </thead>
                         <tbody>
                             {this.props.data.map((element) => (
                                 <tr>
                                     <td>{element.id}</td>
+                                    <td>{element.total}</td>
                                     <td>{element.description}</td>
-                                    <td>{element.price}</td>
+                                    <td>{element.quantity}</td>
+                                    <td>{element.unitPrice}</td>
+                                    <td>{element.saleDate}</td>
+                                    <td>{element.identification}</td>
+                                    <td>{element.nameClient}</td>
                                     <td>{element.state}</td>
                                     <td>
                                         <Button color="primary" onClick={() => this.props.showME(element)} > Edit </Button> {"  "}
@@ -109,4 +116,4 @@ class ProductsList extends Component {
     }
 }
 
-export default ProductsList;
+export default SalesList;

@@ -20,10 +20,10 @@ class ProductsForm extends Component {
                         </div>
                     </ModalHeader>
                     <ModalBody>
-                        <FormGroup>
+                        {/* <FormGroup>
                             <label>Id:</label>
-                            <input className="form-control" readOnly type="text" value={this.props.data.length + 1} />
-                        </FormGroup>
+                            <input className="form-control" readOnly type="text" />
+                        </FormGroup> */}
                         <FormGroup>
                             <label>Description:</label>
                             <input className="form-control" name="description" type="text" onChange={this.props.handleChange} />
@@ -56,7 +56,7 @@ class ProductsForm extends Component {
                     <ModalBody>
                         <FormGroup>
                             <label>Id:</label>
-                            <input className="form-control" readOnly type="text" value={this.props.form.id} />
+                            <input className="form-control" readOnly type="text" value={this.props.form._id} />
                         </FormGroup>
                         <FormGroup>
                             <label>Description:</label>
