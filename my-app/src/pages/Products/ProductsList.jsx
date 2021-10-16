@@ -51,7 +51,7 @@ class ProductsList extends Component {
                     <hr/>
                 </div>
 
-                <Container className="sales">
+                <Container className="products"  style={{ marginBottom: '120px' }}>
 
                     <Alert isOpen={this.props.alert} color="warning">
                         Please complete all field.
@@ -89,9 +89,9 @@ class ProductsList extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.props.data.map((element) => (
-                                <tr>
-                                    <td>{element.id}</td>
+                            {this.props.data.map((element, i) => (
+                                <tr key={i}> 
+                                    <td>{element._id}</td>
                                     <td>{element.description}</td>
                                     <td>{element.price}</td>
                                     <td>{element.state}</td>

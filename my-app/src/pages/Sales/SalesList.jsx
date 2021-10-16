@@ -51,7 +51,7 @@ class SalesList extends Component {
                     <hr />
                 </div>
 
-                <Container className="box" style={{ marginBottom: '120px' }}>
+                <Container className="sales" style={{ marginBottom: '120px' }}>
                     <Alert isOpen={this.props.alert} color="warning">
                         Please complete all field.
                     </Alert>

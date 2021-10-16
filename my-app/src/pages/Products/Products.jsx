@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
 import "./../../App.css";
 import "./../../styles/products.css";
@@ -17,7 +18,6 @@ class Products extends Component {
     data: data,
     
     form: {
-      id: "",
       description: "",
       price: "",
       state: "",
@@ -28,6 +28,8 @@ class Products extends Component {
     alert: false,
   };
 
+  URL_PRODUCTS = 'http://localhost:3001/products';
+  
   showModalInsert = () => {
     this.setState({ modalinsert: true });
   };
@@ -53,31 +55,6 @@ class Products extends Component {
     });
   };
 
-  insert = () => {
-    if (
-      this.state.form.description === "" ||
-      this.state.form.price === "" ||
-      this.state.form.state === ""
-    ) {
-      this.setState({ alert: true, modalinsert: false });
-    } 
-    else {
-      var newValue = { ...this.state.form };
-      newValue.id = this.state.data.length + 1;
-      var list = this.state.data;
-      list.push(newValue);
-      this.setState({ data: list, alert: false, modalinsert: false });
-      swal(
-        "Successful Operation.",
-        newValue.description + ", added successfully.",
-        "success"
-      );
-      let form = { ...this.state.form };
-      form.description = ''; form.price = ''; form.state = ''; 
-      this.setState({ form });
-    }
-  }
-
   modify = (dato) => {
     var cont = 0;
     var list = this.state.data;
@@ -98,10 +75,59 @@ class Products extends Component {
     );
   };
 
+  // REQUEST GET HTTP
+
+  componentDidMount(){
+    axios.get(`${this.URL_PRODUCTS}`)
+      .then(res => {
+        this.setState({ data: res.data })
+      }).catch(err => {
+        console.log("An error has ocurred", err);
+      })
+  };
+
+  // REQUEST POST HTTP
+
+  insert = () => {
+    const datas = this.state.form;
+    if (
+      this.state.form.description === "" ||
+      this.state.form.price === "" ||
+      this.state.form.state === ""
+    ) {
+      this.setState({ alert: true, modalinsert: false });
+    } 
+    else {  
+      var newValue = { ...this.state.form }; 
+      var list = this.state.data;
+      list.push(newValue);
+
+      axios.post(`${this.URL_PRODUCTS}`, { ...datas })
+        .then(res => {
+          this.setState({ 
+            modalinsert: false, data: list, alert: false
+          })
+          swal(
+            "Successful Operation.",
+            newValue.description + ", added successfully.",
+            "success"
+          );
+        }).catch(err => {
+          console.log("An error has ocurred", err);
+        })
+
+      setTimeout(() => window.location.reload(true), 3000);
+
+      let form = { ...this.state.form };
+      form.description = ''; form.price = ''; form.state = ''; 
+      this.setState({ form });
+    }
+  }
+
   render() {
     return (
       <>
-        <Header />
+        <Header />  
 
         <ProductsList
           data = {this.state.data}

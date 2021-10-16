@@ -22,7 +22,7 @@ class UsersList extends Component {
                     <hr />
                 </div>
 
-                <Container className="sales" style={{marginBottom: '120px'}}>
+                <Container className="users" style={{marginBottom: '120px'}}>
                     <br />
                     <Table>
                         <thead>
