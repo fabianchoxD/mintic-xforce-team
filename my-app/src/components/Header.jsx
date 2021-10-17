@@ -14,6 +14,17 @@ import "../styles/Header.css";
 
 class Header extends React.Component {
     logout = response => {
+        window.sessionStorage.removeItem('token');
+        swal(
+            "Session ended.",
+            "Thanks for shop with us 😊",
+            "success"
+        ).then(function () {
+            window.location = "/home";
+        });
+    }
+    render() {
+        return (
             <AppBar className="appBar" position="fixed" elevation={4}>
                 <Toolbar>
                     <Link to="/home" style={{ textDecoration: 'none', display: 'flex' }}>
