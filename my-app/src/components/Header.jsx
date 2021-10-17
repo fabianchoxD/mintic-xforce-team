@@ -12,9 +12,8 @@ import swal from "sweetalert";
 /* CSS */
 import "../styles/Header.css";
 
-const Header = () => {
-    return (
-        <React.Fragment>
+class Header extends React.Component {
+    logout = response => {
             <AppBar className="appBar" position="fixed" elevation={4}>
                 <Toolbar>
                     <Link to="/home" style={{ textDecoration: 'none', display: 'flex' }}>
@@ -44,8 +43,8 @@ const Header = () => {
                     }
                 </Toolbar>
             </AppBar>
-        </React.Fragment>
-    )
-}
+        )
+    }
+};
 
 export default Header;
