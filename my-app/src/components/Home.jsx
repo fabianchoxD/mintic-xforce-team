@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Header from './Header';
 import Footer from "./Footer";
 import { Container, Row, Col } from "react-bootstrap"
@@ -6,9 +6,9 @@ import Carousel from 'react-bootstrap/Carousel'
 
 import '../styles/Home.css'
 
-const Home = () => {
+class Home extends Component{
+    render() {
     return (
-        <React.Fragment>
             <Container className="fluid" fluid >
                 <Row>
                     <Header />
@@ -60,9 +60,7 @@ const Home = () => {
                     <Footer />
                 </Row>
             </Container>
-
-        </React.Fragment>
-    )
+    )}
 }
 
 export default Home;
