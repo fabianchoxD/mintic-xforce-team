@@ -10,7 +10,6 @@ import Sales from './pages/Sales/Sales';
 import Products from './pages/Products/Products';
 
 ReactDOM.render(
-  <React.StrictMode>
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={App}/>
@@ -20,8 +19,6 @@ ReactDOM.render(
         <Route exact path="/sales" component={Sales}/>
         <Route exact path="/products" component={Products}/>
       </Switch>
-    </BrowserRouter>
-  </React.StrictMode>,
+    </BrowserRouter>,
   document.getElementById('root')
 );
-
