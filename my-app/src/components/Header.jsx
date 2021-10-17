@@ -1,14 +1,16 @@
 import * as React from "react";
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
-import LoginIcon from '@mui/icons-material/Login';
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Button from "@mui/material/Button";
+import LoginIcon from "@mui/icons-material/Login";
 import { Typography } from "@mui/material";
 import { Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
+import { GoogleLogout } from "react-google-login";
+import swal from "sweetalert";
 
 /* CSS */
-import '../styles/Header.css';
+import "../styles/Header.css";
 
 const Header = () => {
     return (
