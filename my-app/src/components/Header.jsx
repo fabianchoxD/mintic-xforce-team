@@ -44,6 +44,23 @@ class Header extends React.Component {
                             &nbsp; Megasales
                         </Typography>
                     </Link>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        {" "}
+                    </Typography>
+                    {sessionStorage.getItem('token') != null ? (
+                        <GoogleLogout
+                            clientId="871739763343-2miis7h4hc28ce17v7t4spaneq5tkg49.apps.googleusercontent.co"
+                            buttonText="Logout"
+                            onLogoutSuccess={this.logout}
+                        ></GoogleLogout>
+                    ) : (
+                        <Link to="/login" style={{ textDecoration: "none" }}>
+                            <Button id="btn" onClick="" endIcon={<LoginIcon />}>
+                                {" "}
+                                Sign In / Sign Up{" "}
+                            </Button>
+                        </Link>
+                    )}
                 </Toolbar>
             </AppBar>
         )
