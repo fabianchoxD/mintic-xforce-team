@@ -74,7 +74,11 @@ class Products extends Component {
       );
     } else {
       console.log('vamos a hacer un PUT', this.state.form);
-      axios.put(`${this.URL_PRODUCTS}/${dato._id}`, { ...dato }).then((resp) => {
+      axios.put(`${this.URL_PRODUCTS}/${dato._id}`, { ...dato }, {
+        headers: {
+          'token': sessionStorage.getItem('token')
+        }
+      }).then((resp) => {
         console.log('Todo bien con el put', resp);
         this.setState((state, props) => ({
           data: state.data.map(element => element._id === dato._id ? dato : element),
@@ -94,7 +98,11 @@ class Products extends Component {
   // REQUEST GET HTTP
 
   componentDidMount() {
-    axios.get(`${this.URL_PRODUCTS}`)
+    axios.get(`${this.URL_PRODUCTS}`, {
+      headers: {
+        'token': sessionStorage.getItem('token')
+      }
+    })
       .then(res => {
         this.setState({ data: res.data })
       }).catch(err => {
@@ -118,7 +126,11 @@ class Products extends Component {
       var list = this.state.data;
       list.push(newValue);
 
-      axios.post(`${this.URL_PRODUCTS}`, { ...datas })
+      axios.post(`${this.URL_PRODUCTS}`, { ...datas }, {
+        headers: {
+          'token': sessionStorage.getItem('token')
+        }
+      })
         .then(res => {
           this.setState({
             modalinsert: false, data: list, alert: false
@@ -151,7 +163,11 @@ class Products extends Component {
     })
       .then((willDelete) => {
         if (willDelete) {
-          axios.delete(`${this.URL_PRODUCTS}/${dato._id}`).then(resp => {
+          axios.delete(`${this.URL_PRODUCTS}/${dato._id}`, {
+            headers: {
+              'token': sessionStorage.getItem('token')
+            }
+          }).then(resp => {
             this.setState((state, props) => ({
               data: this.state.data.filter(element => element._id !== dato._id)
             }))
