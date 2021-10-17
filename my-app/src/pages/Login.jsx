@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {CssBaseline,Avatar,Box,Typography,Container,createTheme,ThemeProvider} from '@mui/material/';
+import { CssBaseline, Avatar, Box, Typography, Container, createTheme, ThemeProvider } from '@mui/material/';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -48,18 +48,18 @@ class Login extends Component {
               Press button to Sign up with Google
             </Typography>
             <Box component="form">
-                <br/><br/>
-                <GoogleLogin
-                  clientId="871739763343-2miis7h4hc28ce17v7t4spaneq5tkg49.apps.googleusercontent.com"
-                  buttonText="Login"
-                  onSuccess={responseSuccessGoogle}
-                  onFailure={responseErrorGoogle}
-                  cookiePolicy={'single_host_origin'}
-                  render={renderProps => (
+              <br /><br />
+              <GoogleLogin
+                clientId="871739763343-2miis7h4hc28ce17v7t4spaneq5tkg49.apps.googleusercontent.com"
+                buttonText="Login"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={'single_host_origin'}
+                render={renderProps => (
                   <GoogleButton onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}>Sign in with Google</GoogleButton>
-                    )}
-                  />
+                    disabled={renderProps.disabled}>Sign in with Google</GoogleButton>
+                )}
+              />
             </Box>
             <Box sx={{
               marginTop: 5,
