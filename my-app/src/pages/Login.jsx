@@ -11,23 +11,17 @@ import axios from 'axios';
 const theme = createTheme();
 class Login extends Component {
   render() {
-
-    const responseSuccessGoogle = (response) =>{
+    const responseGoogle = (response) => {
       console.log(response);
-      this.props.history.push("/users");
-      /*
-      axios({
-        method: "POST",
-        url: "http://localhost:3001/googlelogin",
-        data: {tokenId: response.tokenId}
-      }).then(response =>{
-        console.log(response);
-      });*/
+      axios.post(`http://localhost:3001/auth/google`, { token: response.tokenId })
+        .then(resp => {
+          console.log("Everything is ok, here's the token: ", resp.data);
+          sessionStorage.setItem('token', resp.data);
+          this.props.history.push("/users");
+        })
+        .catch(err => console.log('Was an error: ', err))
     }
 
-    const responseErrorGoogle = (response) =>{
-      console.log("MAL");
-    }
     return (
       <ThemeProvider theme={theme}>
         <Header />
