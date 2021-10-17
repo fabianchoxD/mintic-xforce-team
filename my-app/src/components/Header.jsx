@@ -44,21 +44,6 @@ class Header extends React.Component {
                             &nbsp; Megasales
                         </Typography>
                     </Link>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}> </Typography>
-                    {
-                        (
-                            window.location.pathname === '/Login' || window.location.pathname === '/login' ||
-                            window.location.pathname === '/sales' || window.location.pathname === '/Sales' ||
-                            window.location.pathname === '/products' || window.location.pathname === '/Products' ||
-                            window.location.pathname === '/users' || window.location.pathname === '/Users'
-                        )
-                            ? (null) :
-                            (
-                                <Link to="/login" style={{ textDecoration: 'none' }}>
-                                    <Button id="btn" onClick="" endIcon={<LoginIcon />}> Sign In / Sign Up </Button>
-                                </Link>
-                            )
-                    }
                 </Toolbar>
             </AppBar>
         )
