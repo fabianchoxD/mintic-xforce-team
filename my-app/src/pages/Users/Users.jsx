@@ -54,10 +54,52 @@ class Users extends Component {
             headers: {
                 'token': sessionStorage.getItem('token')
             }
-            cont++;
-        });
-        this.setState({ registeredUsers: list, modalEdit: false });
-        swal("Successful Operation.", "The register with id: " + dato.id + ", was successfully modified.", "success");
+        })
+            .then(res => {
+                this.setState({ data: res.data })
+            }).catch(err => {
+                console.log("An error has ocurred", err);
+            })
+    };
+
+    modify = (dato) => {
+
+        //dato.preventDefault();
+        const list = this.state.form;
+        if (list.role === '') {
+            swal(
+                "Warning!",
+                "Role field cannot be empty.",
+                "warning"
+            );
+            return;
+        } else if (list.state === '') {
+            swal(
+                "Warning!",
+                "State field cannot be empty.",
+                "warning"
+            );
+        } else {
+            console.log('vamos a hacer un PUT', this.state.form);
+            axios.put(`${this.URL_USERS}/${dato._id}`, { ...dato }, {
+                headers: {
+                    'token': sessionStorage.getItem('token')
+                }
+            }).then((resp) => {
+                console.log('Todo bien con el put', resp);
+                this.setState((state, props) => ({
+                    data: state.data.map(element => element._id === dato._id ? dato : element),
+                    modalEdit: false
+                }))
+                swal(
+                    "Successful Operation.",
+                    "User: " + dato.name + ", was successfully updated.",
+                    "success"
+                );
+            }).catch(err => {
+                console.log('error al hacer post', err);
+            });
+        }
     }
 
     render() {
