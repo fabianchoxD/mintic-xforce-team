@@ -29,6 +29,8 @@ class Users extends Component {
         alert: false
     };
 
+    URL_USERS = 'http://localhost:3001/users';
+
     handleChange = e => {
         this.setState({
             form: {
