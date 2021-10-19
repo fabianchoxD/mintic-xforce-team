@@ -27,6 +27,9 @@ class Products extends Component {
     modalinsert: false,
     modalEdit: false,
     alert: false,
+
+    open: false,
+    message: ''
   };
 
   URL_PRODUCTS = 'http://localhost:3001/products';
@@ -47,6 +50,10 @@ class Products extends Component {
     this.setState({ modalEdit: false });
   };
 
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
   handleChange = (e) => {
     this.setState({
       form: {
@@ -55,6 +62,24 @@ class Products extends Component {
       },
     });
   };
+
+  search = () => {
+    var search = document.getElementById("search").value;
+    var sales = this.state.data.filter(element => element._id === search || element.description === search)  
+    
+    if (search === "") {
+      this.setState({ open: true, message: 'Enter your search' });
+      setTimeout(()=>{window.location.reload(true);}, 700);
+    }
+    else if (sales.length === 0) {
+      this.setState({ open: true, message: 'Sale not found' });
+    }
+    else {
+      this.setState({data: sales});;
+      console.log(sales); 
+    }
+    
+  }
 
   modify = (dato) => {
 
@@ -200,6 +225,10 @@ class Products extends Component {
             delete={this.delete}
             form={this.state.form}
             alert={this.state.alert}
+            search={this.search}
+            open={this.state.open}
+            handleClose={this.handleClose}
+            message={this.state.message}
           />
 
           <ProductsForm
