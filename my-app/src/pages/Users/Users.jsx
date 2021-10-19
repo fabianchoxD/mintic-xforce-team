@@ -9,23 +9,17 @@ import UsersList from "./UsersList";
 import Footer from "../../components/Footer";
 import { notLogged } from "../../miscellaneous/notLogged";
 
+const data = [];
+
 class Users extends Component {
     state = {
-
-        registeredUsers: [
-            { id: '1', name: 'Andrés', lastname: 'Díaz', role: 'Administrator', state: 'Authorized' },
-            { id: '2', name: 'Fabián', lastname: 'Varón', role: 'Administrator', state: 'Authorized' },
-            { id: '3', name: 'Karent', lastname: 'Manchabajoy', role: 'Administrator', state: 'Authorized' },
-            { id: '4', name: 'Sebastián', lastname: 'Ortíz', role: 'Administrator', state: 'Authorized' },
-            { id: '5', name: 'José', lastname: 'Cardona', role: 'Administrator', state: 'Authorized' },
-            { id: '6', name: 'Juan', lastname: 'Gómez', role: '', state: 'Pending' },
-            { id: '7', name: 'Steven', lastname: 'Hurtado', role: '', state: 'Pending' }
-        ],
+        data: data,
 
         form: {
             id: '',
             name: '',
             lastname: '',
+            email: '',
             role: '',
             state: ''
         },
