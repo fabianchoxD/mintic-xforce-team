@@ -66,7 +66,7 @@ class Products extends Component {
         "warning"
       );
       return;
-    } else if (parseInt(list.price) != list.price) {
+    } else if (parseInt(list.price) !== list.price) {
       swal(
         "Warning!",
         "Only Numbers are available, please review.",
