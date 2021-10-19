@@ -102,6 +102,40 @@ class Users extends Component {
         }
     }
 
+    delete = (dato) => {
+        swal({
+            title: "Delete User",
+            text: "Do yo want to remove User: " + dato.name + "?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    axios.delete(`${this.URL_USERS}/${dato._id}`, {
+                        headers: {
+                            'token': sessionStorage.getItem('token')
+                        }
+                    }).then(resp => {
+                        this.setState((state, props) => ({
+                            data: this.state.data.filter(element => element._id !== dato._id)
+                        }))
+                    }).catch(err => {
+                        console.log('An error has ocurred: ', err);
+                    });
+                    swal("User removed successfully.", {
+                        icon: "success",
+                    }); // -- VERIFY IF DELETED USER === TO CURRENT USER -> EQUAL? END SESSION OTHERWISE ->CONTINUE
+                }
+                else {
+                    swal("Operation Declined.", {
+                        icon: "success",
+                    });
+                }
+            });
+    }
+
+
     render() {
         if (window.sessionStorage.getItem('token') !== null) {
             return (
