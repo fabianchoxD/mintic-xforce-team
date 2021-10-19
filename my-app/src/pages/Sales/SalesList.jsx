@@ -59,8 +59,9 @@ class SalesList extends Component {
                     <div className="flexbox-container">
                         <Button color="success" onClick={() => this.props.showMI()}> Register a New Sale </Button>
                         <div className="search">
-                            <input type="text" placeholder="Search sales" />
+                            <input type="text" id="search" placeholder="Search sales" />
                             <IconButton
+                                onClick = {() => this.props.search()}
                                 aria-label="search"
                                 style={{
                                     background: 'rgb(45, 124, 214)',
@@ -93,7 +94,7 @@ class SalesList extends Component {
                         <tbody>
                             {this.props.data.map((element) => (
                                 <tr>
-                                    <td>{element.id}</td>
+                                    <td>{element._id}</td>
                                     <td>{element.total}</td>
                                     <td>{element.description}</td>
                                     <td>{element.quantity}</td>
@@ -104,7 +105,7 @@ class SalesList extends Component {
                                     <td>{element.state}</td>
                                     <td>
                                         <Button color="primary" onClick={() => this.props.showME(element)} > Edit </Button> {"  "}
-                                        <Button color="danger" onClick={() => this.delete(element)} > Delete </Button>
+                                        <Button color="danger" onClick={() => this.props.delete(element)} > Delete </Button>
                                     </td>
                                 </tr>
                             ))}
