@@ -13,17 +13,17 @@ googleAuth = (req, res) => {
         .then((resp) => {
             console.log(resp);
             const { name, email } = resp.payload;
-            console.log(name, email);
+            //console.log(name, email);
             return userModel.findOneAndUpdate(
                 { email: email }, { name: name }, { new: true, upsert: true }
             );
         }).then(user => {
-            console.log(user);
+            console.log('User response from update in ctrlAuthentication: ', user);
             var appToken = jwt.sign({ user: user }, JWT_KEY, { expiresIn: '1h' });
             res.json(appToken);
         })
         .catch((err) => {
-            console.log(err);
+            console.log('Error in Authenticaton Controller: ', err);
             res.status(500).send(err);
         });
 };
