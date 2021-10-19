@@ -143,8 +143,9 @@ class Users extends Component {
                     <Header />
 
                     <UsersList
-                        data={this.state.registeredUsers}
+                        data={this.state.data}
                         showME={this.showModalEdit}
+                        delete={this.delete}
                     />
                     <UsersForm
                         modify={this.modify}
