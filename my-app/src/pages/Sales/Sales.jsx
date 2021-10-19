@@ -9,6 +9,7 @@ import SalesList from "./SalesList";
 import swal from 'sweetalert';
 import Header from '../../components/Header';
 import Footer from "../../components/Footer";
+import { notLogged } from "../../miscellaneous/notLogged";
 
 const data = [];
 
@@ -100,33 +101,37 @@ class Sales extends React.Component {
     }
 
     render() {
-        return (
-            <>
-                <Header />
-                
-                <SalesList
-                    data = {this.state.data}
-                    showME = {this.showModalEdit}
-                    showMI = {this.showModalInsert}
-                    form = {this.state.form}
-                    alert = {this.state.alert}
-                />
+        if (window.sessionStorage.getItem('token') !== null) {
+            return (
+                <>
+                    <Header />
+                    <SalesList
+                        data={this.state.data}
+                        showME={this.showModalEdit}
+                        showMI={this.showModalInsert}
+                        form={this.state.form}
+                        alert={this.state.alert}
+                    />
 
-                <SalesForm
-                    insert = {this.insert}
-                    modify = {this.modify}
-                    hideMI = {this.hideModalInsert}
-                    hideME = {this.hideModalEdit}
-                    handleChange = {this.handleChange}
-                    form = {this.state.form}
-                    data = {this.state.data}
-                    modalInsert = {this.state.modalInsert}
-                    modalEdit = {this.state.modalEdit}
-                />
-                
-                <Footer />
-            </>
-        );
+                    <SalesForm
+                        insert={this.insert}
+                        modify={this.modify}
+                        hideMI={this.hideModalInsert}
+                        hideME={this.hideModalEdit}
+                        handleChange={this.handleChange}
+                        form={this.state.form}
+                        data={this.state.data}
+                        modalInsert={this.state.modalInsert}
+                        modalEdit={this.state.modalEdit}
+                    />
+                    <Footer />
+                </>
+            )
+        } else
+            return (
+                notLogged(),
+                null
+            )
     }
 }
 

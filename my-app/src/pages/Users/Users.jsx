@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import "./../../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -7,18 +7,19 @@ import Header from '../../components/Header';
 import UsersForm from './UsersForm';
 import UsersList from "./UsersList";
 import Footer from "../../components/Footer";
+import { notLogged } from "../../miscellaneous/notLogged";
 
 class Users extends Component {
     state = {
 
         registeredUsers: [
-            {id: '1', name: 'Andrés', lastname: 'Díaz', role: 'Administrator', state: 'Authorized'},
-            {id: '2', name: 'Fabián', lastname: 'Varón', role: 'Administrator', state: 'Authorized'},
-            {id: '3', name: 'Karent', lastname: 'Manchabajoy', role: 'Administrator', state: 'Authorized'},
-            {id: '4', name: 'Sebastián', lastname: 'Ortíz', role: 'Administrator', state: 'Authorized'},
-            {id: '5', name: 'José', lastname: 'Cardona', role: 'Administrator', state: 'Authorized'},
-            {id: '6', name: 'Juan', lastname: 'Gómez', role: '', state: 'Pending'},
-            {id: '7', name: 'Steven', lastname: 'Hurtado', role: '', state: 'Pending'}
+            { id: '1', name: 'Andrés', lastname: 'Díaz', role: 'Administrator', state: 'Authorized' },
+            { id: '2', name: 'Fabián', lastname: 'Varón', role: 'Administrator', state: 'Authorized' },
+            { id: '3', name: 'Karent', lastname: 'Manchabajoy', role: 'Administrator', state: 'Authorized' },
+            { id: '4', name: 'Sebastián', lastname: 'Ortíz', role: 'Administrator', state: 'Authorized' },
+            { id: '5', name: 'José', lastname: 'Cardona', role: 'Administrator', state: 'Authorized' },
+            { id: '6', name: 'Juan', lastname: 'Gómez', role: '', state: 'Pending' },
+            { id: '7', name: 'Steven', lastname: 'Hurtado', role: '', state: 'Pending' }
         ],
 
         form: {
@@ -69,25 +70,31 @@ class Users extends Component {
     }
 
     render() {
-        return (
-            <>
-                <Header />
-                
-                <UsersList 
-                    data = {this.state.registeredUsers}
-                    showME = {this.showModalEdit}
-                />
-                <UsersForm 
-                    modify = {this.modify}                    
-                    hideME = {this.hideModalEdit}
-                    handleChange = {this.handleChange}
-                    form = {this.state.form}
-                    modalEdit = {this.state.modalEdit}
-                />
+        if (window.sessionStorage.getItem('token') !== null) {
+            return (
+                <>
+                    <Header />
 
-                <Footer/>   
-            </>
-        );
+                    <UsersList
+                        data={this.state.registeredUsers}
+                        showME={this.showModalEdit}
+                    />
+                    <UsersForm
+                        modify={this.modify}
+                        hideME={this.hideModalEdit}
+                        handleChange={this.handleChange}
+                        form={this.state.form}
+                        modalEdit={this.state.modalEdit}
+                    />
+
+                    <Footer />
+                </>
+            )
+        } else
+            return (
+                notLogged(),
+                null
+            )
     }
 }
 

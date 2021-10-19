@@ -10,6 +10,7 @@ import Header from "../../components/Header";
 import ProductsForm from './ProductsForm';
 import ProductsList from "./ProductsList";
 import Footer from "../../components/Footer";
+import { notLogged } from "../../miscellaneous/notLogged";
 
 const data = [];
 
@@ -187,34 +188,39 @@ class Products extends Component {
   }
 
   render() {
-    return (
-      <>
-        <Header />
+    if (window.sessionStorage.getItem('token') !== null) {
+      return (
+        <>
+          <Header />
 
-        <ProductsList
-          data={this.state.data}
-          showME={this.showModalEdit}
-          showMI={this.showModalInsert}
-          delete={this.delete}
-          form={this.state.form}
-          alert={this.state.alert}
-        />
+          <ProductsList
+            data={this.state.data}
+            showME={this.showModalEdit}
+            showMI={this.showModalInsert}
+            delete={this.delete}
+            form={this.state.form}
+            alert={this.state.alert}
+          />
 
-        <ProductsForm
-          insert={this.insert}
-          modify={this.modify}
-          hideMI={this.hideModalInsert}
-          hideME={this.hideModalEdit}
-          handleChange={this.handleChange}
-          form={this.state.form}
-          data={this.state.data}
-          modalInsert={this.state.modalinsert}
-          modalEdit={this.state.modalEdit}
-        />
-
-        <Footer />
-      </>
-    );
+          <ProductsForm
+            insert={this.insert}
+            modify={this.modify}
+            hideMI={this.hideModalInsert}
+            hideME={this.hideModalEdit}
+            handleChange={this.handleChange}
+            form={this.state.form}
+            data={this.state.data}
+            modalInsert={this.state.modalinsert}
+            modalEdit={this.state.modalEdit}
+          />
+          <Footer />
+        </>
+      )
+    } else
+      return (
+        notLogged(),
+        null
+      )
   }
 }
 export default Products;
