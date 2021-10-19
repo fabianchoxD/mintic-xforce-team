@@ -47,6 +47,7 @@ class UsersList extends Component {
                                     <td>{element.state}</td>
                                     <td>
                                         <Button color="primary" onClick={() => this.props.showME(element)} > Edit </Button> {"  "}
+                                        <Button color="danger" onClick={() => this.props.delete(element)} > Delete </Button>
                                     </td>
                                 </tr>
                             ))}
