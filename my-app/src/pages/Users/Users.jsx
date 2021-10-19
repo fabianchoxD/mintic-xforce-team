@@ -47,17 +47,12 @@ class Users extends Component {
     hideModalEdit = () => {
         this.setState({ modalEdit: false });
     }
+    // REQUEST GET HTTP
 
-    modify = (dato) => {
-        var cont = 0;
-        var list = this.state.registeredUsers;
-        console.log(list);
-        list.map((register) => {
-            if (dato.id === register.id) {
-                list[cont].name = dato.name;
-                list[cont].lastname = dato.lastname;
-                list[cont].role = dato.role;
-                list[cont].state = dato.state;
+    componentDidMount() {
+        axios.get(`${this.URL_USERS}`, {
+            headers: {
+                'token': sessionStorage.getItem('token')
             }
             cont++;
         });
