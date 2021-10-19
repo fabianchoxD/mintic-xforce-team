@@ -30,19 +30,21 @@ class UsersList extends Component {
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Lastname</th>
+                                <th>Email</th>
                                 <th>Role</th>
                                 <th>State</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {this.props.data.map((element) => (
-                                <tr>
+                            {this.props.data.map((element, i) => (
+                                <tr key={i}>
                                     <td>{element.id}</td>
                                     <td>{element.name}</td>
                                     <td>{element.lastname}</td>
-                                    <td>{element.role}</td> 
-                                    <td>{element.state}</td> 
+                                    <td>{element.email}</td>
+                                    <td>{element.role}</td>
+                                    <td>{element.state}</td>
                                     <td>
                                         <Button color="primary" onClick={() => this.props.showME(element)} > Edit </Button> {"  "}
                                     </td>
