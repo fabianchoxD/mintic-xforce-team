@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import {
     Button,
@@ -10,8 +10,8 @@ import {
 } from "reactstrap";
 
 class Users extends Component {
-    render(){
-        return(
+    render() {
+        return (
             <React.Fragment>
                 <Modal isOpen={this.props.modalEdit} >
                     <ModalHeader>
@@ -20,8 +20,8 @@ class Users extends Component {
                         </div>
                     </ModalHeader>
                     <ModalBody>
-                    <FormGroup>
-                        <label>Id:</label>
+                        <FormGroup>
+                            <label>Id:</label>
                             <input className="form-control" readOnly type="text" value={this.props.form.id} />
                         </FormGroup>
                         <FormGroup>
@@ -33,19 +33,24 @@ class Users extends Component {
                             <input className="form-control" readOnly name="lastname" type="text" value={this.props.form.lastname} />
                         </FormGroup>
                         <FormGroup>
+                            <label>Email:</label>
+                            <input className="form-control" readOnly name="email" type="text" value={this.props.form.email} />
+                        </FormGroup>
+                        <FormGroup>
                             <label> Role: </label>
                             <select className="form-control" name="role" onChange={this.props.handleChange}>
-                                <option value="" selected disabled hide style={{display:'none'}}> Change role </option>
+                                <option value="" selected disabled hide style={{ display: 'none' }}> Change role </option>
                                 <option value="Administrator"> Administrator </option>
-                                <option value="Seller"> Seller </option> 
+                                <option value="Seller"> Seller </option>
+                                <option value="Seller"> Buyer </option>
                             </select>
                         </FormGroup>
                         <FormGroup>
                             <label> State: </label>
                             <select className="form-control" name="state" onChange={this.props.handleChange}>
-                                <option value="" selected disabled hide style={{display:'none'}}> Change state </option>
+                                <option value="" selected disabled hide style={{ display: 'none' }}> Change state </option>
                                 <option value="Authorized"> Authorized </option>
-                                <option value="Unauthorized"> Unauthorized </option> 
+                                <option value="Unauthorized"> Unauthorized </option>
                             </select>
                         </FormGroup>
                     </ModalBody>

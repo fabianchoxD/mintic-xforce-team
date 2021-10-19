@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import {
     Table,
@@ -7,14 +7,14 @@ import {
 } from 'reactstrap';
 
 class UsersList extends Component {
-    render(){
-        return(
+    render() {
+        return (
             <React.Fragment>
-                <div 
+                <div
                     style={{
-                        marginTop: '7em', 
-                        width: '90%', 
-                        marginLeft: 'auto', 
+                        marginTop: '7em',
+                        width: '90%',
+                        marginLeft: 'auto',
                         marginRight: 'auto',
                     }}>
 
@@ -22,7 +22,7 @@ class UsersList extends Component {
                     <hr />
                 </div>
 
-                <Container className="users" style={{marginBottom: '120px'}}>
+                <Container className="users" style={{ marginBottom: '120px' }}>
                     <br />
                     <Table>
                         <thead>
