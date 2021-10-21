@@ -11,6 +11,7 @@ import ProductsForm from './ProductsForm';
 import ProductsList from "./ProductsList";
 import Footer from "../../components/Footer";
 import { notLogged } from "../../miscellaneous/notLogged";
+import { emptyDescription } from "../../miscellaneous/formValidations";
 
 const data = [];
 
@@ -116,10 +117,12 @@ class Products extends Component {
   insert = () => {
     const datas = this.state.form;
     if (
-      this.state.form.description === "" ||
-      this.state.form.price === "" ||
-      this.state.form.state === ""
-    ) {
+      this.state.form.description === "" ){
+        emptyDescription();
+      } else if(
+      this.state.form.price === "" ) {}else if(
+      this.state.form.state === "")
+    {
       this.setState({ alert: true, modalinsert: false });
     }
     else {
