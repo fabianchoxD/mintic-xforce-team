@@ -6,7 +6,6 @@ import LoginIcon from "@mui/icons-material/Login";
 import { Typography } from "@mui/material";
 import { Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
-import { GoogleLogout } from "react-google-login";
 import swal from "sweetalert";
 import CancelIcon from '@mui/icons-material/Cancel';
 
