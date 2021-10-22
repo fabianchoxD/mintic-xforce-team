@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
+import Snackbar from '@mui/material/Snackbar';
 
 import {
     Table,
@@ -11,7 +12,13 @@ import {
 
 class ProductsList extends Component {
 
+    state = {
+        vertical: 'top',
+        horizontal: 'center'
+    };
+
     render() {
+        const {vertical, horizontal} = this.state;
         return(
             <React.Fragment>
                 <br/><br/>
@@ -31,8 +38,9 @@ class ProductsList extends Component {
                     <div className="flexbox-container">
                         <Button color="success" onClick={() => this.props.showMI()}>Add a New Product</Button>
                         <div className="search">
-                            <input type="text" placeholder="Search products" />
+                            <input type="text" id="search" placeholder="Id, description"/>
                             <IconButton
+                                onClick = {() => this.props.search()}
                                 aria-label="search"
                                 style={{
                                     background: 'rgb(45, 124, 214)',
@@ -43,6 +51,16 @@ class ProductsList extends Component {
                                 <SearchIcon sx={{ color: 'white' }} />
                             </IconButton>
                         </div>
+                    </div>
+
+                    <div>
+                        <Snackbar       
+                            anchorOrigin={{ vertical, horizontal }}
+                            open={this.props.open}
+                            onClose={this.props.handleClose}
+                            message={this.props.message}
+                            key={vertical + horizontal}
+                        />
                     </div>
                     <br />
                     <br />

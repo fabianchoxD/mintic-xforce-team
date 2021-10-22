@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
+import Snackbar from '@mui/material/Snackbar';
 
 import {
     Table,
@@ -12,6 +13,11 @@ import {
 import swal from "sweetalert";
 
 class SalesList extends Component {
+    state = {
+        vertical: 'top',
+        horizontal: 'center'
+    };
+
     delete = (dato) => {
         swal({
             title: "Delete Sale?",
@@ -41,6 +47,8 @@ class SalesList extends Component {
     }
 
     render(){
+        const {vertical, horizontal} = this.state;
+
         return(
             <React.Fragment>
                 <br />
@@ -59,8 +67,9 @@ class SalesList extends Component {
                     <div className="flexbox-container">
                         <Button color="success" onClick={() => this.props.showMI()}> Register a New Sale </Button>
                         <div className="search">
-                            <input type="text" placeholder="Search sales" />
+                            <input type="text" id="search" name="search" placeholder="Id, identification, name"/>
                             <IconButton
+                                onClick = {() => this.props.search()}
                                 aria-label="search"
                                 style={{
                                     background: 'rgb(45, 124, 214)',
@@ -71,6 +80,16 @@ class SalesList extends Component {
                                 <SearchIcon sx={{ color: 'white' }} />
                             </IconButton>
                         </div>
+                    </div>
+                    
+                    <div>
+                        <Snackbar       
+                            anchorOrigin={{ vertical, horizontal }}
+                            open={this.props.open}
+                            onClose={this.props.handleClose}
+                            message={this.props.message}
+                            key={vertical + horizontal}
+                        />
                     </div>
 
                     <br />
@@ -93,7 +112,7 @@ class SalesList extends Component {
                         <tbody>
                             {this.props.data.map((element) => (
                                 <tr>
-                                    <td>{element.id}</td>
+                                    <td>{element._id}</td>
                                     <td>{element.total}</td>
                                     <td>{element.description}</td>
                                     <td>{element.quantity}</td>
@@ -104,7 +123,7 @@ class SalesList extends Component {
                                     <td>{element.state}</td>
                                     <td>
                                         <Button color="primary" onClick={() => this.props.showME(element)} > Edit </Button> {"  "}
-                                        <Button color="danger" onClick={() => this.delete(element)} > Delete </Button>
+                                        <Button color="danger" onClick={() => this.props.delete(element)} > Delete </Button>
                                     </td>
                                 </tr>
                             ))}
