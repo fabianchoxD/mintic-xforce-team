@@ -41,7 +41,7 @@ class ProductsList extends Component {
                     <div className="flexbox-container">
                         <Button color="success" onClick={() => this.props.showMI()}>Add a New Product</Button>
                         <div className="search">
-                            <input type="text" placeholder="Search by id, desc, price " onChange={this.changeTitle} />
+                            <input type="text" placeholder="Search by id, desc, price" onChange={this.changeTitle} />
                             <IconButton
                                 aria-label="search"
                                 style={{
@@ -68,7 +68,7 @@ class ProductsList extends Component {
                         </thead>
                         <tbody>
                             {this.props.data.filter((val) => {
-                                if (this.state.searchTerm == "") {
+                                if (this.state.searchTerm === "") {
                                     return val
                                 } else if (
                                 val.description.toLowerCase().includes(this.state.searchTerm.toLowerCase()) ||
