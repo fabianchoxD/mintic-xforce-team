@@ -1,10 +1,10 @@
-const Sales = require('../models/Sales')
+const Sales = require('../models/Sales');
 
-// CREATE A NEW SALES
+// CREATE A NEW SALE
 
 createSale = (req, res) => {
     Sales.create(req.body).then((data) => {
-        res.status(200).json({ message: "Sales Created", data });
+        res.status(200).json({ message: "Sale Made", data });
     }).catch(err => {
         res.send(err);
     })
@@ -31,23 +31,23 @@ getSaleId = (req, res) => {
     })
 }
 
-// UPDATE A SALES
+// UPDATE A SALE
 
 updateSale = (req, res) => {
     let { id } = req.params;
     Sales.findByIdAndUpdate(id, req.body).then((data) => {
-        res.status(200).json({ message: 'Sales Updated', data });
+        res.status(200).json({ message: 'Sale Updated', data });
     }).catch(err => {
         res.send(err);
     })
 }
 
-// DELETE A SALES
+// DELETE A SALE
 
 deleteSale = (req, res) => {
     let { id } = req.params;
     Sales.findByIdAndDelete(id).then(data => {
-        res.status(200).json({ message: 'Sales Deleted', data });
+        res.status(200).json({ message: 'Sale Deleted', data });
     })
         .catch(err => {
             res.send(err);
