@@ -8,6 +8,7 @@ import { Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
 import { GoogleLogout } from "react-google-login";
 import swal from "sweetalert";
+import CancelIcon from '@mui/icons-material/Cancel';
 
 /* CSS */
 import "../styles/Header.css";
@@ -48,11 +49,10 @@ class Header extends React.Component {
                         {" "}
                     </Typography>
                     {sessionStorage.getItem('token') != null ? (
-                        <GoogleLogout
-                            clientId="871739763343-2miis7h4hc28ce17v7t4spaneq5tkg49.apps.googleusercontent.co"
-                            buttonText="Logout"
-                            onLogoutSuccess={this.logout}
-                        ></GoogleLogout>
+                        <Button id="btn" onClick={this.logout} endIcon={<CancelIcon />}>
+                            {" "}
+                            Logout{" "}
+                        </Button>
                     ) : (
                         <Link to="/login" style={{ textDecoration: "none" }}>
                             <Button id="btn" onClick="" endIcon={<LoginIcon />}>
