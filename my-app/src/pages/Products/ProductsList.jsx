@@ -12,22 +12,25 @@ import {
 
 class ProductsList extends Component {
 
-    state = {
-        vertical: 'top',
-        horizontal: 'center'
-    };
+    constructor(props) {
+        super(props);
+        this.state = { searchTerm: "" }
+
+    }
+    changeTitle = (e) => {
+        this.setState({ searchTerm: e.target.value });
+    }
 
     render() {
-        const {vertical, horizontal} = this.state;
-        return(
+        return (
             <React.Fragment>
-                <br/><br/>
+                <br /><br />
                 <div className="titulo">
                     <h3> Product Management </h3>
-                    <hr/>
+                    <hr />
                 </div>
 
-                <Container className="products"  style={{ marginBottom: '120px' }}>
+                <Container className="products" style={{ marginBottom: '120px' }}>
 
                     <Alert isOpen={this.props.alert} color="warning">
                         Please complete all field.
@@ -38,9 +41,8 @@ class ProductsList extends Component {
                     <div className="flexbox-container">
                         <Button color="success" onClick={() => this.props.showMI()}>Add a New Product</Button>
                         <div className="search">
-                            <input type="text" id="search" placeholder="Id, description"/>
+                            <input type="text" placeholder="Search by id, desc, price " onChange={this.changeTitle} />
                             <IconButton
-                                onClick = {() => this.props.search()}
                                 aria-label="search"
                                 style={{
                                     background: 'rgb(45, 124, 214)',
@@ -51,16 +53,6 @@ class ProductsList extends Component {
                                 <SearchIcon sx={{ color: 'white' }} />
                             </IconButton>
                         </div>
-                    </div>
-
-                    <div>
-                        <Snackbar       
-                            anchorOrigin={{ vertical, horizontal }}
-                            open={this.props.open}
-                            onClose={this.props.handleClose}
-                            message={this.props.message}
-                            key={vertical + horizontal}
-                        />
                     </div>
                     <br />
                     <br />
@@ -75,7 +67,16 @@ class ProductsList extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.props.data.map((element, i) => (
+                            {this.props.data.filter((val) => {
+                                if (this.state.searchTerm == "") {
+                                    return val
+                                } else if (
+                                val.description.toLowerCase().includes(this.state.searchTerm.toLowerCase()) ||
+                                val.price.toString().toLowerCase().includes(this.state.searchTerm.toLowerCase()) ||
+                                val._id.toString().toLowerCase().includes(this.state.searchTerm.toLowerCase())) {
+                                    return val
+                                }
+                            }).map((element, i) => (
                                 <tr key={i}>
                                     <td>{element._id}</td>
                                     <td>{element.description}</td>

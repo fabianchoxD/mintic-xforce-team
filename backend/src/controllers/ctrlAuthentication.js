@@ -19,7 +19,7 @@ googleAuth = (req, res) => {
             );
         }).then(user => {
             console.log('User response from update in ctrlAuthentication: ', user);
-            var appToken = jwt.sign({ user: user }, JWT_KEY, { expiresIn: '1h' });
+            var appToken = jwt.sign({ user: user }, JWT_KEY);
             res.json(appToken);
         })
         .catch((err) => {

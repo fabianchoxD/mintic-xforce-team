@@ -11,6 +11,7 @@ import ProductsForm from './ProductsForm';
 import ProductsList from "./ProductsList";
 import Footer from "../../components/Footer";
 import { notLogged } from "../../miscellaneous/notLogged";
+import { emptyDescription, emptyPrice, formatPrice, emptyState } from "../../miscellaneous/formValidations";
 
 const data = [];
 
@@ -86,18 +87,9 @@ class Products extends Component {
     //dato.preventDefault();
     const list = this.state.form;
     if (list.price === '') {
-      swal(
-        "Warning!",
-        "Price field cannot be empty.",
-        "warning"
-      );
-      return;
+      emptyPrice();
     } else if (parseInt(list.price) !== list.price) {
-      swal(
-        "Warning!",
-        "Only Numbers are available, please review.",
-        "warning"
-      );
+      formatPrice();
     } else {
       console.log('vamos a hacer un PUT', this.state.form);
       axios.put(`${this.URL_PRODUCTS}/${dato._id}`, { ...dato }, {
@@ -141,11 +133,14 @@ class Products extends Component {
   insert = () => {
     const datas = this.state.form;
     if (
-      this.state.form.description === "" ||
-      this.state.form.price === "" ||
-      this.state.form.state === ""
-    ) {
-      this.setState({ alert: true, modalinsert: false });
+      this.state.form.description === "") {
+      emptyDescription();
+    } else if (
+      this.state.form.price === "") {
+      emptyPrice();
+    } else if (
+      this.state.form.state === "") {
+      emptyState();
     }
     else {
       var newValue = { ...this.state.form };
