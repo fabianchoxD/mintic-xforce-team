@@ -1,32 +1,35 @@
-import React, {Component} from 'react';
-import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
-import Snackbar from '@mui/material/Snackbar';
+import React, { Component } from "react";
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
 
-import {
-    Table,
-    Button,
-    Alert,
-    Container
-} from 'reactstrap';
+import { Table, Button, Alert, Container } from "reactstrap";
 
 import swal from "sweetalert";
 
 class SalesList extends Component {
-    state = {
-        vertical: 'top',
-        horizontal: 'center'
+    constructor(props) {
+        super(props);
+        this.state = { searchTerm: "" };
+    }
+    changeTitle = (e) => {
+        this.setState({ searchTerm: e.target.value });
     };
 
     delete = (dato) => {
         swal({
             title: "Delete Sale?",
-            text: "Are you sure to remove this register " + "<" + dato.description + ">" + " with id: " + dato.id + "?",
+            text:
+                "Are you sure to remove this register " +
+                "<" +
+                dato.description +
+                ">" +
+                " with id: " +
+                dato.id +
+                "?",
             icon: "warning",
             buttons: true,
             dangerMode: true,
-        })
-        .then((willDelete) => {
+        }).then((willDelete) => {
             if (willDelete) {
                 var cont = 0;
                 var list = this.props.data;
@@ -44,12 +47,12 @@ class SalesList extends Component {
                 swal("Operation Unrealized.");
             }
         });
-    }
+    };
 
-    render(){
-        const {vertical, horizontal} = this.state;
+    render() {
+        const { vertical, horizontal } = this.state;
 
-        return(
+        return (
             <React.Fragment>
                 <br />
                 <br />
@@ -59,39 +62,36 @@ class SalesList extends Component {
                     <hr />
                 </div>
 
-                <Container className="sales" style={{ marginBottom: '120px' }}>
+                <Container className="sales" style={{ marginBottom: "120px" }}>
                     <Alert isOpen={this.props.alert} color="warning">
                         Please complete all field.
                     </Alert>
 
                     <div className="flexbox-container">
-                        <Button color="success" onClick={() => this.props.showMI()}> Register a New Sale </Button>
+                        <Button color="success" onClick={() => this.props.showMI()}>
+                            {" "}
+                            Register a New Sale{" "}
+                        </Button>
                         <div className="search">
-                            <input type="text" id="search" name="search" placeholder="Id, identification, name"/>
+                            <input
+                                type="text"
+                                id="search"
+                                name="search"
+                                placeholder="Id, Cust Id, Name, Price..."
+                                onChange={this.changeTitle}
+                            />
                             <IconButton
-                                onClick = {() => this.props.search()}
                                 aria-label="search"
                                 style={{
-                                    background: 'rgb(45, 124, 214)',
-                                    marginLeft: '6px',
-                                    marginTop: '-8px'
+                                    background: "rgb(45, 124, 214)",
+                                    marginLeft: "6px",
+                                    marginTop: "-8px",
                                 }}
                             >
-                                <SearchIcon sx={{ color: 'white' }} />
+                                <SearchIcon sx={{ color: "white" }} />
                             </IconButton>
                         </div>
                     </div>
-                    
-                    <div>
-                        <Snackbar       
-                            anchorOrigin={{ vertical, horizontal }}
-                            open={this.props.open}
-                            onClose={this.props.handleClose}
-                            message={this.props.message}
-                            key={vertical + horizontal}
-                        />
-                    </div>
-
                     <br />
                     <br />
                     <Table>
@@ -110,7 +110,20 @@ class SalesList extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.props.data.map((element) => (
+                            {this.props.data.filter((val) => {
+                                if (this.state.searchTerm === "") {
+                                    return val
+                                } else if (
+                                    val._id.toString().toLowerCase().includes(this.state.searchTerm.toLowerCase()) ||
+                                    val.total.toString().toLowerCase().includes(this.state.searchTerm.toLowerCase()) ||
+                                    val.description.toLowerCase().includes(this.state.searchTerm.toLowerCase()) ||
+                                    val.unitPrice.toString().toLowerCase().includes(this.state.searchTerm.toLowerCase()) ||
+                                    val.nameClient.toLowerCase().includes(this.state.searchTerm.toLowerCase()) ||
+                                    val.state.toLowerCase().includes(this.state.searchTerm.toLowerCase()) ||
+                                    val.identification.toString().toLowerCase().includes(this.state.searchTerm.toLowerCase())) {
+                                    return val
+                                }
+                            }).map((element) => (
                                 <tr>
                                     <td>{element._id}</td>
                                     <td>{element.total}</td>
@@ -122,8 +135,21 @@ class SalesList extends Component {
                                     <td>{element.nameClient}</td>
                                     <td>{element.state}</td>
                                     <td>
-                                        <Button color="primary" onClick={() => this.props.showME(element)} > Edit </Button> {"  "}
-                                        <Button color="danger" onClick={() => this.props.delete(element)} > Delete </Button>
+                                        <Button
+                                            color="primary"
+                                            onClick={() => this.props.showME(element)}
+                                        >
+                                            {" "}
+                                            Edit{" "}
+                                        </Button>{" "}
+                                        {"  "}
+                                        <Button
+                                            color="danger"
+                                            onClick={() => this.props.delete(element)}
+                                        >
+                                            {" "}
+                                            Delete{" "}
+                                        </Button>
                                     </td>
                                 </tr>
                             ))}
@@ -131,7 +157,7 @@ class SalesList extends Component {
                     </Table>
                 </Container>
             </React.Fragment>
-        )
+        );
     }
 }
 
