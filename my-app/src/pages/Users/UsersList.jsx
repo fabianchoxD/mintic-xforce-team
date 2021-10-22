@@ -39,7 +39,7 @@ class UsersList extends Component {
                         <tbody>
                             {this.props.data.map((element, i) => (
                                 <tr key={i}>
-                                    <td>{element.id}</td>
+                                    <td>{element._id}</td>
                                     <td>{element.name}</td>
                                     <td>{element.lastname}</td>
                                     <td>{element.email}</td>
