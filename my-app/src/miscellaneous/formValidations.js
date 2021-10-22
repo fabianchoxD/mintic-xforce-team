@@ -10,3 +10,28 @@ export function emptyDescription() {
         return;
     }
 }
+
+export function emptyPrice() {
+    swal(
+        "Warning!",
+        "Price field cannot be empty.",
+        "warning"
+    );
+    return;
+}
+
+export function formatPrice() {
+    swal(
+        "Warning!",
+        "Only Numbers are available, please review.",
+        "warning"
+    );
+}
+
+export function emptyState() {
+    swal(
+        "Warning!",
+        "State cannot be empty.",
+        "warning"
+    );
+}
