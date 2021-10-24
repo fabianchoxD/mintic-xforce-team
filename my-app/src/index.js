@@ -8,6 +8,8 @@ import Home from './components/Home';
 import Users from './pages/Users/Users';
 import Sales from './pages/Sales/Sales';
 import Products from './pages/Products/Products';
+import Seller from './components/SellerHome';
+import Pending from './components/PendingHome';
 
 ReactDOM.render(
     <BrowserRouter>
@@ -18,6 +20,8 @@ ReactDOM.render(
         <Route exact path="/users" component={Users}/>
         <Route exact path="/sales" component={Sales}/>
         <Route exact path="/products" component={Products}/>
+        <Route exact path="/seller" component={Seller}/>
+        <Route exact path="/pending" component={Pending}/>
       </Switch>
     </BrowserRouter>,
   document.getElementById('root')
