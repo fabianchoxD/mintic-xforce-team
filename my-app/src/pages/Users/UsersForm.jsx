@@ -42,7 +42,7 @@ class Users extends Component {
                                 <option value="" selected disabled hide style={{ display: 'none' }}> Change role </option>
                                 <option value="Administrator"> Administrator </option>
                                 <option value="Seller"> Seller </option>
-                                <option value="Seller"> Buyer </option>
+                                <option value="Pending"> Pending </option>
                             </select>
                         </FormGroup>
                         <FormGroup>

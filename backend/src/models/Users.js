@@ -4,7 +4,7 @@ const usersSchema = new mongoose.Schema({
     name: {type: String, required: true },
     email:{type: String, required: true},
     lastname: {type: String, required: true },
-    role: {type: String, default: "client"},
+    role: {type: String, default: "Pending"},
     state: {type: String, default: "disabled" }
 });
 
