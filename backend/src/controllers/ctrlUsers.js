@@ -13,11 +13,17 @@ createUser = (req, res) => {
 // GET ALL USER
 
 getUsers = (req, res) => {
-    Users.find().then((data) => {
-        res.status(200).json(data);
-    }).catch(err => {
-        res.send(err);
-    })
+    const userDecoded = req.userDecoded;
+    console.log("User decoded?: ", req.userDecoded);
+    if(userDecoded.user.role === 'Administrator'){
+        Users.find().then((data) => {
+            res.status(200).json(data);
+        }).catch(err => {
+            res.send(err);
+        })
+    }else{
+        res.status(401).json({errorMessage:"Sorry, you don't have access to this resource."})
+    }
 }
 
 // GET USER BY ID
