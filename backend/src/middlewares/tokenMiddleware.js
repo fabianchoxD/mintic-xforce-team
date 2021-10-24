@@ -8,9 +8,9 @@ verifyToken = (req, res, next) => {
             res.status(401).send('Not Authorized');
             return;
         }
-    console.log("respuesta decodificada: ",decoded)
-    });
+    req.userDecoded = decoded;;
     next();
+    });
 }
 
 module.exports ={
