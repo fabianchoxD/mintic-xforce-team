@@ -7,7 +7,7 @@ import Header from '../../components/Header';
 import UsersForm from './UsersForm';
 import UsersList from "./UsersList";
 import Footer from "../../components/Footer";
-import { notLogged } from "../../miscellaneous/notLogged";
+import { notLogged } from "../../miscellaneous/loginMessageHandler";
 
 const data = [];
 

@@ -10,7 +10,7 @@ import SalesList from "./SalesList";
 import swal from 'sweetalert';
 import Header from '../../components/Header';
 import Footer from "../../components/Footer";
-import { notLogged } from "../../miscellaneous/notLogged";
+import { notLogged } from "../../miscellaneous/loginMessageHandler";
 
 const data = [];
 

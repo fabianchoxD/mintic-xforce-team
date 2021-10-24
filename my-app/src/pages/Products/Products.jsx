@@ -10,7 +10,7 @@ import Header from "../../components/Header";
 import ProductsForm from './ProductsForm';
 import ProductsList from "./ProductsList";
 import Footer from "../../components/Footer";
-import { notLogged } from "../../miscellaneous/notLogged";
+import { notLogged } from "../../miscellaneous/loginMessageHandler";
 import { emptyDescription, emptyPrice, formatPrice, emptyState } from "../../miscellaneous/formValidations";
 
 const data = [];
