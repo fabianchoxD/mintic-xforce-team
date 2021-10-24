@@ -55,9 +55,18 @@ class Users extends Component {
                 'token': sessionStorage.getItem('token')
             }
         })
-            .then(res => {
-                this.setState({ data: res.data })
-            }).catch(err => {
+        .then(res => {
+            this.setState({ data: res.data })
+        }).catch(err => {
+                (swal(
+                    "Error " + err.response.status,
+                    err.response.data.errorMessage,
+                    "error"
+                ).then((result) => {
+                    window.location = "/home"
+                }
+                ))
+                return;
                 console.log("An error has ocurred", err);
             })
     };
