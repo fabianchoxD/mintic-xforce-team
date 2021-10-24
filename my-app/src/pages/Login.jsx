@@ -7,17 +7,34 @@ import GoogleLogin from 'react-google-login'
 import GoogleButton from 'react-google-button'
 import '../styles/Login.css';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 const theme = createTheme();
 class Login extends Component {
+  URL_POST_LOGIN = 'http://localhost:3001/users/afterLogin';
+  URL_LOGIN = 'http://localhost:3001/auth/google';
   render() {
     const responseGoogle = (response) => {
       console.log(response);
-      axios.post(`http://localhost:3001/auth/google`, { token: response.tokenId })
+      axios.post(`${this.URL_LOGIN}`, { token: response.tokenId })
         .then(resp => {
           console.log("Everything is ok, here's the token: ", resp.data);
           sessionStorage.setItem('token', resp.data);
-          this.props.history.push("/users");
+          axios.get(`${this.URL_POST_LOGIN}`, {
+            headers: {
+              'token': sessionStorage.getItem('token')
+            }
+          })
+            .then(res => {
+              sessionStorage.setItem('role', res.data.role);
+              if(res.data.role === "Administrator"){
+                this.props.history.push('/users');
+              }else if (res.data.role === "Seller"){
+                this.props.history.push('/seller');
+              }else{
+                this.props.history.push('/pending');
+              }
+            })
         })
         .catch(err => console.log('Was an error: ', err))
     }
