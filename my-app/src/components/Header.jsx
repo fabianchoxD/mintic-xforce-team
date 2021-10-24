@@ -15,6 +15,7 @@ import "../styles/Header.css";
 class Header extends React.Component {
     logout = response => {
         window.sessionStorage.removeItem('token');
+        window.sessionStorage.removeItem('role');
         swal(
             "Session ended.",
             "Thanks for shop with us 😊",
