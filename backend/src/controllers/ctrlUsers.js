@@ -12,6 +12,12 @@ createUser = (req, res) => {
 
 // GET ALL USER
 
+getRoleAfterLogin= (req, res) => {
+    const userDecoded = req.userDecoded;
+    console.log("User decoded?: ", req.userDecoded);
+    res.status(200).json({role: userDecoded.user.role});
+}
+
 getUsers = (req, res) => {
     const userDecoded = req.userDecoded;
     console.log("User decoded?: ", req.userDecoded);
@@ -65,5 +71,6 @@ module.exports = {
     getUsers,
     getUserId,
     updateUser,
-    deleteUser
+    deleteUser,
+    getRoleAfterLogin
 }
