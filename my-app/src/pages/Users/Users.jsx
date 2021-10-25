@@ -109,7 +109,7 @@ class Users extends Component {
                     modalEdit: false
                 }))
                 swal(
-                    "Successful Operation.",
+                    "Operation successful.",
                     "User: " + dato.name + ", was successfully updated.",
                     "success"
                 );
