@@ -88,7 +88,7 @@ class Products extends Component {
     const list = this.state.form;
     if (list.price === '') {
       emptyPrice();
-    } else if (parseInt(list.price) !== list.price) {
+    } else if (isNaN(list.price)) {
       formatPrice();
     } else {
       console.log('vamos a hacer un PUT', this.state.form);
