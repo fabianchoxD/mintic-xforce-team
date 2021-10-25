@@ -76,7 +76,6 @@ class Users extends Component {
                 }
                 ))
                 return;
-                console.log("An error has ocurred", err);
             })
     };
 
@@ -98,13 +97,11 @@ class Users extends Component {
                 "warning"
             );
         } else {
-            console.log('vamos a hacer un PUT', this.state.form);
             axios.put(`${this.URL_USERS}/${dato._id}`, { ...dato }, {
                 headers: {
                     'token': sessionStorage.getItem('token')
                 }
             }).then((resp) => {
-                console.log('Todo bien con el put', resp);
                 this.updateSessionStorage(resp.config.headers.token, resp.data.data.role);
                 this.setState((state, props) => ({
                     data: state.data.map(element => element._id === dato._id ? dato : element),
@@ -116,7 +113,6 @@ class Users extends Component {
                     "success"
                 );
             }).catch(err => {
-                console.log('error al hacer post', err);
             });
         }
     }
@@ -140,11 +136,9 @@ class Users extends Component {
                             data: this.state.data.filter(element => element._id !== dato._id)
                         }))
                     }).catch(err => {
-                        console.log('An error has ocurred: ', err);
                     });
                     swal("User removed successfully.", {
                         icon: "success",
-                    }); // -- VERIFY IF DELETED USER === TO CURRENT USER -> EQUAL? END SESSION OTHERWISE ->CONTINUE
                 }
                 else {
                     swal("Operation Declined.", {
