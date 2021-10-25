@@ -114,6 +114,12 @@ class Users extends Component {
                     "success"
                 );
             }).catch(err => {
+                (swal(
+                    "Error " + err.response.status,
+                    err.response.data.errorMessage,
+                    "error"
+                ))
+                return;
             });
         }
     }
@@ -137,6 +143,12 @@ class Users extends Component {
                             data: this.state.data.filter(element => element._id !== dato._id)
                         }))
                     }).catch(err => {
+                        (swal(
+                            "Error " + err.response.status,
+                            err.response.data.errorMessage,
+                            "error"
+                        ))
+                        return;
                     });
                     swal("User removed successfully.", {
                         icon: "success",
