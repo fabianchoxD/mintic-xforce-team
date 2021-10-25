@@ -66,20 +66,20 @@ class Products extends Component {
 
   search = () => {
     var search = document.getElementById("search").value;
-    var sales = this.state.data.filter(element => element._id === search || element.description === search)  
-    
+    var sales = this.state.data.filter(element => element._id === search || element.description === search)
+
     if (search === "") {
       this.setState({ open: true, message: 'Enter your search' });
-      setTimeout(()=>{window.location.reload(true);}, 700);
+      setTimeout(() => { window.location.reload(true); }, 700);
     }
     else if (sales.length === 0) {
       this.setState({ open: true, message: 'Sale not found' });
     }
     else {
-      this.setState({data: sales});;
-      console.log(sales); 
+      this.setState({ data: sales });;
+      console.log(sales);
     }
-    
+
   }
 
   modify = (dato) => {

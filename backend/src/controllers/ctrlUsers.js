@@ -17,22 +17,22 @@ createUser = (req, res) => {
 
 // GET ALL USER
 
-getRoleAfterLogin= (req, res) => {
+getRoleAfterLogin = (req, res) => {
     const userDecoded = req.userDecoded;
-    res.status(200).json({role: userDecoded.user.role});
+    res.status(200).json({ role: userDecoded.user.role });
 }
 
 getUsers = (req, res) => {
     const userDecoded = req.userDecoded;
     console.log("User decoded?: ", req.userDecoded);
-    if(userDecoded.user.role === 'Administrator'){
+    if (userDecoded.user.role === 'Administrator') {
         Users.find().then((data) => {
             res.status(200).json(data);
         }).catch(err => {
             res.send(err);
         })
-    }else{
-        res.status(401).json({errorMessage:"Sorry, you don't have access to this resource."})
+    } else {
+        res.status(401).json({ errorMessage: "Sorry, you don't have access to this resource." });
     }
 }
 
