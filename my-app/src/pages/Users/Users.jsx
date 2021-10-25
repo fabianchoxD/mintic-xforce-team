@@ -77,6 +77,7 @@ class Users extends Component {
                 ))
                 return;
             })
+            this.forceUpdate();
     };
 
     modify = (dato) => {
@@ -139,6 +140,7 @@ class Users extends Component {
                     });
                     swal("User removed successfully.", {
                         icon: "success",
+                    });this.forceUpdate();
                 }
                 else {
                     swal("Operation Declined.", {
