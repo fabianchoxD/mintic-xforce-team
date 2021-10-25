@@ -15,6 +15,14 @@ import { notLogged } from "../../miscellaneous/loginMessageHandler";
 const data = [];
 
 class Sales extends React.Component {
+  constructor(props){
+    super(props);
+  if(process.env.NODE_ENV !== 'production'){
+    console.log("We're not ready to production yet.");
+    require('dotenv').config();
+  }
+  this.BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+  };
   state = {
     data: data,
     form: {
@@ -36,7 +44,8 @@ class Sales extends React.Component {
     message: ''
   };
 
-  URL_SALES= 'http://localhost:3001/sales'
+  URL_SALES = `${this.props.BACKEND_URL}/sales`
+
 
   handleChange = e => {
     this.setState({

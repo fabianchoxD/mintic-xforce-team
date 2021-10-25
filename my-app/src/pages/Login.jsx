@@ -7,12 +7,19 @@ import GoogleLogin from 'react-google-login'
 import GoogleButton from 'react-google-button'
 import '../styles/Login.css';
 import axios from 'axios';
-import swal from 'sweetalert';
 
 const theme = createTheme();
 class Login extends Component {
-  URL_POST_LOGIN = 'http://localhost:3001/users/afterLogin';
-  URL_LOGIN = 'http://localhost:3001/auth/google';
+  constructor(props){
+    super(props);
+  if(process.env.NODE_ENV !== 'production'){
+    console.log("We're not ready to production yet.");
+    require('dotenv').config();
+  }
+  this.BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+  };
+  URL_POST_LOGIN = `${this.props.BACKEND_URL}/users/afterLogin`
+  URL_LOGIN = `${this.props.BACKEND_URL}/auth/google`
   render() {
     const responseGoogle = (response) => {
       console.log(response);

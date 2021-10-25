@@ -12,6 +12,14 @@ import { notLogged } from "../../miscellaneous/loginMessageHandler";
 const data = [];
 
 class Users extends Component {
+    constructor(props){
+        super(props);
+      if(process.env.NODE_ENV !== 'production'){
+        console.log("We're not ready to production yet.");
+        require('dotenv').config();
+      }
+      this.BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+      };
     state = {
         data: data,
 
@@ -29,7 +37,8 @@ class Users extends Component {
         alert: false
     };
 
-    URL_USERS = 'http://localhost:3001/users';
+    URL_USERS = `${this.props.BACKEND_URL}/users`
+
 
     updateSessionStorage(Responsetoken,Responserole){
         const token=  sessionStorage.setItem('token', Responsetoken);
