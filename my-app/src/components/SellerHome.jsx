@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import { Container, Row, Col } from "react-bootstrap";
 import Button from '@mui/material/Button';
 import { lackOfPrivilegePending } from "../miscellaneous/loginMessageHandler";
+import { Link } from "react-router-dom";
 
 import '../styles/SellerHome.css'
 
@@ -34,13 +35,17 @@ class SellerHome extends Component {
                     </Row>
                     <Row className="buttonDivContainer">
                         <Col>
-                            <Button variant="contained" size="large">
-                                Sales
-                            </Button>
+                            <Link to="/sales" style={{ textDecoration: "none" }}>
+                                <Button variant="contained" size="large">
+                                    Sales
+                                </Button>
+                            </Link>
                             {"  "}
-                            <Button variant="contained" size="large">
-                                Products
-                            </Button>
+                            <Link to="/products" style={{ textDecoration: "none" }}>
+                                <Button variant="contained" size="large">
+                                    Products
+                                </Button>
+                            </Link>
                         </Col>
                     </Row>
                     <Row mb-5>
