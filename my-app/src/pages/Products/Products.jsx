@@ -91,13 +91,11 @@ class Products extends Component {
     } else if (isNaN(list.price)) {
       formatPrice();
     } else {
-      console.log('vamos a hacer un PUT', this.state.form);
       axios.put(`${this.URL_PRODUCTS}/${dato._id}`, { ...dato }, {
         headers: {
           'token': sessionStorage.getItem('token')
         }
       }).then((resp) => {
-        console.log('Todo bien con el put', resp);
         this.setState((state, props) => ({
           data: state.data.map(element => element._id === dato._id ? dato : element),
           modalEdit: false
@@ -108,7 +106,6 @@ class Products extends Component {
           "success"
         );
       }).catch(err => {
-        console.log('error al hacer post', err);
       });
     }
   }
@@ -124,7 +121,6 @@ class Products extends Component {
       .then(res => {
         this.setState({ data: res.data })
       }).catch(err => {
-        console.log("An error has ocurred", err);
       })
   };
 
@@ -165,7 +161,6 @@ class Products extends Component {
               window.location.reload(true);
             })
         }).catch(err => {
-          console.log("An error has ocurred: ", err);
         })
 
       let form = { ...this.state.form };
@@ -193,7 +188,6 @@ class Products extends Component {
               data: this.state.data.filter(element => element._id !== dato._id)
             }))
           }).catch(err => {
-            console.log('An error has ocurred: ', err);
           });
           swal("Product removed successfully.", {
             icon: "success",
