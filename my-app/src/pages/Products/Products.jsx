@@ -106,6 +106,12 @@ class Products extends Component {
           "success"
         );
       }).catch(err => {
+        (swal(
+          "Error " + err.response.status,
+          err.response.data.errorMessage,
+          "error"
+        ))
+        return;
       });
     }
   }
@@ -121,6 +127,12 @@ class Products extends Component {
       .then(res => {
         this.setState({ data: res.data })
       }).catch(err => {
+        (swal(
+          "Error " + err.response.status,
+          err.response.data.errorMessage,
+          "error"
+        ))
+        return;
       })
   };
 
@@ -161,6 +173,14 @@ class Products extends Component {
               window.location.reload(true);
             })
         }).catch(err => {
+          (swal(
+            "Error " + err.response.status,
+            err.response.data.errorMessage,
+            "error"
+          )).then(() => {
+            window.location.reload(true);
+            return;
+          })
         })
 
       let form = { ...this.state.form };
@@ -188,6 +208,12 @@ class Products extends Component {
               data: this.state.data.filter(element => element._id !== dato._id)
             }))
           }).catch(err => {
+            (swal(
+              "Error " + err.response.status,
+              err.response.data.errorMessage,
+              "error"
+            ))
+            return;
           });
           swal("Product removed successfully.", {
             icon: "success",
