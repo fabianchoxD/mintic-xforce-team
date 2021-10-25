@@ -62,6 +62,7 @@ class Users extends Component {
             }
         })
         .then(res => {
+            this.updateSessionStorage(res.data[res.data.length - 1].userToken, res.data[res.data.length - 2].userRole);
             this.setState({ data: res.data })
         }).catch(err => {
                 (swal(
@@ -102,6 +103,7 @@ class Users extends Component {
                 }
             }).then((resp) => {
                 console.log('Todo bien con el put', resp);
+                this.updateSessionStorage(resp.config.headers.token, resp.data.data.role);
                 this.setState((state, props) => ({
                     data: state.data.map(element => element._id === dato._id ? dato : element),
                     modalEdit: false
