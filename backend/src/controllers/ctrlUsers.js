@@ -19,7 +19,6 @@ createUser = (req, res) => {
 
 getRoleAfterLogin= (req, res) => {
     const userDecoded = req.userDecoded;
-    console.log("User decoded?: ", req.userDecoded);
     res.status(200).json({role: userDecoded.user.role});
 }
 
