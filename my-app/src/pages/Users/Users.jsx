@@ -63,6 +63,8 @@ class Users extends Component {
         })
         .then(res => {
             this.updateSessionStorage(res.data[res.data.length - 1].userToken, res.data[res.data.length - 2].userRole);
+            res.data.splice(-1);
+            res.data.splice(-1);
             this.setState({ data: res.data })
         }).catch(err => {
                 (swal(
