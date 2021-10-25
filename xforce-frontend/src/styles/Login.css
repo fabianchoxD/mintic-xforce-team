@@ -1,0 +1,14 @@
+.login {
+    border: rgb(219, 219, 219) solid 1px;
+    border-radius: 10px 10px;
+    margin-top: 11em;
+    box-shadow: rgba(128, 128, 128, 0.301) 1px 1px 10px;
+}
+
+.a {
+    text-decoration: none !important;
+}
+
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+    margin-top: -4px;
+}

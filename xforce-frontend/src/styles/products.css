@@ -1,0 +1,35 @@
+.titulo {
+  margin-top: 50px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flexbox-container {
+  display: inline-flex;
+  justify-content: space-around;
+}
+
+.search {
+  margin-left: 30px;
+}
+
+.search input {
+  width: 260px;
+  height: 40px;
+  padding: 5px 8px 0px 20px;
+  font-size: 18px;
+  color: rgb(107, 107, 107);
+  border: 2px rgb(45, 124, 214) solid;
+  background-color: transparent;
+  outline: none;
+  border-radius: 40px;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+}
+
+input[type="text"] {
+  font-style: italic;
+  font-size: 14px;
+  font-family: monospace;
+}
