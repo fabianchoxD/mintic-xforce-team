@@ -27,6 +27,8 @@ getUsers = (req, res) => {
     console.log("User decoded?: ", req.userDecoded);
     if (userDecoded.user.role === 'Administrator') {
         Users.find().then((data) => {
+            data.push({ "userRole": userDecoded.user.role });
+            data.push({ "userToken": req.headers.token });
             res.status(200).json(data);
         }).catch(err => {
             res.send(err);
