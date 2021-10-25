@@ -31,6 +31,12 @@ class Users extends Component {
 
     URL_USERS = 'http://localhost:3001/users';
 
+    updateSessionStorage(Responsetoken,Responserole){
+        const token=  sessionStorage.setItem('token', Responsetoken);
+        const role =sessionStorage.setItem('role', Responserole);
+        return token,role;
+    }
+
     handleChange = e => {
         this.setState({
             form: {
