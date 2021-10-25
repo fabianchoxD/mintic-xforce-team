@@ -16,6 +16,15 @@ import { emptyDescription, emptyPrice, formatPrice, emptyState } from "../../mis
 const data = [];
 
 class Products extends Component {
+  constructor(props){
+    super(props);
+  if(process.env.NODE_ENV !== 'production'){
+    console.log("We're not ready to production yet.");
+    require('dotenv').config();
+  }
+  this.BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+  };
+
   state = {
     data: data,
 
@@ -33,7 +42,7 @@ class Products extends Component {
     message: ''
   };
 
-  URL_PRODUCTS = 'http://localhost:3001/products';
+  URL_PRODUCTS = `${this.props.BACKEND_URL}/products`
 
   showModalInsert = () => {
     this.setState({ modalinsert: true });
