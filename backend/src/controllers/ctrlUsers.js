@@ -3,11 +3,16 @@ const Users = require('../models/Users');
 // CREATE A NEW USER
 
 createUser = (req, res) => {
-    Users.create(req.body).then((data) => {
-        res.status(200).json({ message: "User Created", data });
-    }).catch(err => {
-        res.send(err);
-    })
+    const userDecoded = req.userDecoded;
+    if (userDecoded.user.role === 'Administrator' && userDecoded.user.state === 'Authorized') {
+        Users.create(req.body).then((data) => {
+            res.status(200).json({ message: "User Created", data });
+        }).catch(err => {
+            res.send(err);
+        })
+    } else {
+        res.status(401).json({ errorMessage: "Sorry, you don't have permission to create Users." })
+    }
 }
 
 // GET ALL USER
@@ -47,23 +52,33 @@ getUserId = (req, res) => {
 
 updateUser = (req, res) => {
     let { id } = req.params;
-    Users.findByIdAndUpdate(id, req.body).then((data) => {
-        res.status(200).json({ message: 'User Updated', data });
-    }).catch(err => {
-        res.send(err);
-    })
+    const userDecoded = req.userDecoded;
+    if (userDecoded.user.role === 'Administrator' && userDecoded.user.state === 'Authorized') {
+        Users.findByIdAndUpdate(id, req.body, { new: true }).then((data) => {
+            res.status(200).json({ message: 'User Updated', data });
+        }).catch(err => {
+            res.send(err);
+        })
+    } else {
+        res.status(401).json({ errorMessage: "Sorry, you don't have permission to modify Users." });
+    }
 }
 
 // DELETE A USER
 
 deleteUser = (req, res) => {
     let { id } = req.params;
+    const userDecoded = req.userDecoded;
+    if (userDecoded.user.role === 'Administrator' && userDecoded.user.state === 'Authorized') {
     Users.findByIdAndDelete(id).then(data => {
         res.status(200).json({ message: 'User Deleted', data });
     })
         .catch(err => {
             res.send(err);
         });
+    } else {
+        res.status(401).json({ errorMessage: "Sorry, you don't have permission to delete Users." });
+    }
 }
 
 module.exports = {
