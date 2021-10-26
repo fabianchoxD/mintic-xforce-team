@@ -47,6 +47,7 @@ class Users extends Component {
                                 <option value="" selected disabled hide style={{ display: 'none' }}> Change state </option>
                                 <option value="Authorized"> Authorized </option>
                                 <option value="Unauthorized"> Unauthorized </option>
+                                <option value="Pending"> Pending </option>
                             </select>
                         </FormGroup>
                     </ModalBody>
