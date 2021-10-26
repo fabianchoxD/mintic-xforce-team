@@ -4,7 +4,7 @@ const Products = require('../models/Products');
 
 createProduct = (req, res) => {
     const userDecoded = req.userDecoded;
-    if (userDecoded.user.role !== 'Pending' && userDecoded.user.state === 'Authorized') {
+    if (userDecoded.role !== 'Pending' && userDecoded.state === 'Authorized') {
         Products.create(req.body).then((data) => {
             res.status(200).json({ message: "Product Created", data });
         }).catch(err => {
@@ -19,7 +19,7 @@ createProduct = (req, res) => {
 
 getProducts = (req, res) => {
     const userDecoded = req.userDecoded;
-    if (userDecoded.user.role === 'Pending') {
+    if (userDecoded.role === 'Pending') {
         res.status(401).json({ errorMessage: "Sorry, you don't have access to this resource." });
     } else {
         Products.find().then((data) => {
@@ -45,7 +45,7 @@ getProductId = (req, res) => {
 
 updateProduct = (req, res) => {
     const userDecoded = req.userDecoded;
-    if (userDecoded.user.role !== 'Pending' && userDecoded.user.state === 'Authorized') {
+    if (userDecoded.role !== 'Pending' && userDecoded.state === 'Authorized') {
         let { id } = req.params;
         Products.findByIdAndUpdate(id, req.body).then((data) => {
             res.status(200).json({ message: 'Product Updated', data });
@@ -61,7 +61,7 @@ updateProduct = (req, res) => {
 
 deleteProduct = (req, res) => {
     const userDecoded = req.userDecoded;
-    if (userDecoded.user.role !== 'Pending' && userDecoded.user.state === 'Authorized') {
+    if (userDecoded.role !== 'Pending' && userDecoded.state === 'Authorized') {
         let { id } = req.params;
         Products.findByIdAndDelete(id).then(data => {
             res.status(200).json({ message: 'Product Deleted', data });

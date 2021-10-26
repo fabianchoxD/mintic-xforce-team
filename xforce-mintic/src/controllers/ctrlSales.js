@@ -4,9 +4,9 @@ const Sales = require('../models/Sales');
 
 createSale = (req, res) => {
     const userDecoded = req.userDecoded;
-    if (userDecoded.user.role !== 'Pending' && userDecoded.user.state === 'Authorized') {
+    if (userDecoded.role !== 'Pending' && userDecoded.state === 'Authorized') {
         Sales.create(req.body).then((data) => {
-            res.status(200).json({ message: "Sale Made", data });
+            res.status(200).json({ message: "Sale Complete!", data });
         }).catch(err => {
             res.send(err);
         })
@@ -18,7 +18,7 @@ createSale = (req, res) => {
 // GET ALL SALES
 
 getSales = (req, res) => {
-    if (userDecoded.user.role === 'Pending') {
+    if (userDecoded.role === 'Pending') {
         res.status(401).json({ errorMessage: "Sorry, you don't have access to this resource." });
     } else {
         Sales.find().then((data) => {
@@ -44,7 +44,7 @@ getSaleId = (req, res) => {
 
 updateSale = (req, res) => {
     const userDecoded = req.userDecoded;
-    if (userDecoded.user.role !== 'Pending' && userDecoded.user.state === 'Authorized') {
+    if (userDecoded.role !== 'Pending' && userDecoded.state === 'Authorized') {
         let { id } = req.params;
         Sales.findByIdAndUpdate(id, req.body).then((data) => {
             res.status(200).json({ message: 'Sale Updated', data });
@@ -60,7 +60,7 @@ updateSale = (req, res) => {
 
 deleteSale = (req, res) => {
     const userDecoded = req.userDecoded;
-    if (userDecoded.user.role !== 'Pending' && userDecoded.user.state === 'Authorized') {
+    if (userDecoded.role !== 'Pending' && userDecoded.state === 'Authorized') {
         let { id } = req.params;
         Sales.findByIdAndDelete(id).then(data => {
             res.status(200).json({ message: 'Sale Deleted', data });
