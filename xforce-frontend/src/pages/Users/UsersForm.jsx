@@ -22,7 +22,7 @@ class Users extends Component {
                     <ModalBody>
                         <FormGroup>
                             <label>Id:</label>
-                            <input className="form-control" readOnly type="text" value={this.props.form.id} />
+                            <input className="form-control" readOnly type="text" value={this.props.form._id} />
                         </FormGroup>
                         <FormGroup>
                             <label>Name:</label>
