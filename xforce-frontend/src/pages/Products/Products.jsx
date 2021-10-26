@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import axios from 'axios';
-
 import "./../../App.css";
 import "./../../styles/products.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import swal from "sweetalert";
 import Header from "../../components/Header";
 import ProductsForm from './ProductsForm';
@@ -64,24 +62,6 @@ class Products extends Component {
       },
     });
   };
-
-  search = () => {
-    var search = document.getElementById("search").value;
-    var sales = this.state.data.filter(element => element._id === search || element.description === search)
-
-    if (search === "") {
-      this.setState({ open: true, message: 'Enter your search' });
-      setTimeout(() => { window.location.reload(true); }, 700);
-    }
-    else if (sales.length === 0) {
-      this.setState({ open: true, message: 'Sale not found' });
-    }
-    else {
-      this.setState({ data: sales });;
-      console.log(sales);
-    }
-
-  }
 
   modify = (dato) => {
 
@@ -241,7 +221,6 @@ class Products extends Component {
             delete={this.delete}
             form={this.state.form}
             alert={this.state.alert}
-            search={this.search}
             open={this.state.open}
             handleClose={this.handleClose}
             message={this.state.message}
