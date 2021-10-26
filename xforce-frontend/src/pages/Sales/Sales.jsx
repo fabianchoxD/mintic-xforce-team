@@ -37,8 +37,7 @@ class Sales extends React.Component {
     message: ''
   };
 
-  URL_SALES = `https://xforce-mintic.herokuapp.com/sales`
-
+  URL_SALES = `${process.env.REACT_APP_BACKEND_URL}/sales`
 
   handleChange = e => {
     this.setState({

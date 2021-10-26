@@ -34,7 +34,7 @@ class Products extends Component {
     message: ''
   };
 
-  URL_PRODUCTS = `https://xforce-mintic.herokuapp.com/products`
+  URL_PRODUCTS = `${process.env.REACT_APP_BACKEND_URL}/products`
 
   showModalInsert = () => {
     this.setState({ modalinsert: true });

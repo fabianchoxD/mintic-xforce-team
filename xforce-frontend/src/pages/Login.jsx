@@ -10,6 +10,8 @@ import axios from 'axios';
 
 const theme = createTheme();
 class Login extends Component {
+  URL_POST_LOGIN = `${process.env.REACT_APP_BACKEND_URL}/users/afterLogin`
+  URL_LOGIN = `${process.env.REACT_APP_BACKEND_URL}/auth/google`
   render() {
     const responseGoogle = (response) => {
       console.log(response);
