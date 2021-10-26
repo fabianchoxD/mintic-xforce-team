@@ -4,7 +4,7 @@ const Users = require('../models/Users');
 
 createUser = (req, res) => {
     const userDecoded = req.userDecoded;
-    if (userDecoded.user.role === 'Administrator' && userDecoded.user.state === 'Authorized') {
+    if (userDecoded.user.role === 'Administrator' && userDecoded.state === 'Authorized') {
         Users.create(req.body).then((data) => {
             res.status(200).json({ message: "User Created", data });
         }).catch(err => {
@@ -19,7 +19,7 @@ createUser = (req, res) => {
 
 getRoleAfterLogin = (req, res) => {
     const userDecoded = req.userDecoded;
-    res.status(200).json({ role: userDecoded.user.role });
+    res.status(200).json({ role: userDecoded.role });
 }
 
 getUsers = (req, res) => {
@@ -69,11 +69,11 @@ updateUser = (req, res) => {
 deleteUser = (req, res) => {
     let { id } = req.params;
     const userDecoded = req.userDecoded;
-    if (userDecoded.user.role === 'Administrator' && userDecoded.user.state === 'Authorized') {
-    Users.findByIdAndDelete(id).then(data => {
-        res.status(200).json({ message: 'User Deleted', data });
-    })
-        .catch(err => {
+    if (userDecoded.role === 'Administrator' && userDecoded.state === 'Authorized') {
+        Users.findByIdAndDelete(id).then(data => {
+            const validateCurrentUser = JSON.stringify(userDecoded._id) === JSON.stringify(data._id);
+            res.status(200).json({ message: 'User Deleted', data, currentUser: validateCurrentUser });
+        }).catch(err => {
             res.send(err);
         });
     } else {
