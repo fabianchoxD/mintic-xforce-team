@@ -10,16 +10,6 @@ import axios from 'axios';
 
 const theme = createTheme();
 class Login extends Component {
-  constructor(props){
-    super(props);
-  if(process.env.NODE_ENV !== 'production'){
-    console.log("We're not ready to production yet.");
-    require('dotenv').config();
-  }
-  this.BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-  };
-  URL_POST_LOGIN = `https://xforce-mintic.herokuapp.com/users/afterLogin`
-  URL_LOGIN = `https://xforce-mintic.herokuapp.com/auth/google`
   render() {
     const responseGoogle = (response) => {
       console.log(response);

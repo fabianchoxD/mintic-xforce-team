@@ -15,14 +15,7 @@ import { notLogged } from "../../miscellaneous/loginMessageHandler";
 const data = [];
 
 class Sales extends React.Component {
-  constructor(props){
-    super(props);
-  if(process.env.NODE_ENV !== 'production'){
-    console.log("We're not ready to production yet.");
-    require('dotenv').config();
-  }
-  this.BACKEND_URL = "https://xforce-mintic.herokuapp.com";
-  };
+
   state = {
     data: data,
     form: {
