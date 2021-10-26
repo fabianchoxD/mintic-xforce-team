@@ -14,10 +14,8 @@ class Login extends Component {
   URL_LOGIN = `${process.env.REACT_APP_BACKEND_URL}/auth/google`
   render() {
     const responseGoogle = (response) => {
-      console.log(response);
       axios.post(`${this.URL_LOGIN}`, { token: response.tokenId })
         .then(resp => {
-          console.log("Everything is ok, here's the token: ", resp.data);
           sessionStorage.setItem('token', resp.data);
           axios.get(`${this.URL_POST_LOGIN}`, {
             headers: {

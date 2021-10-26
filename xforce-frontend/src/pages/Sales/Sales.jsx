@@ -83,13 +83,11 @@ class Sales extends React.Component {
     }
     else {
       this.setState({data: sales});;
-      console.log(sales); 
     }
     
   }
 
   modify = (dato) => {
-    //dato.preventDefault();
     const list = this.state.form;
     if (list.total === '') {
       swal(
@@ -105,13 +103,11 @@ class Sales extends React.Component {
         "warning"
       );
     } else {
-      console.log('vamos a hacer un PUT', this.state.form);
       axios.put(`${this.URL_SALES}/${dato._id}`, { ...dato }, {
         headers: {
           'token': sessionStorage.getItem('token')
         }
       }).then((resp) => {
-        console.log('Todo bien con el put', resp);
         this.setState((state, props) => ({
           data: state.data.map(element => element._id === dato._id ? dato : element),
           modalEdit: false
@@ -138,7 +134,7 @@ class Sales extends React.Component {
       .then(res => {
         this.setState({ data: res.data })
       }).catch(err => {
-        console.log("An error has ocurred", err);
+        console.log("An error has ocurred: ", err);
       })
   };
 

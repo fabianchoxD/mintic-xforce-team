@@ -24,16 +24,11 @@ getRoleAfterLogin = (req, res) => {
 
 getUsers = (req, res) => {
     const userDecoded = req.userDecoded;
-    console.log("User decoded?: ", userDecoded.role);
     if (userDecoded.role === 'Administrator') {
-        console.log("ENTRÓ");
         Users.find().then((data) => {
-            data.push({ "userRole": userDecoded.role });
-            data.push({ "userToken": req.headers.token });
-            console.log("DATA: ", data);
             res.status(200).json(data);
         }).catch(err => {
-            console.log("ERROR: ", err);
+            console.log("Error getting Users: ", err);
             res.send(err);
         })
     } else {
@@ -60,9 +55,6 @@ updateUser = (req, res) => {
     if (userDecoded.role === 'Administrator' && userDecoded.state === 'Authorized') {
         Users.findByIdAndUpdate(id, req.body, { new: true }).then((data) => {
             const validateCurrentUser = JSON.stringify(userDecoded._id) === JSON.stringify(data._id);
-            console.log("userDecoded:", userDecoded._id);
-            console.log("data_id:", data._id);
-            console.log("validateCurrentUser:", validateCurrentUser);
             res.status(200).json({ message: 'User Updated', data, currentUser: validateCurrentUser });
         }).catch(err => {
             res.send(err);

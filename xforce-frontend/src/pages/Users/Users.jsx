@@ -83,7 +83,6 @@ class Users extends Component {
 
     modify = (dato) => {
 
-        //dato.preventDefault();
         const list = this.state.form;
         if (list.role === '') {
             swal(
@@ -104,7 +103,6 @@ class Users extends Component {
                     'token': sessionStorage.getItem('token')
                 }
             }).then((resp) => {
-                console.log("RESP UPDATE: ",resp);
                 this.updateSessionStorage(resp.config.headers.token, resp.data.data.role);
                 this.setState((state, props) => ({
                     data: state.data.map(element => element._id === dato._id ? dato : element),
