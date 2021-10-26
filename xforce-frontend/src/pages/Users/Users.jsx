@@ -55,12 +55,9 @@ class Users extends Component {
                 'token': sessionStorage.getItem('token')
             }
         })
-        .then(res => {
-            this.updateSessionStorage(res.data[res.data.length - 1].userToken, res.data[res.data.length - 2].userRole);
-            res.data.splice(-1);
-            res.data.splice(-1);
-            this.setState({ data: res.data })
-        }).catch(err => {
+            .then(res => {
+                this.setState({ data: res.data })
+            }).catch(err => {
                 (swal(
                     "Error " + err.response.status,
                     err.response.data.errorMessage,
@@ -103,7 +100,17 @@ class Users extends Component {
                     "Operation successful.",
                     "User: " + dato.name + ", was successfully updated.",
                     "success"
-                );
+                ).then(() => {
+                    if(resp.data.currentUser === true && resp.data.data.role !== "Administrator"){
+                        swal(
+                            "Error!",
+                            "You Don't have permission to see this resource",
+                            "error"
+                        ).then((result) => {
+                            this.props.history.push('/home');
+                        })
+                    }
+                })
             }).catch(err => {
                 (swal(
                     "Error " + err.response.status,
@@ -129,11 +136,23 @@ class Users extends Component {
                         headers: {
                             'token': sessionStorage.getItem('token')
                         }
-                    }).then(resp => {
+                    }).then((resp) => {
                         this.setState((state, props) => ({
                             data: this.state.data.filter(element => element._id !== dato._id)
-                        }))
-                    }).catch(err => {
+                        }));swal("User removed successfully.", {
+                        icon: "success",
+                    }).then(() => {
+                        if(resp.data.currentUser === true){
+                            swal(
+                                "Session ended.",
+                                "Thanks for shop with us 😊",
+                                "success"
+                            ).then((result) => {
+                                window.sessionStorage.removeItem('token');
+                                this.props.history.push('/home');
+                            });
+                        }
+                    })}).catch(err => {
                         (swal(
                             "Error " + err.response.status,
                             err.response.data.errorMessage,
@@ -141,9 +160,6 @@ class Users extends Component {
                         ))
                         return;
                     });
-                    swal("User removed successfully.", {
-                        icon: "success",
-                    });this.forceUpdate();
                 }
                 else {
                     swal("Operation Declined.", {
