@@ -3,10 +3,8 @@ import "./../../App.css";
 import "./../../styles/Sales.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
-
 import SalesForm from "./SalesForm";
 import SalesList from "./SalesList";
-
 import swal from 'sweetalert';
 import Header from '../../components/Header';
 import Footer from "../../components/Footer";
@@ -19,15 +17,15 @@ class Sales extends React.Component {
   state = {
     data: data,
     form: {
-        id: '',
-        total: '',
-        description: '',
-        quantity: '',
-        unitPrice: '',
-        saleDate: '',
-        identification: '',
-        nameClient: '',
-        state: ''
+      id: '',
+      total: '',
+      description: '',
+      quantity: '',
+      unitPrice: '',
+      saleDate: '',
+      identification: '',
+      nameClient: '',
+      state: ''
     },
     modalInsert: false,
     modalEdit: false,
@@ -70,21 +68,21 @@ class Sales extends React.Component {
 
   search = () => {
     var search = document.getElementById("search").value;
-    var sales = this.state.data.filter(element => element._id === search || 
-      element.identification.toString() === search || 
-      element.nameClient === search)  
-    
+    var sales = this.state.data.filter(element => element._id === search ||
+      element.identification.toString() === search ||
+      element.nameClient === search)
+
     if (search === "") {
       this.setState({ open: true, message: 'Enter your search' });
-      setTimeout(()=>{window.location.reload(true);}, 700);
+      setTimeout(() => { window.location.reload(true); }, 700);
     }
     else if (sales.length === 0) {
       this.setState({ open: true, message: 'Sale not found' });
     }
     else {
-      this.setState({data: sales});;
+      this.setState({ data: sales });;
     }
-    
+
   }
 
   modify = (dato) => {
@@ -118,11 +116,11 @@ class Sales extends React.Component {
           "success"
         );
       }).catch(err => {
-        console.log('error al hacer post', err);
+        console.log('An error has ocurred: ', err);
       });
     }
   }
-  
+
   // REQUEST GET HTTP
 
   componentDidMount() {
@@ -150,7 +148,7 @@ class Sales extends React.Component {
       this.state.form.saleDate === "" ||
       this.state.form.identification === "" ||
       this.state.form.nameClient === "" ||
-      this.state.form.state === "" 
+      this.state.form.state === ""
     ) {
       this.setState({ alert: true, modalInsert: false });
     }
@@ -182,7 +180,7 @@ class Sales extends React.Component {
 
       let form = { ...this.state.form };
       form.total = ''; form.description = ''; form.unitPrice = ''; form.quantity = '';
-      form.saleDate =''; form.identification = ''; form.nameClient = ''; form.state = '';
+      form.saleDate = ''; form.identification = ''; form.nameClient = ''; form.state = '';
       this.setState({ form });
     }
   }
@@ -221,42 +219,42 @@ class Sales extends React.Component {
   }
 
   render() {
-      if (window.sessionStorage.getItem('token') !== null) {
-          return (
-              <>
-                  <Header />
-                  <SalesList
-                      data={this.state.data}
-                      showME={this.showModalEdit}
-                      showMI={this.showModalInsert}
-                      form={this.state.form}
-                      alert={this.state.alert}
-                      delete={this.delete}
-                      search={this.search}
-                      open={this.state.open}
-                      handleClose={this.handleClose}
-                      message={this.state.message}
-                  />
+    if (window.sessionStorage.getItem('token') !== null) {
+      return (
+        <>
+          <Header />
+          <SalesList
+            data={this.state.data}
+            showME={this.showModalEdit}
+            showMI={this.showModalInsert}
+            form={this.state.form}
+            alert={this.state.alert}
+            delete={this.delete}
+            search={this.search}
+            open={this.state.open}
+            handleClose={this.handleClose}
+            message={this.state.message}
+          />
 
-                  <SalesForm
-                      insert={this.insert}
-                      modify={this.modify}
-                      hideMI={this.hideModalInsert}
-                      hideME={this.hideModalEdit}
-                      handleChange={this.handleChange}
-                      form={this.state.form}
-                      data={this.state.data}
-                      modalInsert={this.state.modalInsert}
-                      modalEdit={this.state.modalEdit}
-                  />
-                  <Footer />
-              </>
-          )
-      } else
-          return (
-            notLogged(),
-            null
-        )
+          <SalesForm
+            insert={this.insert}
+            modify={this.modify}
+            hideMI={this.hideModalInsert}
+            hideME={this.hideModalEdit}
+            handleChange={this.handleChange}
+            form={this.state.form}
+            data={this.state.data}
+            modalInsert={this.state.modalInsert}
+            modalEdit={this.state.modalEdit}
+          />
+          <Footer />
+        </>
+      )
+    } else
+      return (
+        notLogged(),
+        null
+      )
   }
 }
 

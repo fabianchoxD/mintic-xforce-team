@@ -78,11 +78,10 @@ class Users extends Component {
                 ))
                 return;
             })
-            this.forceUpdate();
+        this.forceUpdate();
     };
 
     modify = (dato) => {
-
         const list = this.state.form;
         if (list.role === '') {
             swal(
