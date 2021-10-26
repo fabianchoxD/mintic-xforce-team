@@ -23,7 +23,6 @@ class Login extends Component {
             }
           })
             .then(res => {
-              sessionStorage.setItem('role', res.data.role);
               if(res.data.role === "Administrator"){
                 this.props.history.push('/users');
               }else if (res.data.role === "Seller"){
