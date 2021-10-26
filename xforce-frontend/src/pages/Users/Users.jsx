@@ -31,13 +31,6 @@ class Users extends Component {
 
     URL_USERS = `${process.env.REACT_APP_BACKEND_URL}/users`
 
-
-    updateSessionStorage(Responsetoken,Responserole){
-        const token=  sessionStorage.setItem('token', Responsetoken);
-        const role =sessionStorage.setItem('role', Responserole);
-        return token,role;
-    }
-
     handleChange = e => {
         this.setState({
             form: {
@@ -102,7 +95,6 @@ class Users extends Component {
                     'token': sessionStorage.getItem('token')
                 }
             }).then((resp) => {
-                this.updateSessionStorage(resp.config.headers.token, resp.data.data.role);
                 this.setState((state, props) => ({
                     data: state.data.map(element => element._id === dato._id ? dato : element),
                     modalEdit: false
