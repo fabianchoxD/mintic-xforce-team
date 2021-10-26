@@ -29,7 +29,6 @@ class UsersList extends Component {
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
-                                <th>Lastname</th>
                                 <th>Email</th>
                                 <th>Role</th>
                                 <th>State</th>
@@ -41,7 +40,6 @@ class UsersList extends Component {
                                 <tr key={i}>
                                     <td>{element._id}</td>
                                     <td>{element.name}</td>
-                                    <td>{element.lastname}</td>
                                     <td>{element.email}</td>
                                     <td>{element.role}</td>
                                     <td>{element.state}</td>

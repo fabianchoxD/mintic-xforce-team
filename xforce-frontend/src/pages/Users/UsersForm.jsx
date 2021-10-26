@@ -29,10 +29,6 @@ class Users extends Component {
                             <input className="form-control" readOnly name="name" type="text" value={this.props.form.name} />
                         </FormGroup>
                         <FormGroup>
-                            <label>Lastname:</label>
-                            <input className="form-control" readOnly name="lastname" type="text" value={this.props.form.lastname} />
-                        </FormGroup>
-                        <FormGroup>
                             <label>Email:</label>
                             <input className="form-control" readOnly name="email" type="text" value={this.props.form.email} />
                         </FormGroup>
