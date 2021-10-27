@@ -102,11 +102,7 @@ class Header extends React.Component {
                                 </Tooltip>
                             </Link> 
                         </div>
-                    ) : (
-                        null
-                    )}
-
-                    {this.state.role === 'Seller' ? (
+                    ) : this.state.role === 'Seller' ? (
                         <div>
                             <Link to="/sales">
                                 <Tooltip title="Sales" style={{marginRight: '5px'}} arrow>
@@ -126,7 +122,7 @@ class Header extends React.Component {
                     ) : (
                         null
                     )}
-                    
+
                     {sessionStorage.getItem('token') != null ? (
                         <Button id="btn" onClick={this.logout} endIcon={<CancelIcon />}>
                             {" "}
