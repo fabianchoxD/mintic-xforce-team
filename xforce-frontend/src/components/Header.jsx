@@ -8,6 +8,10 @@ import { Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import CancelIcon from '@mui/icons-material/Cancel';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 /* CSS */
 import "../styles/Header.css";
@@ -48,6 +52,23 @@ class Header extends React.Component {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         {" "}
                     </Typography>
+
+                    <Link to="/sales">
+                        <Tooltip title="Sales" style={{marginRight: '5px'}} arrow>
+                            <IconButton sx={{ color: 'white'}}>
+                                <MonetizationOnOutlinedIcon sx={{ fontSize: 25 }}/>
+                            </IconButton>
+                        </Tooltip>
+                    </Link>
+                    
+                    <Link to="/products">
+                        <Tooltip title="Products" style={{marginRight: '30px'}} arrow>
+                            <IconButton sx={{ color: 'white'}}>
+                                <ShoppingCartIcon sx={{ fontSize: 25 }}/>
+                            </IconButton>
+                        </Tooltip>
+                    </Link> 
+
                     {sessionStorage.getItem('token') != null ? (
                         <Button id="btn" onClick={this.logout} endIcon={<CancelIcon />}>
                             {" "}
