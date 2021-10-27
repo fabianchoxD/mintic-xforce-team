@@ -13,11 +13,18 @@ import Tooltip from '@mui/material/Tooltip';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
+import axios from 'axios';
 
 /* CSS */
 import "../styles/Header.css";
 
 class Header extends React.Component {
+    
+    state = {
+        role: '',
+        showButtons: false
+    }
+
     logout = response => {
         window.sessionStorage.removeItem('token');
         window.sessionStorage.removeItem('role');
@@ -29,6 +36,23 @@ class Header extends React.Component {
             window.location = "/home";
         });
     }
+
+    componentDidMount() {
+        if (sessionStorage.getItem("token") !== null) {
+            axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/afterLogin`, {
+                headers: {
+                    'token': sessionStorage.getItem('token')
+                }
+            })
+            .then(res => {
+                this.setState({role: res.data.role})
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        }
+    }
+
     render() {
         return (
             <AppBar className="appBar" position="fixed" elevation={4}>
@@ -53,31 +77,56 @@ class Header extends React.Component {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         {" "}
                     </Typography>
+                    
+                    {this.state.role === 'Administrator' ? (
+                        <div>
+                            <Link to="/sales">
+                                <Tooltip title="Sales" style={{marginRight: '5px'}} arrow>
+                                    <IconButton sx={{ color: 'white'}}>
+                                        <MonetizationOnOutlinedIcon sx={{ fontSize: 25 }}/>
+                                    </IconButton>
+                                </Tooltip>
+                            </Link>
+                            <Link to="/products">
+                                <Tooltip title="Products" style={{marginRight: '5px'}} arrow>
+                                    <IconButton sx={{ color: 'white'}}>
+                                        <ShoppingCartIcon sx={{ fontSize: 25 }}/>
+                                    </IconButton>
+                                </Tooltip>
+                            </Link> 
+                            <Link to="/users">
+                                <Tooltip title="Users" style={{marginRight: '30px'}} arrow>
+                                    <IconButton sx={{ color: 'white'}}>
+                                        <PeopleAltRoundedIcon sx={{ fontSize: 25 }}/>
+                                    </IconButton>
+                                </Tooltip>
+                            </Link> 
+                        </div>
+                    ) : (
+                        null
+                    )}
 
-                    <Link to="/sales">
-                        <Tooltip title="Sales" style={{marginRight: '5px'}} arrow>
-                            <IconButton sx={{ color: 'white'}}>
-                                <MonetizationOnOutlinedIcon sx={{ fontSize: 25 }}/>
-                            </IconButton>
-                        </Tooltip>
-                    </Link>
-
-                    <Link to="/products">
-                        <Tooltip title="Products" style={{marginRight: '5px'}} arrow>
-                            <IconButton sx={{ color: 'white'}}>
-                                <ShoppingCartIcon sx={{ fontSize: 25 }}/>
-                            </IconButton>
-                        </Tooltip>
-                    </Link> 
-
-                    <Link to="/users">
-                        <Tooltip title="Users" style={{marginRight: '30px'}} arrow>
-                            <IconButton sx={{ color: 'white'}}>
-                                <PeopleAltRoundedIcon sx={{ fontSize: 25 }}/>
-                            </IconButton>
-                        </Tooltip>
-                    </Link>
-
+                    {this.state.role === 'Seller' ? (
+                        <div>
+                            <Link to="/sales">
+                                <Tooltip title="Sales" style={{marginRight: '5px'}} arrow>
+                                    <IconButton sx={{ color: 'white'}}>
+                                        <MonetizationOnOutlinedIcon sx={{ fontSize: 25 }}/>
+                                    </IconButton>
+                                </Tooltip>
+                            </Link>
+                            <Link to="/products">
+                                <Tooltip title="Products" style={{marginRight: '30px'}} arrow>
+                                    <IconButton sx={{ color: 'white'}}>
+                                        <ShoppingCartIcon sx={{ fontSize: 25 }}/>
+                                    </IconButton>
+                                </Tooltip>
+                            </Link> 
+                        </div>
+                    ) : (
+                        null
+                    )}
+                    
                     {sessionStorage.getItem('token') != null ? (
                         <Button id="btn" onClick={this.logout} endIcon={<CancelIcon />}>
                             {" "}

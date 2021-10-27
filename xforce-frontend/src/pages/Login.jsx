@@ -21,7 +21,7 @@ class Login extends Component {
             headers: {
               'token': sessionStorage.getItem('token')
             }
-          })
+          }) 
             .then(res => {
               if(res.data.role === "Administrator"){
                 this.props.history.push('/users');
