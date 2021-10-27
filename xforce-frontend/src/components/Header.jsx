@@ -12,6 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
 
 /* CSS */
 import "../styles/Header.css";
@@ -60,14 +61,22 @@ class Header extends React.Component {
                             </IconButton>
                         </Tooltip>
                     </Link>
-                    
+
                     <Link to="/products">
-                        <Tooltip title="Products" style={{marginRight: '30px'}} arrow>
+                        <Tooltip title="Products" style={{marginRight: '5px'}} arrow>
                             <IconButton sx={{ color: 'white'}}>
                                 <ShoppingCartIcon sx={{ fontSize: 25 }}/>
                             </IconButton>
                         </Tooltip>
                     </Link> 
+
+                    <Link to="/users">
+                        <Tooltip title="Users" style={{marginRight: '30px'}} arrow>
+                            <IconButton sx={{ color: 'white'}}>
+                                <PeopleAltRoundedIcon sx={{ fontSize: 25 }}/>
+                            </IconButton>
+                        </Tooltip>
+                    </Link>
 
                     {sessionStorage.getItem('token') != null ? (
                         <Button id="btn" onClick={this.logout} endIcon={<CancelIcon />}>
