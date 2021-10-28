@@ -5,7 +5,7 @@ export function notLogged() {
         "Error 401",
         "You must be logged to reach this page",
         "error"
-    ).then((result) => {
+    ).then(() => {
         window.location = "/home"
     }
     ))
@@ -31,4 +31,24 @@ export function lackOfPrivilegeSeller() {
         window.location = "/seller"
     }
     ))
+}
+
+export function lackOfPrivilegeHome() {
+    swal(
+        "Error 401",
+        "You Don't have permission to see this resource",
+        "error"
+    ).then(function () {
+        window.location = "/home";
+    });
+}
+
+export function logoutMessage() {
+    swal(
+        "Session ended.",
+        "Thanks for shop with us 😊",
+        "success"
+    ).then(function () {
+        window.location = "/home";
+    });
 }
