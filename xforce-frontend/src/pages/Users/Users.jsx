@@ -60,34 +60,30 @@ class Users extends Component {
             .then(res => {
                 this.setState({ data: res.data })
             }).catch(err => {
-                (swal(
-                    "Error " + err.response.status,
-                    err.response.data.errorMessage,
-                    "error"
-                ).then((result) => {
-                    window.location = "/home"
-                }
-                ))
-                return;
+                console.log("Error loading users: ", err)
             })
-        this.forceUpdate();
+        if (sessionStorage.getItem("token") !== null) {
+            axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/afterLogin`, {
+                headers: {
+                    'token': sessionStorage.getItem('token')
+                }
+            })
+                .then(res => {
+                    this.setState({ role: res.data.role })
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }
     };
 
     modify = (dato) => {
         const list = this.state.form;
         if (list.role === '') {
-            swal(
-                "Warning!",
-                "Role field cannot be empty.",
-                "warning"
-            );
+            emptyRole();
             return;
         } else if (list.state === '') {
-            swal(
-                "Warning!",
-                "State field cannot be empty.",
-                "warning"
-            );
+            emptyState();
         } else {
             axios.put(`${this.URL_USERS}/${dato._id}`, { ...dato }, {
                 headers: {
