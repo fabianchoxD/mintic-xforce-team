@@ -3,14 +3,40 @@ import Header from './Header';
 import Footer from "./Footer";
 import { Container, Row, Col } from "react-bootstrap";
 import Button from '@mui/material/Button';
-import { lackOfPrivilegePending } from "../miscellaneous/loginMessageHandler";
+import { lackOfPrivilegeHome, lackOfPrivilegePending } from "../miscellaneous/loginMessageHandler";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 import '../styles/SellerHome.css'
 
 class SellerHome extends Component {
+
+    state = {
+        role: '',
+    }
+
+    componentDidMount() {
+        if (sessionStorage.getItem("token") !== null) {
+            axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/afterLogin`, {
+                headers: {
+                    'token': sessionStorage.getItem('token')
+                }
+            })
+                .then(res => {
+                    this.setState({ role: res.data.role })
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }
+    }
+
     render() {
-        if (window.sessionStorage.getItem('role') === "Pending") {
+        if (sessionStorage.getItem('token') === null) {
+            return (
+                lackOfPrivilegeHome(),
+                null)
+        } else if (this.state.role === "Pending" || sessionStorage.getItem('token') === null) {
             return (
                 lackOfPrivilegePending(),
                 null
