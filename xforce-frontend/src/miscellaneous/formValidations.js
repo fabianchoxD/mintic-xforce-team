@@ -31,7 +31,23 @@ export function formatPrice() {
 export function emptyState() {
     swal(
         "Warning!",
-        "State cannot be empty.",
+        "State fields cannot be empty.",
+        "warning"
+    );
+}
+
+export function emptyTotal(){
+    swal(
+        "Warning!",
+        "Total field cannot be empty.",
+        "warning"
+    );
+}
+
+export function emptyRole(){
+    swal(
+        "Warning!",
+        "Role field cannot be empty.",
         "warning"
     );
 }
