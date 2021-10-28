@@ -10,6 +10,7 @@ import ProductsList from "./ProductsList";
 import Footer from "../../components/Footer";
 import { notLogged } from "../../miscellaneous/loginMessageHandler";
 import { emptyDescription, emptyPrice, formatPrice, emptyState } from "../../miscellaneous/formValidations";
+import { modifiedItemResponse, createdItemResponse, successRemoveResponse, declinedOperationResponse } from "../../miscellaneous/operationMsgResp";
 
 const data = [];
 
@@ -81,11 +82,7 @@ class Products extends Component {
           data: state.data.map(element => element._id === dato._id ? dato : element),
           modalEdit: false
         }))
-        swal(
-          "Successful Operation.",
-          "Product: " + dato.description + ", was successfully modified.",
-          "success"
-        );
+        modifiedItemResponse("Product", dato.description);
       }).catch(err => {
         (swal(
           "Error " + err.response.status,
@@ -145,14 +142,7 @@ class Products extends Component {
           this.setState({
             modalinsert: false, data: list, alert: false
           })
-          swal(
-            "Successful Operation.",
-            newValue.description + ", added successfully.",
-            "success"
-          )
-            .then(() => {
-              window.location.reload(true);
-            })
+          createdItemResponse(newValue.description);
         }).catch(err => {
           (swal(
             "Error " + err.response.status,
@@ -196,14 +186,10 @@ class Products extends Component {
             ))
             return;
           });
-          swal("Product removed successfully.", {
-            icon: "success",
-          });
+          successRemoveResponse("Product");
         }
         else {
-          swal("Operation Declined.", {
-            icon: "success",
-          });
+          declinedOperationResponse();
         }
       });
   }

@@ -9,6 +9,8 @@ import swal from 'sweetalert';
 import Header from '../../components/Header';
 import Footer from "../../components/Footer";
 import { notLogged } from "../../miscellaneous/loginMessageHandler";
+import { emptyTotal, formatPrice } from "../../miscellaneous/formValidations";
+import { successRemoveResponse, declinedOperationResponse, createdItemResponse, modifiedItemResponse } from "../../miscellaneous/operationMsgResp";
 
 const data = [];
 
@@ -66,40 +68,13 @@ class Sales extends React.Component {
     this.setState({ open: false });
   };
 
-  search = () => {
-    var search = document.getElementById("search").value;
-    var sales = this.state.data.filter(element => element._id === search ||
-      element.identification.toString() === search ||
-      element.nameClient === search)
-
-    if (search === "") {
-      this.setState({ open: true, message: 'Enter your search' });
-      setTimeout(() => { window.location.reload(true); }, 700);
-    }
-    else if (sales.length === 0) {
-      this.setState({ open: true, message: 'Sale not found' });
-    }
-    else {
-      this.setState({ data: sales });;
-    }
-
-  }
-
   modify = (dato) => {
     const list = this.state.form;
     if (list.total === '') {
-      swal(
-        "Warning!",
-        "Total field cannot be empty.",
-        "warning"
-      );
+      emptyTotal();
       return;
-    } else if (parseInt(list.total) !== list.total) {
-      swal(
-        "Warning!",
-        "Only Numbers are available, please review.",
-        "warning"
-      );
+    } else if (isNaN(list.total)) {
+      formatPrice();
     } else {
       axios.put(`${this.URL_SALES}/${dato._id}`, { ...dato }, {
         headers: {
@@ -110,11 +85,7 @@ class Sales extends React.Component {
           data: state.data.map(element => element._id === dato._id ? dato : element),
           modalEdit: false
         }))
-        swal(
-          "Successful Operation.",
-          "Sales: " + dato.description + ", was successfully modified.",
-          "success"
-        );
+        modifiedItemResponse("Sales", dato.description);
       }).catch(err => {
         console.log('An error has ocurred: ', err);
       });
@@ -166,14 +137,7 @@ class Sales extends React.Component {
           this.setState({
             modalinsert: false, data: list, alert: false
           })
-          swal(
-            "Successful Operation.",
-            newValue.description + ", added successfully.",
-            "success"
-          )
-            .then(() => {
-              window.location.reload(true);
-            })
+          createdItemResponse(newValue.description);
         }).catch(err => {
           console.log("An error has ocurred: ", err);
         })
@@ -204,16 +168,17 @@ class Sales extends React.Component {
               data: this.state.data.filter(element => element._id !== dato._id)
             }))
           }).catch(err => {
-            console.log('An error has ocurred: ', err);
+            (swal(
+              "Error " + err.response.status,
+              err.response.data.errorMessage,
+              "error"
+            ))
+            return;
           });
-          swal("Sale removed successfully.", {
-            icon: "success",
-          });
+          successRemoveResponse("Product");
         }
         else {
-          swal("Operation Declined.", {
-            icon: "success",
-          });
+          declinedOperationResponse();
         }
       });
   }
@@ -230,7 +195,6 @@ class Sales extends React.Component {
             form={this.state.form}
             alert={this.state.alert}
             delete={this.delete}
-            search={this.search}
             open={this.state.open}
             handleClose={this.handleClose}
             message={this.state.message}
