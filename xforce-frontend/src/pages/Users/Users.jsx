@@ -124,43 +124,35 @@ class Users extends Component {
                     }).then((resp) => {
                         this.setState((state, props) => ({
                             data: this.state.data.filter(element => element._id !== dato._id)
-                        }));swal("User removed successfully.", {
-                        icon: "success",
-                    }).then(() => {
-                        if(resp.data.currentUser === true){
-                            swal(
-                                "Session ended.",
-                                "Thanks for shop with us 😊",
-                                "success"
-                            ).then((result) => {
-                                window.sessionStorage.removeItem('token');
-                                this.props.history.push('/home');
-                            });
-                        }
-                    })}).catch(err => {
-                        (swal(
-                            "Error " + err.response.status,
-                            err.response.data.errorMessage,
-                            "error"
-                        ))
+                        })); swal("User removed successfully.", {
+                            icon: "success",
+                        }).then(() => {
+                            console.log(resp.data.currentUser)
+                            if (resp.data.currentUser === true) {
+                                logoutMessage();
+                            }
+                        })
+                    }).catch(err => {
+                        lackOfPrivilegeHome();
                         return;
                     });
                 }
                 else {
-                    swal("Operation Declined.", {
-                        icon: "success",
-                    });
+                    declinedOperationResponse();
                 }
             });
     }
 
 
     render() {
-        if (window.sessionStorage.getItem('token') !== null) {
+        if (sessionStorage.getItem('token') === null) {
+            return (
+                lackOfPrivilegeHome(),
+                null)
+        } else if (this.state.role === "Administrator" && sessionStorage.getItem('token') !== null) {
             return (
                 <>
                     <Header />
-
                     <UsersList
                         data={this.state.data}
                         showME={this.showModalEdit}
