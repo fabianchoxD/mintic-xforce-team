@@ -14,12 +14,13 @@ import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlin
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
 import axios from 'axios';
+import { logoutMessage } from "../miscellaneous/loginMessageHandler";
 
 /* CSS */
 import "../styles/Header.css";
 
 class Header extends React.Component {
-    
+
     state = {
         role: '',
         showButtons: false
@@ -28,13 +29,8 @@ class Header extends React.Component {
     logout = response => {
         window.sessionStorage.removeItem('token');
         window.sessionStorage.removeItem('role');
-        swal(
-            "Session ended.",
-            "Thanks for shop with us 😊",
-            "success"
-        ).then(function () {
-            window.location = "/home";
-        });
+        logoutMessage();
+
     }
 
     componentDidMount() {
