@@ -94,27 +94,14 @@ class Users extends Component {
                     data: state.data.map(element => element._id === dato._id ? dato : element),
                     modalEdit: false
                 }))
-                swal(
-                    "Operation successful.",
-                    "User: " + dato.name + ", was successfully updated.",
-                    "success"
-                ).then(() => {
-                    if(resp.data.currentUser === true && resp.data.data.role !== "Administrator"){
-                        swal(
-                            "Error!",
-                            "You Don't have permission to see this resource",
-                            "error"
-                        ).then((result) => {
-                            this.props.history.push('/home');
-                        })
-                    }
-                })
+                modifiedItemResponse("User", dato.name)
+                    .then(() => {
+                        if (resp.data.currentUser === true && resp.data.data.role !== "Administrator") {
+                            lackOfPrivilegeHome();
+                        }
+                    })
             }).catch(err => {
-                (swal(
-                    "Error " + err.response.status,
-                    err.response.data.errorMessage,
-                    "error"
-                ))
+                lackOfPrivilegeHome();
                 return;
             });
         }
