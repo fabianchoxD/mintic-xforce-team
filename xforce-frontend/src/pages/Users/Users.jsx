@@ -165,13 +165,21 @@ class Users extends Component {
                         form={this.state.form}
                         modalEdit={this.state.modalEdit}
                     />
-
                     <Footer />
                 </>
             )
+        } else if (this.state.role === "Seller") {
+            return (
+                lackOfPrivilegeSeller(),
+                null
+            )
+        } else if (this.state.role === "Pending"){
+            return (
+                lackOfPrivilegePending(),
+                null
+            )
         } else
             return (
-                notLogged(),
                 null
             )
     }
