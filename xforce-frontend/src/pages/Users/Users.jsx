@@ -25,7 +25,7 @@ class Users extends Component {
             role: '',
             state: ''
         },
-
+        role: '',
         modalinsert: false,
         modalEdit: false,
         alert: false
