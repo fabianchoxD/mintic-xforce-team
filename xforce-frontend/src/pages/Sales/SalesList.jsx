@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-
 import { Table, Button, Alert, Container } from "reactstrap";
-
-import swal from "sweetalert";
 
 class SalesList extends Component {
     constructor(props) {
@@ -13,40 +10,6 @@ class SalesList extends Component {
     }
     changeTitle = (e) => {
         this.setState({ searchTerm: e.target.value });
-    };
-
-    delete = (dato) => {
-        swal({
-            title: "Delete Sale?",
-            text:
-                "Are you sure to remove this register " +
-                "<" +
-                dato.description +
-                ">" +
-                " with id: " +
-                dato.id +
-                "?",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        }).then((willDelete) => {
-            if (willDelete) {
-                var cont = 0;
-                var list = this.props.data;
-                list.map((register) => {
-                    if (register.id === dato.id) {
-                        list.splice(cont, 1);
-                    }
-                    cont++;
-                });
-                this.setState({ data: list });
-                swal("Register removed successfully.", {
-                    icon: "success",
-                });
-            } else {
-                swal("Operation Unrealized.");
-            }
-        });
     };
 
     render() {

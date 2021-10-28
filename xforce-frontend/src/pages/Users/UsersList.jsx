@@ -20,23 +20,8 @@ class UsersList extends Component {
                         marginRight: 'auto',
                         display: 'flex'
                     }}>
-
                     <h3> User Management </h3>
-
-                    {/* <div style={{position: 'relative', top: '9px', marginLeft: '30px'}}>
-                        <Breadcrumb tag="nav" listTag="div"> 
-                            <BreadcrumbItem tag="a" href="/home"> Home </BreadcrumbItem>
-                            <BreadcrumbItem tag="a" href="/sales"> Sales </BreadcrumbItem>
-                            <BreadcrumbItem tag="a" href="/products"> Products </BreadcrumbItem>
-                            <BreadcrumbItem active tag="span"> Users </BreadcrumbItem>
-                        </Breadcrumb>
-                    </div> */}
                 </div>
-
-                <div>
-                
-                </div>
-
                 <Container className="users" style={{ marginBottom: '120px' }}>
                     <br />
                     <Table>
