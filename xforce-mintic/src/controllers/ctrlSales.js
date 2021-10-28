@@ -18,6 +18,7 @@ createSale = (req, res) => {
 // GET ALL SALES
 
 getSales = (req, res) => {
+    const userDecoded = req.userDecoded;
     if (userDecoded.role === 'Pending') {
         res.status(401).json({ errorMessage: "Sorry, you don't have access to this resource." });
     } else {
