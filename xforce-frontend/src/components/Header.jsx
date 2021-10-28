@@ -40,12 +40,12 @@ class Header extends React.Component {
                     'token': sessionStorage.getItem('token')
                 }
             })
-            .then(res => {
-                this.setState({role: res.data.role})
-            })
-            .catch(err => {
-                console.log(err);
-            })
+                .then(res => {
+                    this.setState({ role: res.data.role })
+                })
+                .catch(err => {
+                    console.log(err);
+                })
         }
     }
 
@@ -73,47 +73,54 @@ class Header extends React.Component {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         {" "}
                     </Typography>
-                    
+
                     {this.state.role === 'Administrator' ? (
                         <div>
                             <Link to="/sales">
-                                <Tooltip title="Sales" style={{marginRight: '5px'}} arrow>
-                                    <IconButton sx={{ color: 'white'}}>
-                                        <MonetizationOnOutlinedIcon sx={{ fontSize: 25 }}/>
+                                <Tooltip title="Sales" style={{ marginRight: '5px' }} arrow>
+                                    <IconButton sx={{ color: 'white' }}>
+                                        <MonetizationOnOutlinedIcon sx={{ fontSize: 25 }} />
                                     </IconButton>
                                 </Tooltip>
                             </Link>
                             <Link to="/products">
-                                <Tooltip title="Products" style={{marginRight: '5px'}} arrow>
-                                    <IconButton sx={{ color: 'white'}}>
-                                        <ShoppingCartIcon sx={{ fontSize: 25 }}/>
+                                <Tooltip title="Products" style={{ marginRight: '5px' }} arrow>
+                                    <IconButton sx={{ color: 'white' }}>
+                                        <ShoppingCartIcon sx={{ fontSize: 25 }} />
                                     </IconButton>
                                 </Tooltip>
-                            </Link> 
+                            </Link>
                             <Link to="/users">
-                                <Tooltip title="Users" style={{marginRight: '30px'}} arrow>
-                                    <IconButton sx={{ color: 'white'}}>
-                                        <PeopleAltRoundedIcon sx={{ fontSize: 25 }}/>
+                                <Tooltip title="Users" style={{ marginRight: '30px' }} arrow>
+                                    <IconButton sx={{ color: 'white' }}>
+                                        <PeopleAltRoundedIcon sx={{ fontSize: 25 }} />
                                     </IconButton>
                                 </Tooltip>
-                            </Link> 
+                            </Link>
                         </div>
                     ) : this.state.role === 'Seller' ? (
                         <div>
                             <Link to="/sales">
-                                <Tooltip title="Sales" style={{marginRight: '5px'}} arrow>
-                                    <IconButton sx={{ color: 'white'}}>
-                                        <MonetizationOnOutlinedIcon sx={{ fontSize: 25 }}/>
+                                <Tooltip title="Sales" style={{ marginRight: '5px' }} arrow>
+                                    <IconButton sx={{ color: 'white' }}>
+                                        <MonetizationOnOutlinedIcon sx={{ fontSize: 25 }} />
                                     </IconButton>
                                 </Tooltip>
                             </Link>
                             <Link to="/products">
-                                <Tooltip title="Products" style={{marginRight: '30px'}} arrow>
-                                    <IconButton sx={{ color: 'white'}}>
-                                        <ShoppingCartIcon sx={{ fontSize: 25 }}/>
+                                <Tooltip title="Products" style={{ marginRight: '5px' }} arrow>
+                                    <IconButton sx={{ color: 'white' }}>
+                                        <ShoppingCartIcon sx={{ fontSize: 25 }} />
                                     </IconButton>
                                 </Tooltip>
-                            </Link> 
+                            </Link>
+                            <Link to="/users">
+                                <Tooltip title="Users" style={{ marginRight: '30px' }} arrow>
+                                    <IconButton sx={{ color: 'white' }}>
+                                        <PeopleAltRoundedIcon sx={{ fontSize: 25 }} />
+                                    </IconButton>
+                                </Tooltip>
+                            </Link>
                         </div>
                     ) : (
                         null
