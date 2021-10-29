@@ -94,14 +94,27 @@ class Users extends Component {
                     data: state.data.map(element => element._id === dato._id ? dato : element),
                     modalEdit: false
                 }))
-                modifiedItemResponse("User", dato.name)
-                    .then(() => {
-                        if (resp.data.currentUser === true && resp.data.data.role !== "Administrator") {
-                            lackOfPrivilegeHome();
-                        }
-                    })
+                swal(
+                    "Operation successful.",
+                    "User: " + dato.name + ", was successfully updated.",
+                    "success"
+                ).then(() => {
+                    if (resp.data.currentUser === true && resp.data.data.role !== "Administrator") {
+                        swal(
+                            "Error!",
+                            "You Don't have permission to see this resourcEEEEEe",
+                            "error"
+                        ).then((result) => {
+                            this.props.history.push('/home');
+                        })
+                    }
+                })
             }).catch(err => {
-                lackOfPrivilegeHome();
+                (swal(
+                    "Error " + err.response.status,
+                    err.response.data.errorMessage,
+                    "error"
+                ))
                 return;
             });
         }
@@ -127,16 +140,17 @@ class Users extends Component {
                         })); swal("User removed successfully.", {
                             icon: "success",
                         }).then(() => {
-                            console.log(resp.data.currentUser)
                             if (resp.data.currentUser === true) {
                                 logoutMessage();
                             }
                         })
                     }).catch(err => {
-                        lackOfPrivilegeHome();
-                        return;
-                    });
-                }
+                        (swal(
+                            "Error " + err.response.status,
+                            err.response.data.errorMessage,
+                            "error"
+                        ))
+                    })}
                 else {
                     declinedOperationResponse();
                 }
@@ -173,7 +187,7 @@ class Users extends Component {
                 lackOfPrivilegeSeller(),
                 null
             )
-        } else if (this.state.role === "Pending"){
+        } else if (this.state.role === "Pending") {
             return (
                 lackOfPrivilegePending(),
                 null

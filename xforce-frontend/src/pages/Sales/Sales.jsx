@@ -85,7 +85,11 @@ class Sales extends React.Component {
           data: state.data.map(element => element._id === dato._id ? dato : element),
           modalEdit: false
         }))
-        modifiedItemResponse("Sales", dato.description);
+        swal(
+          "Successful Operation.",
+          "Sales: " + dato.description + ", was successfully modified.",
+          "success"
+        );
       }).catch(err => {
         console.log('An error has ocurred: ', err);
       });
@@ -137,7 +141,14 @@ class Sales extends React.Component {
           this.setState({
             modalinsert: false, data: list, alert: false
           })
-          createdItemResponse(newValue.description);
+          swal(
+            "Successful Operation.",
+            newValue.description + ", added successfully.",
+            "success"
+          )
+            .then(() => {
+              window.location.reload(true);
+            })
         }).catch(err => {
           console.log("An error has ocurred: ", err);
         })
