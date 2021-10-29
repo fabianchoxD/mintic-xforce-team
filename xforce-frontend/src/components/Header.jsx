@@ -113,8 +113,8 @@ class Header extends React.Component {
                                     </IconButton>
                                 </Tooltip>
                             </Link>
-                            <Link to="/users">
-                                <Tooltip title="Users" style={{ marginRight: '30px' }} arrow>
+                            <Link to="/seller">
+                                <Tooltip title="Seller" style={{ marginRight: '30px' }} arrow>
                                     <IconButton sx={{ color: 'white' }}>
                                         <PeopleAltRoundedIcon sx={{ fontSize: 25 }} />
                                     </IconButton>
