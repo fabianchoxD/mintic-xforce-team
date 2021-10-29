@@ -10,7 +10,7 @@ import ProductsList from "./ProductsList";
 import Footer from "../../components/Footer";
 import { notLogged } from "../../miscellaneous/loginMessageHandler";
 import { emptyDescription, emptyPrice, formatPrice, emptyState } from "../../miscellaneous/formValidations";
-import { modifiedItemResponse, createdItemResponse, successRemoveResponse, declinedOperationResponse } from "../../miscellaneous/operationMsgResp";
+import { successRemoveResponse, declinedOperationResponse } from "../../miscellaneous/operationMsgResp";
 
 const data = [];
 
@@ -65,8 +65,6 @@ class Products extends Component {
   };
 
   modify = (dato) => {
-
-    //dato.preventDefault();
     const list = this.state.form;
     if (list.price === '') {
       emptyPrice();

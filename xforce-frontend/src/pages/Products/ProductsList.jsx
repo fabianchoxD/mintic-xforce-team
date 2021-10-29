@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import Snackbar from '@mui/material/Snackbar';
 
 import {
     Table,

@@ -10,7 +10,7 @@ import Header from '../../components/Header';
 import Footer from "../../components/Footer";
 import { notLogged } from "../../miscellaneous/loginMessageHandler";
 import { emptyTotal, formatPrice } from "../../miscellaneous/formValidations";
-import { successRemoveResponse, declinedOperationResponse, createdItemResponse, modifiedItemResponse } from "../../miscellaneous/operationMsgResp";
+import { successRemoveResponse, declinedOperationResponse } from "../../miscellaneous/operationMsgResp";
 
 const data = [];
 

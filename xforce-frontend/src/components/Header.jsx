@@ -6,7 +6,6 @@ import LoginIcon from "@mui/icons-material/Login";
 import { Typography } from "@mui/material";
 import { Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
-import swal from "sweetalert";
 import CancelIcon from '@mui/icons-material/Cancel';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';

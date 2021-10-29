@@ -13,7 +13,6 @@ class SalesList extends Component {
     };
 
     render() {
-        const { vertical, horizontal } = this.state;
 
         return (
             <React.Fragment>
