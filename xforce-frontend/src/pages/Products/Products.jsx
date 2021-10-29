@@ -80,7 +80,11 @@ class Products extends Component {
           data: state.data.map(element => element._id === dato._id ? dato : element),
           modalEdit: false
         }))
-        modifiedItemResponse("Product", dato.description);
+        swal(
+          "Successful Operation.",
+          "Product: " + dato.description + ", was successfully modified.",
+          "success"
+      );
       }).catch(err => {
         (swal(
           "Error " + err.response.status,
@@ -140,7 +144,14 @@ class Products extends Component {
           this.setState({
             modalinsert: false, data: list, alert: false
           })
-          createdItemResponse(newValue.description);
+          swal(
+            "Successful Operation.",
+            newValue.description + ", added successfully.",
+            "success"
+          )
+            .then(() => {
+              window.location.reload(true);
+            })
         }).catch(err => {
           (swal(
             "Error " + err.response.status,
