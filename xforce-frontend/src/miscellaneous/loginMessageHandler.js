@@ -36,7 +36,7 @@ export function lackOfPrivilegeSeller() {
 export function lackOfPrivilegeHome() {
     swal(
         "Error 401",
-        "You Don't have permission to see this resource",
+        "You don't have permission to see this resource",
         "error"
     ).then(function () {
         window.location = "/home";
